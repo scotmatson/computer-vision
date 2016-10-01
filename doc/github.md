@@ -75,6 +75,8 @@
 * `git branch -r` - Displays a list of all remote repositories
 * `git checkout [local branch]` - Will `check out` (i.e., make active) a designated local branch.
 * `git stash` - Will place elements of the dirty state onto a stack for temporary storage. This will revert the state of your local branch back to the last `Clean State`. Often times you may want to do this simply to throw away undesired file modifications.
+* `git reset --hard [remote repository]/[remote branch]` - Will reset the HEAD of your [local branch] back to the state of the [remote branch]. You may need to perform a `git fetch` first.
+* `git clean -f` - Will remove all untracked files from your active branch.
 
 ## Terminology
 * Git - A version control system (VCS) which is ran locally on your machine.
@@ -84,3 +86,4 @@
 * Stage - When a file or files are `staged`, they are able to be commited. A modified file is in either one of two states, staged or unstaged. If a file is not staged, it cannot be commited to the repository.
 * Tracking - A file OR change that is tracked is one that has been commited to the repository. Each time a commit is made a new snapshot is taken of the current state of all tracked files.
 * Dirty State - A reference to when `git status` returns uncommited/untracked changes in the local repository.
+* HEAD - Branches can be thought of as directed acyclic graphs. The HEAD represents the pointer to the current node within the graph.
