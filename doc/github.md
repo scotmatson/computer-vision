@@ -15,17 +15,21 @@
 ### A Few Words on Making Commits
   "Commit Early. Commit Often"
   
-  It is important to make note of this saying at the start. This should really be everyones mantra when it comes to working with Git/GitHub as any deviation will often result in poor documentation, poor version control, and more importantly, merge conflicts"
+  It is important to make note of this saying at the start. This should really be everyones mantra when it comes to working with Git/GitHub as any deviation will often result in poor documentation, poor version control, and more importantly, merge conflicts.
  
   The reasoning behind this will become more apparent as you fully embrace Git, but I'll point a few things out for now that hopefully will make sense.
   
-  * Your commits should be reflective of incremental development cycles. Each time you commit you should be able to in one or two sentences explain clearly what the purpose of the commit was and your message should be applicable to each file you have modified. This practice makes it very easy to revert back to older states when problems arise.
+  * Your commits should be reflective of incremental development cycles. Each time you `git commit` you should be able to clearly explain in one or two sentences the purpose of the commit, and it should be applicable to each file you have modified. This practice makes it very easy to revert back to older states when problems arise.
   
-  * Merge conflicts arise when multiple authors have modified the same file. Generally this only happens when we are not communicating effectively, and also when we are not regularly making commits to the repository OR making too many changes during a development cycle. By focusing on implementing small blocks of rather than large chunks, we naturally will end up commiting to the repository more frequently, giving others a chance to stay in sync.
+  * Merge conflicts arise when multiple authors have modified the same file. Generally this only happens when we are not communicating effectively, but also when we are not regularly making commits to the repository OR making too many changes during a development cycle. By focusing on implementing small blocks of rather than large chunks, we naturally will end up commiting to the repository more frequently, giving others a chance to stay in sync and thus reducing the overall number of conflicts.
   
 ---
 
-
+### Development Cycle  
+  1. Make sure you are working on the correct local branch. You should *NOT* be actively developing on `master` OR `dev`.
+    * In most cases you will simply be developmenting on a local branch of your own, e.g., `my-dev-branch`, but in some cases you may wish to experiement a little bit, thus it is helpful to have a dedicated local branch specifically for this reason, e.g., `my-experiemental-branch`. This is a common practice when you are attempting to implementing something which may radically alter the existing code.
+    
+  2.
 
 
 ## Command-Line Cheatsheet
