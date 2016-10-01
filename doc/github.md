@@ -86,6 +86,7 @@ Two branches that we use serve a special purpose.
 * `git stash` - Will place elements of the dirty state onto a stack for temporary storage. This will revert the state of your local branch back to the last `Clean State`. Often times you may want to do this simply to throw away undesired file modifications.
 * `git reset --hard [remote repository]/[remote branch]` - Will reset the HEAD of your [local branch] back to the state of the [remote branch]. You may need to perform a `git fetch` first.
 * `git clean -f` - Will remove all untracked files from your active branch.
+* `git log` - Returns a lot of output, you may wish to pipe this command into `less`. The log will spit out every node of the Git commit history. Each node is given a SHA1 identifier and will also display the commit text. You may use the SHA1 identifier to `check out` a node from a previous state.
 
 ## Terminology
 * Git - A version control system (VCS) which is ran locally on your machine.
