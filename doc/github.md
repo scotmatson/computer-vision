@@ -20,7 +20,16 @@
   
 * Your commits should be reflective of incremental development cycles. Each time you `git commit` you should be able to clearly explain in one or two sentences the purpose of the commit, and it should be applicable to each file you have modified. This practice makes it very easy to revert back to older states when problems arise.
 * Merge conflicts arise when multiple authors have modified the same file. Generally this only happens when we are not communicating effectively, but also when we are not regularly making commits to the repository OR making too many changes during a development cycle. By focusing on implementing small blocks of rather than large chunks, we naturally will end up commiting to the repository more frequently, giving others a chance to stay in sync and thus reducing the overall number of conflicts.
-  
+
+---
+
+### Branches
+Two branches that we use serve a special purpose.
+
+* `master` - This branch represents a production state. It should always host executable code in a final state. The only merges that master will accept come from the `dev` branch and must submitted through the `pull request` system in GitHub. Additionally, the pull request must be reviewed by at least two members of the group (one being the person who made the initial pull request).
+
+* `dev` - As the name implies, this branch is specifically for synchronizing development code and carrying out merges into production. This branch is not to be confused for a local-dev branch or working branch. It is specifically intended for hosting code, and receiving code. Active development should take place on a seperate, personal branch on your local machine.
+
 ---
 
 ### Development Cycle  
