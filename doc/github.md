@@ -11,6 +11,14 @@
 * Set up a local development branch using whichever naming convention works best for you (e.g., sm-test, sm-dev, sm-experimental, etc...)
 
 ## Workflow
+  "Commit Early. Commit Often"
+  
+  It is important to make note of this saying at the start. This should really be everyones mantra when it comes to working with Git/GitHub as any deviation will often result in poor documentation, poor version control, and more importantly, merge conflicts"
+ 
+  The reasoning behind this will become more apparent as you fully embrace Git, but I'll point a few things out for now that hopefully will make sense.
+  
+  1. 
+
 
 
 ## Command-Line Cheatsheet
@@ -22,6 +30,14 @@
   * Staged - A modified file that has been `staged` to be commited to the repository
 * ```git add [filename.ext]``` - Will `stage` a specified file for commit.
 * ```git add --all :/``` - Will `stage` all modified/untracked files for commit.
+* ```git commit -m "[Commit Message]"``` - This will commit all staged changes into your `local` repository. The files being commited will all share the same timestamp and message so it is important that you commit frequently so that your commit history and commit messages make sense (i.e., messages should be succinct)
+
+* ```git push [remote repository alias] [local branch]``` - This is how you update the remote repository. The remote alias referencing the remote repository you wish to push the changes to, you may have multiple registered remote repositories, but in most cases it will simply be `origin`. The local branch referes to the current branch of the repository you are working on. If the `local branch` does not yet exist in the remote repository, it will be created after `pushing`.
+  
+  Examples:
+  
+    *```git push origin dev```
+    *```git push origin sm-experimental```
 
 ## Terminology
 * Git - A version control system (VCS) which is ran locally on your machine.
