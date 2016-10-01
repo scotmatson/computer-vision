@@ -37,6 +37,7 @@
   Examples:
   
     *```git push origin dev```
+    
     *```git push origin sm-experimental```
 
 ## Terminology
