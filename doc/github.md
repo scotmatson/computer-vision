@@ -44,12 +44,7 @@
 * ```git merge [branch to merge]``` - Merges a designated branch into the active branch. Conflicts will arise at this stage and you will be notified by Git of said conflict during this operation. Conflicts simply mean that conflicting lines of code exist and manual intervention is required to make the final decision. Conflicts are a safety mechanism to protect you from data loss.
 * ```git branch``` - Displays a list of all local branches
 * ```git branch -r``` - Displays a list of all remote repositories
-  
-  Examples:
-  
-  *```git push origin dev```
-
-  *```git push origin sm-experimental```
+* ```git checkout [local branch]``` - Will `check out` (i.e., make active) a designated local branch.
 
 ## Terminology
 * Git - A version control system (VCS) which is ran locally on your machine.
