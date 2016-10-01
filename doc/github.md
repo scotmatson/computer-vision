@@ -13,6 +13,7 @@
 4. Checkout your development branch
 
 **Example**
+
 1. `git clone https://github.com/scotmatson/computer-vision.git`
 
 2. `git checkout -b dev origin/dev`
