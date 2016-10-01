@@ -40,6 +40,10 @@
 * ```git add --all :/``` - Will `stage` all modified/untracked files for commit.
 * ```git commit -m "[Commit Message]"``` - This will commit all staged changes into your `local` repository. The files being commited will all share the same timestamp and message so it is important that you commit frequently so that your commit history and commit messages make sense (i.e., messages should be succinct)
 * ```git push [remote repository alias] [local branch]``` - This is how you update the remote repository. The remote alias referencing the remote repository you wish to push the changes to, you may have multiple registered remote repositories, but in most cases it will simply be `origin`. The local branch refers to the current branch of the repository you are working on. If the `local branch` does not yet exist in the remote repository, it will be created after `pushing`.
+* ```git fetch [remote repository alias]``` - Fetches the resources of a remote repository.
+* ```git merge [branch to merge]``` - Merges a designated branch into the active branch. Conflicts will arise at this stage and you will be notified by Git of said conflict during this operation. Conflicts simply mean that conflicting lines of code exist and manual intervention is required to make the final decision. Conflicts are a safety mechanism to protect you from data loss.
+* ```git branch``` - Displays a list of all local branches
+* ```git branch -r``` - Displays a list of all remote repositories
   
   Examples:
   
