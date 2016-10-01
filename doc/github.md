@@ -27,7 +27,27 @@
 1. Make sure you are working on the correct local branch. You should *NOT* be actively developing on `master` OR `dev`.  
   * In most cases you will simply be developmenting on a local branch of your own, e.g., `my-dev-branch`, but in some cases you may wish to experiement a little bit, thus it is helpful to have a dedicated local branch specifically for this reason, e.g., `my-experiemental-branch`. This is a common practice when you are attempting to implement something which may radically alter or break the existing code.
 2. As you are developing, be aware of the Slack feed as it will help keep you updated to changes in the codebase that will impact your current development. Ideally we want to avoid any situation that will result in multiple developers touching the same file at the same time, but this is not always possible. If someone has made a commit, it is up to you to decide if you should drop what you are doing and merge the code in `dev` with your local branch. Additionally, it is in everyone's best interest to notify the group when we are actively developing and what we are attempting to implement. Once again, this is simply a practice to ensure we avoid stepping on eachothers toes. Since this project is small-scale we often will end up with multiple members working in the same domain at the same time.
-3. 
+3. When have finished making a change and are ready to update the codebase:
+  1. Add all files to be commited.
+  2. Commit your files.
+  3. Checkout the `dev` branch
+  4. Update your local copy of `dev` by pulling from the remote `dev` branch.
+  5. Attempt to merge your local development branch into your local copy of `dev`.
+    * You may be prompted to enter a merge comment, the default is generally okay.
+    * If merge conflicts exist, you will need to resolve them.
+  6. Push your local copy of `dev` back to the remote repository, making your version the new version.
+  7. Return to your local development branch.
+  8. Make sure you merge your local `dev` branch into your local development branch.
+  
+  **Example:**
+  1. `git add --all :/`
+  2. `git commit -m "Smoothed the animation transistion of the response header for window reshaping."`
+  3. `git checkout dev`
+  4. `git pull origin dev`
+  5. `git merge sm-local`
+  6. `git push origin dev`
+  7. `git checkout sm-local`
+  8. `git merge dev`
 
 ## Command-Line Cheatsheet
 * `git clone https://github.com/scotmatson/computer-vision.git` - Will make a local copy of a remote repository. The top-level directory will be named after the repository, in this case `computer-vision`. When cloning from a repository a remote link will be made with the github repository which you cloned and is called `origin`, your default local branch is called `master` by convention.
