@@ -42,9 +42,11 @@
 * ```git push [remote repository alias] [local branch]``` - This is how you update the remote repository. The remote alias referencing the remote repository you wish to push the changes to, you may have multiple registered remote repositories, but in most cases it will simply be `origin`. The local branch refers to the current branch of the repository you are working on. If the `local branch` does not yet exist in the remote repository, it will be created after `pushing`.
 * ```git fetch [remote repository alias]``` - Fetches the resources of a remote repository.
 * ```git merge [branch to merge]``` - Merges a designated branch into the active branch. Conflicts will arise at this stage and you will be notified by Git of said conflict during this operation. Conflicts simply mean that conflicting lines of code exist and manual intervention is required to make the final decision. Conflicts are a safety mechanism to protect you from data loss.
+* ```git pull``` - A shortcut command that carries out a `fetch and merge` operation to your active branch. Given the degree of automation that occurs caution should be taken when utilizing this command since it does not grant the developer a chance to review any of the changes to be merged. Similar to `git merge`, you will be notified of any conflicts which arise and be required to reoslve them prior to carrying out the command.
 * ```git branch``` - Displays a list of all local branches
 * ```git branch -r``` - Displays a list of all remote repositories
 * ```git checkout [local branch]``` - Will `check out` (i.e., make active) a designated local branch.
+* ```git stash``` - Will place elements of the dirty state onto a stack for temporary storage. This will revert the state of your local branch back to the last `Clean State`. Often times you may want to do this simply to throw away undesired file modifications.
 
 ## Terminology
 * Git - A version control system (VCS) which is ran locally on your machine.
@@ -53,3 +55,4 @@
 * Remote - Refers to to the `remote` Github repository
 * Stage - When a file or files are `staged`, they are able to be commited. A modified file is in either one of two states, staged or unstaged. If a file is not staged, it cannot be commited to the repository.
 * Tracking - A file OR change that is tracked is one that has been commited to the repository. Each time a commit is made a new snapshot is taken of the current state of all tracked files.
+* Dirty State - A reference to when `git status` returns uncommited/untracked changes in the local repository.
