@@ -10,6 +10,18 @@
   * dev
 * Set up a local development branch using whichever naming convention works best for you (e.g., sm-test, sm-dev, sm-experimental, etc...)
 
+## Setup
+1. Clone the remote repository
+2. Acquire the `dev` branch
+3. Create your own development branch
+4. Checkout your development branch
+
+**Example**
+1. `git clone https://github.com/scotmatson/computer-vision.git`
+2. `git checkout -b dev origin/dev`
+3. `git branch sm-dev`
+4. `git checkout sm-dev`
+
 ## Workflow
 ### A Few Words on Making Commits
   "Commit Early. Commit Often"
@@ -81,7 +93,9 @@ Two branches that we use serve a special purpose.
 * `git merge [branch to merge]` - Merges a designated branch into the active branch. Conflicts will arise at this stage and you will be notified by Git of said conflict during this operation. Conflicts simply mean that conflicting lines of code exist and manual intervention is required to make the final decision. Conflicts are a safety mechanism to protect you from data loss.
 * `git pull` - A shortcut command that carries out a `fetch and merge` operation to your active branch. Given the degree of automation that occurs caution should be taken when utilizing this command since it does not grant the developer a chance to review any of the changes to be merged. Similar to `git merge`, you will be notified of any conflicts which arise and be required to reoslve them prior to carrying out the command.
 * `git branch` - Displays a list of all local branches
-* `git branch -r` - Displays a list of all remote repositories
+* `git branch -r` - Displays a list of all remote branches
+* `git branch -a` - Displays a list of all remote branches with remote repository pathing.
+* `git branch -b [remote branch] [remote repository alias]/[remote branch]` - Creates a local working copy of a remote branch.
 * `git checkout [local branch]` - Will `check out` (i.e., make active) a designated local branch.
 * `git stash` - Will place elements of the dirty state onto a stack for temporary storage. This will revert the state of your local branch back to the last `Clean State`. Often times you may want to do this simply to throw away undesired file modifications.
 * `git reset --hard [remote repository]/[remote branch]` - Will reset the HEAD of your [local branch] back to the state of the [remote branch]. You may need to perform a `git fetch` first.
