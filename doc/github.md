@@ -1,6 +1,9 @@
 # Github Documentation
 
 ## Prerequisites
+* Install Git on your local machine
+* Have a GitHub account
+* Request to be added to the repository as a collaborator (alternatively you may prefer to `fork` the repository).
 * Ensure you have cloned the remote repository into a local machine.
 * Make sure you have local access to the following branches:
   * master
