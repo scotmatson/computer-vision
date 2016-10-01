@@ -4,11 +4,7 @@
 * Install Git on your local machine
 * Have a GitHub account
 * Request to be added to the repository as a collaborator (alternatively you may prefer to `fork` the repository).
-* Ensure you have cloned the remote repository into a local machine.
-* Make sure you have local access to the following branches:
-  * master
-  * dev
-* Set up a local development branch using whichever naming convention works best for you (e.g., sm-test, sm-dev, sm-experimental, etc...)
+* Setup your local development environment
 
 ## Setup
 1. Clone the remote repository
@@ -18,8 +14,11 @@
 
 **Example**
 1. `git clone https://github.com/scotmatson/computer-vision.git`
+
 2. `git checkout -b dev origin/dev`
+
 3. `git branch sm-dev`
+
 4. `git checkout sm-dev`
 
 ## Workflow
