@@ -41,12 +41,19 @@
   
   **Example:**
   1. `git add --all :/`
+  
   2. `git commit -m "Smoothed the animation transistion of the response header for window reshaping."`
+  
   3. `git checkout dev`
+  
   4. `git pull origin dev`
+  
   5. `git merge sm-local`
+  
   6. `git push origin dev`
+  
   7. `git checkout sm-local`
+  
   8. `git merge dev`
 
 ## Command-Line Cheatsheet
