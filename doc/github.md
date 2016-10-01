@@ -40,6 +40,7 @@
   8. Make sure you merge your local `dev` branch into your local development branch.
   
   **Example:**
+  
   1. `git add --all :/`
   
   2. `git commit -m "Smoothed the animation transistion of the response header for window reshaping."`
