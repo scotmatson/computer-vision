@@ -30,23 +30,23 @@
 3. 
 
 ## Command-Line Cheatsheet
-* ```git clone https://github.com/scotmatson/computer-vision.git``` - Will make a local copy of a remote repository. The top-level directory will be named after the repository, in this case `computer-vision`. When cloning from a repository a remote link will be made with the github repository which you cloned and is called `origin`, your default local branch is called `master` by convention.
-* ```git remote``` - Displays the alias of all remote repositories.
-* ```git status``` - Displays the current state of the local repository. Files will displayed as being one of the following:
+* `git clone https://github.com/scotmatson/computer-vision.git` - Will make a local copy of a remote repository. The top-level directory will be named after the repository, in this case `computer-vision`. When cloning from a repository a remote link will be made with the github repository which you cloned and is called `origin`, your default local branch is called `master` by convention.
+* `git remote` - Displays the alias of all remote repositories.
+* `git status` - Displays the current state of the local repository. Files will displayed as being one of the following:
   * Untracked - A new file that is not yet part of the current repository
   * Unstaged - An existing file that has been modified but is not `staged` for commit.
   * Staged - A modified file that has been `staged` to be commited to the repository
-* ```git add [filename.ext]``` - Will `stage` a specified file for commit.
-* ```git add --all :/``` - Will `stage` all modified/untracked files for commit.
-* ```git commit -m "[Commit Message]"``` - This will commit all staged changes into your `local` repository. The files being commited will all share the same timestamp and message so it is important that you commit frequently so that your commit history and commit messages make sense (i.e., messages should be succinct)
-* ```git push [remote repository alias] [local branch]``` - This is how you update the remote repository. The remote alias referencing the remote repository you wish to push the changes to, you may have multiple registered remote repositories, but in most cases it will simply be `origin`. The local branch refers to the current branch of the repository you are working on. If the `local branch` does not yet exist in the remote repository, it will be created after `pushing`.
-* ```git fetch [remote repository alias]``` - Fetches the resources of a remote repository.
-* ```git merge [branch to merge]``` - Merges a designated branch into the active branch. Conflicts will arise at this stage and you will be notified by Git of said conflict during this operation. Conflicts simply mean that conflicting lines of code exist and manual intervention is required to make the final decision. Conflicts are a safety mechanism to protect you from data loss.
-* ```git pull``` - A shortcut command that carries out a `fetch and merge` operation to your active branch. Given the degree of automation that occurs caution should be taken when utilizing this command since it does not grant the developer a chance to review any of the changes to be merged. Similar to `git merge`, you will be notified of any conflicts which arise and be required to reoslve them prior to carrying out the command.
-* ```git branch``` - Displays a list of all local branches
-* ```git branch -r``` - Displays a list of all remote repositories
-* ```git checkout [local branch]``` - Will `check out` (i.e., make active) a designated local branch.
-* ```git stash``` - Will place elements of the dirty state onto a stack for temporary storage. This will revert the state of your local branch back to the last `Clean State`. Often times you may want to do this simply to throw away undesired file modifications.
+* `git add [filename.ext]` - Will `stage` a specified file for commit.
+* `git add --all :/` - Will `stage` all modified/untracked files for commit.
+* `git commit -m "[Commit Message]"` - This will commit all staged changes into your `local` repository. The files being commited will all share the same timestamp and message so it is important that you commit frequently so that your commit history and commit messages make sense (i.e., messages should be succinct)
+* `git push [remote repository alias] [local branch]` - This is how you update the remote repository. The remote alias referencing the remote repository you wish to push the changes to, you may have multiple registered remote repositories, but in most cases it will simply be `origin`. The local branch refers to the current branch of the repository you are working on. If the `local branch` does not yet exist in the remote repository, it will be created after `pushing`.
+* `git fetch [remote repository alias]` - Fetches the resources of a remote repository.
+* `git merge [branch to merge]` - Merges a designated branch into the active branch. Conflicts will arise at this stage and you will be notified by Git of said conflict during this operation. Conflicts simply mean that conflicting lines of code exist and manual intervention is required to make the final decision. Conflicts are a safety mechanism to protect you from data loss.
+* `git pull` - A shortcut command that carries out a `fetch and merge` operation to your active branch. Given the degree of automation that occurs caution should be taken when utilizing this command since it does not grant the developer a chance to review any of the changes to be merged. Similar to `git merge`, you will be notified of any conflicts which arise and be required to reoslve them prior to carrying out the command.
+* `git branch` - Displays a list of all local branches
+* `git branch -r` - Displays a list of all remote repositories
+* `git checkout [local branch]` - Will `check out` (i.e., make active) a designated local branch.
+* `git stash` - Will place elements of the dirty state onto a stack for temporary storage. This will revert the state of your local branch back to the last `Clean State`. Often times you may want to do this simply to throw away undesired file modifications.
 
 ## Terminology
 * Git - A version control system (VCS) which is ran locally on your machine.
