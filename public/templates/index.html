@@ -8,9 +8,8 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <!-- Place favicon.ico in the root directory -->
 
-        <link rel="stylesheet" href="css/normalize.css">
-        <link rel="stylesheet" href="css/main.css">
-        <script src="js/vendor/modernizr-2.8.3.min.js"></script>
+        <link rel="stylesheet" href="{{url_for('static', filename='css/normalize.css')}}">
+        <link rel="stylesheet" href="{{url_for('static', filename='css/main.css')}}">
     </head>
     <body>
         <!--[if lt IE 8]>
@@ -18,7 +17,8 @@
         <![endif]-->
 
         <!-- Add your site or application content here -->
-        <p>Hello world! This is Flask</p>
+        <p id="hello">Hello world! This is Flask</p>
 
     </body>
+    <script type="text/javascript" src="{{url_for('static', filename='js/scripts.min.js')}}"></script>
 </html>

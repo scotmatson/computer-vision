@@ -1,0 +1,25 @@
+{
+  "name": "cs160",
+  "version": "0.0.1",
+  "description": "A Web Application for Video Facial Recognition",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/scotmatson/computer-vision.git"
+  },
+  "author": "Scot Matson",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/scotmatson/computer-vision/issues"
+  },
+  "homepage": "https://github.com/scotmatson/computer-vision#readme",
+  "dependencies": {
+    "webpack": "^1.13.2"
+  }
+}
