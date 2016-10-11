@@ -1,8 +1,8 @@
 {
-  "name": "cs160",
+  "name": "UHH",
   "version": "0.0.1",
-  "description": "A Web Application for Video Facial Recognition",
-  "main": "index.js",
+  "description": "Facial recognition web app",
+  "main": "",
   "directories": {
     "doc": "docs"
   },
@@ -11,15 +11,22 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/scotmatson/computer-vision.git"
+    "url": "git://github.com/scotmatson/computer-vision.git"
   },
   "author": "Scot Matson",
-  "license": "ISC",
+  "license": "BSD-2-Clause",
   "bugs": {
     "url": "https://github.com/scotmatson/computer-vision/issues"
   },
-  "homepage": "https://github.com/scotmatson/computer-vision#readme",
-  "dependencies": {
-    "webpack": "^1.13.2"
+  "devDependencies": {
+    "webpack": "~1.13.2",
+    "react-dom": "~15.3.2",
+    "style-loader": "~0.13.1",
+    "babel-loader": "~6.2.5",
+    "react": "~15.3.2",
+    "sass-loader": "~4.0.2",
+    "css-loader": "~0.25.0",
+    "node-sass": "~3.10.1",
+    "babel-core": "~6.17.0"
   }
 }
