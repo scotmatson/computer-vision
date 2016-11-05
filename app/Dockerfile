@@ -42,7 +42,7 @@ RUN pip3 install --upgrade pip && pip3 install \
 
 # Import the project
 RUN mkdir /srv/httpd
-COPY ./computer-vision /srv/httpd
+#COPY ./computer-vision /srv/httpd
 
 # Set the public facing directory
 WORKDIR /srv/httpd/public
