@@ -25,21 +25,27 @@ psql -v ON_ERROR_STOP=1 --username "$POSTGRES_USER" <<-EOSQL
       fps SMALLINT
     );
 
+    CREATE TABLE frames (
+      id SERIAL,
+      videoId INTEGER,
+      address TEXT
+    );
+
     CREATE TABLE skull (
       yaw SMALLINT,
       pitch SMALLINT,
       roll SMALLINT,
-      frameNumber INTEGER
+      frameId INTEGER
     );
 
     CREATE TABLE pupil (
       location POINT,
-      fameNumber INTEGER
+      frameId INTEGER
     );
 
     CREATE TABLE openFace (
       location POINT,
       index SMALLINT,
-      frameNumber INTEGER
+      frameId INTEGER
     );
 EOSQL
