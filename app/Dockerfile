@@ -1,3 +1,11 @@
+# Dockerfile
+# Build:
+#   docker build -t [image]:[tag] [source]
+#
+# Run
+#   docker run --rm -ti --name [name] -v [path-to-repo]:[/srv/httpd] -p [host-port]:[container-port] [image]:[tag] bash
+
+
 # Defines the base image file
 FROM ubuntu:14.04
 
@@ -42,7 +50,6 @@ RUN pip3 install --upgrade pip && pip3 install \
 
 # Import the project
 RUN mkdir /srv/httpd
-#COPY ./computer-vision /srv/httpd
 
 # Set the public facing directory
 WORKDIR /srv/httpd/public
