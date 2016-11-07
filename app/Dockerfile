@@ -35,7 +35,8 @@ RUN apt-get install -y --no-install-recommends \
     npm \
     vim \
     git \
-    ssh
+    ssh \
+    tmux
 
 # Generate 'node' symlink; resolves Webpack misnaming error
 RUN ln -s /usr/bin/nodejs /usr/bin/node
