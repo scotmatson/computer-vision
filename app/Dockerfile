@@ -39,7 +39,7 @@ RUN apt-get install -y --no-install-recommends \
     tmux
 
 # Generate 'node' symlink; resolves Webpack misnaming error
-RUN ln -s /usr/bin/nodejs /usr/bin/node
+#RUN ln -s /usr/bin/nodejs /usr/bin/node
 
 # Install Python libraries (and explicit dependencies)
 RUN pip3 install --upgrade pip && pip3 install \

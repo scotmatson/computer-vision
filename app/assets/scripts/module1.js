@@ -1,6 +1,6 @@
 var React = require('react');
 var ReactDOM = require('react-dom');
-require('../style.css');
+//require('../style.css');
 
 class Message extends React.Component {
     render() {
