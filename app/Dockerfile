@@ -38,9 +38,6 @@ RUN apt-get install -y --no-install-recommends \
     ssh \
     tmux
 
-# Generate 'node' symlink; resolves Webpack misnaming error
-#RUN ln -s /usr/bin/nodejs /usr/bin/node
-
 # Install Python libraries (and explicit dependencies)
 RUN pip3 install --upgrade pip && pip3 install \
     itsdangerous \
@@ -54,7 +51,7 @@ RUN pip3 install --upgrade pip && pip3 install \
 RUN mkdir /srv/httpd
 
 # Set the public facing directory
-WORKDIR /srv/httpd/public
+WORKDIR /srv/httpd
 
 # Execute the Flask web server
 EXPOSE 5000
