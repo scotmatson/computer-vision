@@ -2,10 +2,11 @@ require('es6-promise').polyfill();
 
 var webpack = require('webpack');
 var path = require('path');
+var CommonsChunkPlugin = require('./node_modules/webpack/lib/optimize/CommonsChunkPlugin');
 
 module.exports = {
     entry: {
-        app: './components/app.js',
+        index: './components/index.js',
         login: './components/login.js' 
     },
     output: {
@@ -30,5 +31,8 @@ module.exports = {
                 loader: 'style-loader!css-loader!sass-loader'
             }
         ]
-    }
+    },
+    plugins: [
+        new CommonsChunkPlugin('commons', 'commons.bundle.js')
+    ]
 }
