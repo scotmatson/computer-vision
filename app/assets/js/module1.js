@@ -1,6 +1,6 @@
 var React = require('react');
 var ReactDOM = require('react-dom');
-require('../css/style.css');
+require('../css/style.scss');
 
 class Message extends React.Component {
     render() {
@@ -11,5 +11,4 @@ class Message extends React.Component {
     }
 }
 
-ReactDOM.render(<Message title="Facial Detection" video="https://www.youtube.com/embed/lKKxYwV6GV4"/>,
-    document.getElementById('react-container'));
+ReactDOM.render(<Message title="Facial Detection" video="https://www.youtube.com/embed/lKKxYwV6GV4"/>, document.getElementById('react-container'));

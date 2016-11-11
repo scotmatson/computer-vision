@@ -1,15 +1,12 @@
 require('es6-promise').polyfill();
 
-var debug = process.env.NODE_ENV !== "production";
 var webpack = require('webpack');
 
 module.exports = {
-    context: __dirname,
-    devtool: debug ? "inline-sourcemap" : null,
     entry: "./assets/js/scripts.js",
     output: {
-        path: __dirname + "build/static/js",
-        filename: "scripts.min.js"
+        path: "./build/static/js",
+        filename: "scripts.js"
     },
     module: {
         loaders: [
@@ -22,14 +19,9 @@ module.exports = {
                 }
             },
             {
-                test: /\.css$/,
-                loader: 'style-loader!css-loader'
+                test: /\.scss$/,
+                loader: 'style-loader!css-loader!sass-loader'
             }
         ]
-    },
-    plugins: debug ? [] : [
-        new webpack.optimize.DedupePlugin(),
-        new webpack.optimize.OccurenceOrderPlugin(),
-        new webpack.optimize.UglifyJsPlugin({mangle: False, sourcemap: False})
-    ]
+    }
 }
