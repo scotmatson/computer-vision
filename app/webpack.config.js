@@ -1,3 +1,5 @@
+require('es6-promise').polyfill();
+
 var debug = process.env.NODE_ENV !== "production";
 var webpack = require('webpack');
 
@@ -18,10 +20,11 @@ module.exports = {
                 query: {
                     presets: ['es2016', 'react']
                 }
-            }/*,
+            },
+            {
                 test: /\.css$/,
                 loader: 'style-loader!css-loader'
-            */
+            }
         ]
     },
     plugins: debug ? [] : [
