@@ -36,15 +36,31 @@ class Register extends React.Component {
 
     render() {
         return (
-            <form onSubmit={this.handleSubmit}>
-                <input type="text" value={this.state.username}
-                    onChange={this.handleUsernameChange}/>
-                <input type="text" value={this.state.firstName}
-                    onChange={this.handleFirstNameChange}/>
-                <input type="text" value={this.state.lastName}
-                    onChange={this.handleLastNameChange}/>
-                <input type="text" value={this.state.password}
-                    onChange={this.handlePasswordChange}/>
+            <form id="registration-form" onSubmit={this.handleSubmit}>
+                <label htmlFor="username">Username:</label>
+                <input type="text" 
+                       value={this.state.username} 
+                       name="username"
+                       id="username" 
+                       onChange={this.handleUsernameChange} />
+                <label htmlFor="first-name">First Name</label>
+                <input type="text" 
+                       value={this.state.firstName} 
+                       name="first-name"
+                       id="first-name" 
+                       onChange={this.handleFirstNameChange} />
+                <label htmlFor="last-name">Last Name</label>
+                <input type="text" 
+                       value={this.state.lastName} 
+                       name="last-name"
+                       id="last-name" 
+                       onChange={this.handleLastNameChange} />
+                <label htmlFor="password">Password</label>
+                <input type="text" 
+                       value={this.state.password} 
+                       name="password"
+                       id="password" 
+                       onChange={this.handlePasswordChange} />
                 <input type="submit" value="Submit"/>
             </form>
         );

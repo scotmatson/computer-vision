@@ -45,14 +45,46 @@ webpackJsonp([2],[
 	    render() {
 	        return React.createElement(
 	            'form',
-	            { onSubmit: this.handleSubmit },
-	            React.createElement('input', { type: 'text', value: this.state.username,
+	            { id: 'registration-form', onSubmit: this.handleSubmit },
+	            React.createElement(
+	                'label',
+	                { htmlFor: 'username' },
+	                'Username:'
+	            ),
+	            React.createElement('input', { type: 'text',
+	                value: this.state.username,
+	                name: 'username',
+	                id: 'username',
 	                onChange: this.handleUsernameChange }),
-	            React.createElement('input', { type: 'text', value: this.state.firstName,
+	            React.createElement(
+	                'label',
+	                { htmlFor: 'first-name' },
+	                'First Name'
+	            ),
+	            React.createElement('input', { type: 'text',
+	                value: this.state.firstName,
+	                name: 'first-name',
+	                id: 'first-name',
 	                onChange: this.handleFirstNameChange }),
-	            React.createElement('input', { type: 'text', value: this.state.lastName,
+	            React.createElement(
+	                'label',
+	                { htmlFor: 'last-name' },
+	                'Last Name'
+	            ),
+	            React.createElement('input', { type: 'text',
+	                value: this.state.lastName,
+	                name: 'last-name',
+	                id: 'last-name',
 	                onChange: this.handleLastNameChange }),
-	            React.createElement('input', { type: 'text', value: this.state.password,
+	            React.createElement(
+	                'label',
+	                { htmlFor: 'password' },
+	                'Password'
+	            ),
+	            React.createElement('input', { type: 'text',
+	                value: this.state.password,
+	                name: 'password',
+	                id: 'password',
 	                onChange: this.handlePasswordChange }),
 	            React.createElement('input', { type: 'submit', value: 'Submit' })
 	        );
