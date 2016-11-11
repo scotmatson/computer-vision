@@ -1,12 +1,16 @@
 require('es6-promise').polyfill();
 
 var webpack = require('webpack');
+var path = require('path');
 
 module.exports = {
-    entry: "./components/scripts.js",
+    entry: {
+        app: './components/app.js',
+        login: './components/login.js' 
+    },
     output: {
-        path: "./dist/static/js",
-        filename: "scripts.js"
+        path: path.join(__dirname, "./dist/static/js"),
+        filename: "[name].bundle.js"
     },
     module: {
         loaders: [
