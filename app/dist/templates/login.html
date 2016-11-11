@@ -1,8 +1,10 @@
 {% extends "layout.html" %}
 
 {% block content %}
-    <div id="react-login-container"></div>
-    <p>Click <a href="/">here</a> to return to the index page</p>
+    <main>
+        <div id="react-login-container"></div>
+        <p>Click <a href="/">here</a> to return to the index page</p>
+    </main>
     <script type="text/javascript" src="{{url_for('static', filename='js/commons.bundle.js')}}"></script>
     <script type="text/javascript" src="{{url_for('static', filename='js/login.bundle.js')}}"></script>
 {% endblock %}

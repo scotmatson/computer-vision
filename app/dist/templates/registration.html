@@ -1,7 +1,9 @@
 {% extends "layout.html" %}
 {% block content %}
-    <p>Click <a href="/login">here</a> to login.</p>
-    <p>Click <a href="/">here</a> to return to index</p>
+    <main>
+        <p>Click <a href="/login">here</a> to login.</p>
+        <p>Click <a href="/">here</a> to return to index</p>
+    </main>
     <script type="text/javascript" src="{{url_for('static', filename='build/commons.bundle.js')}}"></script>
     </body>
 </html>
