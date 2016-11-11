@@ -45,7 +45,8 @@ RUN pip3 install --upgrade pip && pip3 install \
     MarkupSafe \
     Jinja2 \
     Werkzeug \
-    flask
+    flask \
+    flask-sqlalchemy
 
 # Import the project
 RUN mkdir /srv/httpd

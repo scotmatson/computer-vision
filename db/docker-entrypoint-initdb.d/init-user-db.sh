@@ -7,17 +7,17 @@ psql -v ON_ERROR_STOP=1 --username "$POSTGRES_USER" <<-EOSQL
     \connect opencv
 
     CREATE TABLE users (
-      id SERIAL,
+      uid SERIAL,
       username VARCHAR(20),
       firstName VARCHAR(20),
       lastName VARCHAR(20),
-      password VARCHAR(20),
+      password VARCHAR(64),
       lastLogin TIMESTAMP,
       ip INET
     );
 
     CREATE TABLE videos (
-      id SERIAL,
+      vid SERIAL,
       name VARCHAR(240),
       userId INTEGER,
       width INTEGER,
@@ -26,7 +26,7 @@ psql -v ON_ERROR_STOP=1 --username "$POSTGRES_USER" <<-EOSQL
     );
 
     CREATE TABLE frames (
-      id SERIAL,
+      fid SERIAL,
       videoId INTEGER,
       address TEXT
     );
