@@ -10,7 +10,6 @@ webpackJsonp([0],[
 	var ReactDOM = __webpack_require__(34);
 
 	__webpack_require__(172);
-	__webpack_require__(176);
 
 	class App extends React.Component {
 	    render() {
