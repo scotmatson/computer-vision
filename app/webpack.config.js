@@ -5,7 +5,7 @@ var webpack = require('webpack');
 module.exports = {
     entry: "./components/scripts.js",
     output: {
-        path: "./build/static/js",
+        path: "./dist/static/js",
         filename: "scripts.js"
     },
     module: {
