@@ -23,7 +23,7 @@ module.exports = {
                     presets: ['es2016', 'react']
                 }
             },
-            {   test: /\.(gif|jpg|jpeg|png)$/,
+            {   test: /\.(gif|jpe?g|png)$/,
                 loader: 'url-loader?limit=20000' // >20kb ? use file-loader
             },
             {
