@@ -2,10 +2,6 @@ webpackJsonp([0],[
 /* 0 */
 /***/ function(module, exports, __webpack_require__) {
 
-	
-	//import Header from 'components/ui-Header';
-	//import Footer from 'components/ui-Footer';
-
 	var React = __webpack_require__(1);
 	var ReactDOM = __webpack_require__(34);
 

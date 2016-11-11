@@ -1,14 +1,9 @@
-<!doctype html>
-<html>
-    <head>
-        <title>Facial Detection</title>
-        <!--<link rel="stylesheet" type="text/css" href="{{url_for('static', filename='style.css')}}">-->
-    </head>
-    <body>
-        <div id="react-app-container"></div>
-        <p> Click <a href="/login">here</a> to add note.</p>
-        <p> Click <a href="/registration">here</a> to add file.</p>
-        <script type="text/javascript" src="{{url_for('static', filename='js/commons.bundle.js')}}"></script>
-        <script type="text/javascript" src="{{url_for('static', filename='js/index.bundle.js')}}"></script>
-    </body>
-</html>
+{% extends "layout.html" %}
+
+{% block content %}
+    <div id="react-app-container"></div>
+    <p> Click <a href="/login">here</a> to login.</p>
+    <p> Click <a href="/registration">here</a> to register.</p>
+    <script type="text/javascript" src="{{url_for('static', filename='js/commons.bundle.js')}}"></script>
+    <script type="text/javascript" src="{{url_for('static', filename='js/index.bundle.js')}}"></script>
+{% endblock %}

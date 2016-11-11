@@ -1,7 +1,3 @@
-
-//import Header from 'components/ui-Header';
-//import Footer from 'components/ui-Footer';
-
 var React = require('react');
 var ReactDOM = require('react-dom');
 
