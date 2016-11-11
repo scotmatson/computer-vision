@@ -27,7 +27,7 @@ module.exports = {
                 loader: 'url-loader?limit=20000' // >20kb ? use file-loader
             },
             {
-                test: /\.scss$/,
+                test: /\.(css|scss)$/,
                 loader: 'style-loader!css-loader!sass-loader'
             }
         ]

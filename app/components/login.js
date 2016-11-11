@@ -4,7 +4,9 @@
 
 var React = require('react');
 var ReactDOM = require('react-dom');
-require('../styles/style.scss');
+
+require('../styles/normalize.css');
+require('../process/sass/style.scss');
 
 class Login extends React.Component {
     render() {
