@@ -7,7 +7,8 @@ var CommonsChunkPlugin = require('./node_modules/webpack/lib/optimize/CommonsChu
 module.exports = {
     entry: {
         index: './components/index.js',
-        login: './components/login.js' 
+        login: './components/login.js' ,
+        register: './components/register.js' 
     },
     output: {
         path: path.join(__dirname, "./dist/static/js"),
