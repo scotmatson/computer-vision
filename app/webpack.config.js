@@ -18,6 +18,9 @@ module.exports = {
                     presets: ['es2016', 'react']
                 }
             },
+            {   test: /\.(gif|jpg|jpeg|png)/,
+                loader: 'url-loader?limit=20000' // if img >20kb, direct to asset
+            },
             {
                 test: /\.scss$/,
                 loader: 'style-loader!css-loader!sass-loader'
