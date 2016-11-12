@@ -16,7 +16,7 @@ def login():
     return render_template('login.jinja2')
 
 @app.route('/registration')
-def registration():
+def register():
     return render_template('register.jinja2')
 
 ################################################################################
