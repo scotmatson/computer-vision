@@ -38,14 +38,20 @@ webpackJsonp([2],[
 	    }
 
 	    handleSubmit(event) {
-	        alert("A user was registered: " + this.state.username + '' + this.state.firstName + '' + this.state.lastName + '' + this.state.password);
+	        /*
+	        alert("A user was registered: " + 
+	            this.state.username + '' +
+	            this.state.firstName + '' +
+	            this.state.lastName + '' +
+	            this.state.password);
 	        event.preventDefault();
+	        */
 	    }
 
 	    render() {
 	        return React.createElement(
 	            'form',
-	            { id: 'registration-form', onSubmit: this.handleSubmit },
+	            { action: 'confirmation', method: 'POST', id: 'registration-form', onSubmit: this.handleSubmit },
 	            React.createElement(
 	                'label',
 	                { htmlFor: 'username' },

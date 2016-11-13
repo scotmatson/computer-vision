@@ -26,17 +26,19 @@ class Register extends React.Component {
     handlePasswordChange(event)  { this.setState({password:  event.target.value}); }
     
     handleSubmit(event) {
+        /*
         alert("A user was registered: " + 
             this.state.username + '' +
             this.state.firstName + '' +
             this.state.lastName + '' +
             this.state.password);
         event.preventDefault();
+        */
     }
 
     render() {
         return (
-            <form id="registration-form" onSubmit={this.handleSubmit}>
+            <form action="confirmation" method="POST" id="registration-form" onSubmit={this.handleSubmit}>
                 <label htmlFor="username">Username:</label>
                 <input type="text" 
                        value={this.state.username} 

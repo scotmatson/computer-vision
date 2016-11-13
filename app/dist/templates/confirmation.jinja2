@@ -1,0 +1,11 @@
+{% extends "layout.jinja2" %}
+{% block content %}
+    <main>
+        <p>Congratulations, your data has been received!</p>   
+        <p>Click <a href="{{url_for('index')}}">here</a> to return to index</p>
+    </main>
+    <script type="text/javascript" src="{{url_for('static', filename='js/commons.bundle.js')}}"></script>
+    <script type="text/javascript" src="{{url_for('static', filename='js/register.bundle.js')}}"></script>
+    </body>
+</html>
+{% endblock %}

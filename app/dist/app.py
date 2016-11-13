@@ -1,5 +1,6 @@
-from flask import Flask, render_template
-from models import db
+from flask import Flask, render_template, request
+from models import db, User
+from datetime import datetime
 
 app = Flask(__name__)
 
@@ -15,9 +16,25 @@ def index():
 def login():
     return render_template('login.jinja2')
 
-@app.route('/registration')
+@app.route('/register')
 def register():
     return render_template('register.jinja2')
+
+@app.route('/confirmation', methods=['POST'])
+def confirmation():
+
+    new_user = User(
+        request.form['username'],
+        request.form['first-name'],
+        request.form['last-name'],
+        request.form['password'],
+        datetime.time(datetime.now()),
+        request.environ['REMOTE_ADDR']
+    )
+    db.session.add(new_user)
+    return render_template('confirmation.jinja2')
+
+
 
 ################################################################################
 if __name__ == '__main__':
