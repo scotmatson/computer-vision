@@ -22,13 +22,12 @@ def register():
 
 @app.route('/confirmation', methods=['POST'])
 def confirmation():
-
     new_user = User(
         request.form['username'],
         request.form['first-name'],
         request.form['last-name'],
         request.form['password'],
-        datetime.time(datetime.now()),
+        datetime.utcnow(),
         request.environ['REMOTE_ADDR']
     )
     db.session.add(new_user)

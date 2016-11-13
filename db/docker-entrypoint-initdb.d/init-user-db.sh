@@ -7,27 +7,27 @@ psql -v ON_ERROR_STOP=1 --username "$POSTGRES_USER" <<-EOSQL
     \connect opencv
 
     CREATE TABLE users (
-      uid SERIAL,
+      uid SERIAL PRIMARY KEY,
       username VARCHAR(20),
-      firstName VARCHAR(20),
-      lastName VARCHAR(20),
-      password VARCHAR(64),
+      firstname VARCHAR(20),
+      lastname VARCHAR(20),
+      password VARCHAR(116),
       lastLogin TIMESTAMP,
       ip INET
     );
 
     CREATE TABLE videos (
-      vid SERIAL,
+      vid SERIAL PRIMARY KEY,
       name VARCHAR(240),
-      userId INTEGER,
+      userid INTEGER,
       width INTEGER,
       height INTEGER,
       fps SMALLINT
     );
 
     CREATE TABLE frames (
-      fid SERIAL,
-      videoId INTEGER,
+      fid SERIAL PRIMARY KEY,
+      videoid INTEGER,
       address TEXT
     );
 
@@ -35,17 +35,17 @@ psql -v ON_ERROR_STOP=1 --username "$POSTGRES_USER" <<-EOSQL
       yaw SMALLINT,
       pitch SMALLINT,
       roll SMALLINT,
-      frameId INTEGER
+      frameid INTEGER
     );
 
     CREATE TABLE pupil (
       location POINT,
-      frameId INTEGER
+      frameid INTEGER
     );
 
     CREATE TABLE openFace (
       location POINT,
       index SMALLINT,
-      frameId INTEGER
+      frameid INTEGER
     );
 EOSQL
