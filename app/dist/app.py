@@ -4,7 +4,7 @@ from datetime import datetime
 
 app = Flask(__name__)
 
-app.config['SQLALCHEMY_DATABASE_URI'] = 'postgres://localhost/opencv'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'postgres://postgres:mysecretpassword@172.17.0.2/opencv'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db.init_app(app)
 
@@ -32,6 +32,7 @@ def confirmation():
         request.environ['REMOTE_ADDR']
     )
     db.session.add(new_user)
+    db.session.commit()
     return render_template('confirmation.jinja2')
 
 
