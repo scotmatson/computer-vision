@@ -96,7 +96,6 @@ webpackJsonp([4],[
 	        );
 	    }
 	}
-
 	ReactDOM.render(React.createElement(Register, null), document.getElementById('react-register-container'));
 
 /***/ }

@@ -8,20 +8,75 @@ webpackJsonp([3],[
 	__webpack_require__(172);
 
 	class Login extends React.Component {
+	    constructor(props) {
+	        super(props);
+
+	        this.state = {
+	            username: '',
+	            password: ''
+	        };
+
+	        this._onSubmit = this._onSubmit.bind(this);
+	        this._changeUsername = this._changeUsername.bind(this);
+	        this._changePassword = this._changePassword.bind(this);
+	    }
+
+	    _changeUsername(event) {
+	        this.setState({ username: event.target.value });
+	    }
+	    _changePassword(event) {
+	        this.setState({ password: event.target.value });
+	    }
+
+	    _onSubmit(event) {
+	        alert("OMFG TRUMP IS GONNA BE PRESIDENT LOL");
+	        event.preventDefault();
+	    }
+
 	    render() {
 	        return React.createElement(
-	            'div',
-	            null,
+	            'form',
+	            { className: 'form', onSubmit: this._onSubmit },
 	            React.createElement(
-	                'h1',
-	                null,
-	                this.props.title
+	                'div',
+	                { className: 'form__field-wrapper' },
+	                React.createElement(
+	                    'label',
+	                    { className: 'form__field-label', htmlFor: 'username' },
+	                    'Username'
+	                ),
+	                React.createElement('input', { className: 'form__field-input',
+	                    type: 'text',
+	                    id: 'username',
+	                    placeholder: 'Donald.Trump',
+	                    autoCorrect: 'off',
+	                    autoCapitalize: 'off',
+	                    spellCheck: 'false' })
 	            ),
-	            React.createElement('iframe', { width: '560', height: '315', src: this.props.video, allowFullScreen: true })
+	            React.createElement(
+	                'div',
+	                { className: 'form__field-wrapper' },
+	                React.createElement(
+	                    'label',
+	                    { className: 'form__field-label', htmlFor: 'password' },
+	                    'Password'
+	                ),
+	                React.createElement('input', { className: 'form__field-input',
+	                    id: 'password',
+	                    type: 'password'
+	                    //value={this.props.data.password}
+	                    , placeholder: '\u2022\u2022\u2022\u2022\u2022\u2022\u2022\u2022\u2022\u2022',
+	                    onChange: this._changePassword })
+	            ),
+	            React.createElement(
+	                'div',
+	                { className: 'form__submit-btn-wrapper' },
+	                React.createElement('input', { type: 'submit', value: 'Submit' })
+	            )
 	        );
 	    }
 	}
-	ReactDOM.render(React.createElement(Login, { title: 'Facial Detection', video: 'https://www.youtube.com/embed/VnwyT6AAk0w' }), document.getElementById("react-login-container"));
+	ReactDOM.render(React.createElement(Login, null), document.getElementById('react-login-container'));
 
 /***/ }
 ]);
