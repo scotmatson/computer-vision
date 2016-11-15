@@ -1,4 +1,5 @@
 from flask import Flask, render_template, request, redirect, url_for, session
+from functools import wraps
 from models import db, User
 from datetime import datetime
 import json
@@ -10,16 +11,27 @@ app.config['SQLALCHEMY_DATABASE_URI'] = 'postgres://postgres:mysecretpassword@17
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db.init_app(app)
 
+def login_required(f):
+    '''
+    A decorator function that restricts site access
+    to unauthorized parties.
+    '''
+    @wraps(f)
+    def decorated_function(*args, **kwargs):
+        if 'logged_in' not in session or session['logged_in'] is False:
+            return redirect(url_for('login'))
+        return f(*args, **kwargs)
+    return decorated_function
+
 @app.route('/', methods=['GET'])
+@login_required
 def index():
     '''
     The primary user interface for carrying out
     activities once they have been logged in to 
     their account.
     '''
-    #auth = session['auth']
-    username = session['username']
-    return render_template('index.jinja2', username=username)
+    return render_template('index.jinja2')
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
@@ -31,14 +43,9 @@ def login():
     if request.method == 'GET':
         return render_template('login.jinja2')
     elif request.method == 'POST':
-        # TODO Store login attempts
-        # TODO Flag invalid logins
-        session['username'] = request.form['username']
-
-
-
-
-        return redirect(url_for('index'))
+        session['logged_in'] = True
+        user = request.form['username']
+        return redirect(url_for('index', user=user))
 
 @app.route('/register')
 def register():
@@ -81,8 +88,15 @@ def admin():
             "lastname": user.lastname,
             "lastlogin": str(user.lastlogin),
             "ip": user.ip})
-
     return render_template('admin.jinja2', users=json.dumps(users))
+
+@app.route('/log_out')
+def log_out():
+    '''
+    Allows user to explicitly log out of a session.
+    '''
+    session['logged_in'] = False
+    return redirect(url_for('login'))
 
 ################################################################################
 if __name__ == '__main__':
