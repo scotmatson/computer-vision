@@ -21,7 +21,6 @@ webpackJsonp([2],[
 	        );
 	    }
 	}
-
 	ReactDOM.render(React.createElement(App, { title: 'Facial Detection', video: 'https://www.youtube.com/embed/lKKxYwV6GV4' }), document.getElementById("react-app-container"));
 
 /***/ }

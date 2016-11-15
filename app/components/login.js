@@ -17,8 +17,8 @@ class Login extends React.Component {
         this._onSubmit = this._onSubmit.bind(this)
     }
 
-    _changeUsername(event) { this.setState({username:  event.target.value}); }
-    _changePassword(event) { this.setState({password:  event.target.value}); }
+    _changeUsername(event) { this.setState({username: event.target.value}); }
+    _changePassword(event) { this.setState({password: event.target.value}); }
 
     _onSubmit(event) {
         // Validate user input
@@ -36,6 +36,7 @@ class Login extends React.Component {
                            type="text"
                            value={this.state.username}
                            id="username"
+                           name="username"
                            placeholder="Donald.Trump"
                            autoCorrect="off"
                            autoCapitalize="off"
@@ -47,13 +48,15 @@ class Login extends React.Component {
                     <input className="form__field-input"
                            id="password"
                            type="password"
+                           name="password"
                            value={this.state.password}
                            placeholder="••••••••••"
                            onChange={this._changePassword} />
                 </div>
                 <div className="form__submit-btn-wrapper">
-                    <input type="submit" value="Submit"/>
+                    <input type="submit" value="Submit" />
                 </div>
+                <div className="g-recaptcha" data-sitekey="6Ldh_QsUAAAAAIHD4gYCB3gK5UgsZRqiebcV7E9Z"></div>
             </form>
         );
     }

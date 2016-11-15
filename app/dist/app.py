@@ -1,22 +1,25 @@
-from flask import Flask, render_template, request, redirect, url_for
+from flask import Flask, render_template, request, redirect, url_for, session
 from models import db, User
 from datetime import datetime
 import json
+import os
 
 app = Flask(__name__)
-
+app.secret_key = os.urandom(24)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'postgres://postgres:mysecretpassword@172.17.0.2/opencv'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db.init_app(app)
 
-@app.route('/')
+@app.route('/', methods=['GET'])
 def index():
     '''
     The primary user interface for carrying out
     activities once they have been logged in to 
     their account.
     '''
-    return render_template('index.jinja2')
+    #auth = session['auth']
+    username = session['username']
+    return render_template('index.jinja2', username=username)
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
@@ -30,6 +33,11 @@ def login():
     elif request.method == 'POST':
         # TODO Store login attempts
         # TODO Flag invalid logins
+        session['username'] = request.form['username']
+
+
+
+
         return redirect(url_for('index'))
 
 @app.route('/register')

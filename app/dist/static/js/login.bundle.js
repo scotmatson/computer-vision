@@ -51,6 +51,7 @@ webpackJsonp([3],[
 	                    type: "text",
 	                    value: this.state.username,
 	                    id: "username",
+	                    name: "username",
 	                    placeholder: "Donald.Trump",
 	                    autoCorrect: "off",
 	                    autoCapitalize: "off",
@@ -68,6 +69,7 @@ webpackJsonp([3],[
 	                React.createElement("input", { className: "form__field-input",
 	                    id: "password",
 	                    type: "password",
+	                    name: "password",
 	                    value: this.state.password,
 	                    placeholder: "\u2022\u2022\u2022\u2022\u2022\u2022\u2022\u2022\u2022\u2022",
 	                    onChange: this._changePassword })
@@ -76,7 +78,8 @@ webpackJsonp([3],[
 	                "div",
 	                { className: "form__submit-btn-wrapper" },
 	                React.createElement("input", { type: "submit", value: "Submit" })
-	            )
+	            ),
+	            React.createElement("div", { className: "g-recaptcha", "data-sitekey": "6Ldh_QsUAAAAAIHD4gYCB3gK5UgsZRqiebcV7E9Z" })
 	        );
 	    }
 	}
