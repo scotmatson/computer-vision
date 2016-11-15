@@ -2,10 +2,12 @@
 
 {% block content %}
     <main>
-        <div id="react-admin-container"></div>
-        <p> Click <a href="{{url_for('login')}}">here</a> to login.</p>
-        <p> Click <a href="{{url_for('register')}}">here</a> to register.</p>
+
+        <div id="react-admin-container">
+        </div>
+        <p>Click <a href="{{url_for('index')}}">here</a> to return to the index page.</p>
     </main>
+    <script type="text/javascript">var users=JSON.parse('{{users}}');</script>
     <script type="text/javascript" src="{{url_for('static', filename='js/commons.bundle.js')}}"></script>
-    <script type="text/javascript" src="{{url_for('static', filename='js/index.bundle.js')}}"></script>
+    <script type="text/javascript" src="{{url_for('static', filename='js/admin.bundle.js')}}"></script>
 {% endblock %}

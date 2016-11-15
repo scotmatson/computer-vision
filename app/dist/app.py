@@ -1,6 +1,7 @@
 from flask import Flask, render_template, request
 from models import db, User
 from datetime import datetime
+import json
 
 app = Flask(__name__)
 
@@ -58,9 +59,18 @@ def admin():
     Provides heightened level of access for viewing
     and interacting with the postgresql database.
     '''
-    return render_template('admin.jinja2')
+    # TODO: users needs to be serialized into JSON format
+    users = list()
+    for user in User.query.all():
+        users.append({
+            "uid": user.uid,
+            "username": user.username,
+            "firstname": user.firstname,
+            "lastname": user.lastname,
+            "lastlogin": str(user.lastlogin),
+            "ip": user.ip})
 
-
+    return render_template('admin.jinja2', users=json.dumps(users))
 
 ################################################################################
 if __name__ == '__main__':
