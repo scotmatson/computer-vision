@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, redirect, url_for
 from models import db, User
 from datetime import datetime
 import json
@@ -18,14 +18,19 @@ def index():
     '''
     return render_template('index.jinja2')
 
-@app.route('/login')
+@app.route('/login', methods=['GET', 'POST'])
 def login():
     '''
     A view for entering authorization credentials to access
     a user account. New users will have the option to
     create a new account.
     '''
-    return render_template('login.jinja2')
+    if request.method == 'GET':
+        return render_template('login.jinja2')
+    elif request.method == 'POST':
+        # TODO Store login attempts
+        # TODO Flag invalid logins
+        return redirect(url_for('index'))
 
 @app.route('/register')
 def register():
@@ -59,7 +64,6 @@ def admin():
     Provides heightened level of access for viewing
     and interacting with the postgresql database.
     '''
-    # TODO: users needs to be serialized into JSON format
     users = list()
     for user in User.query.all():
         users.append({

@@ -16,9 +16,9 @@ webpackJsonp([3],[
 	            password: ''
 	        };
 
-	        this._onSubmit = this._onSubmit.bind(this);
 	        this._changeUsername = this._changeUsername.bind(this);
 	        this._changePassword = this._changePassword.bind(this);
+	        this._onSubmit = this._onSubmit.bind(this);
 	    }
 
 	    _changeUsername(event) {
@@ -29,54 +29,58 @@ webpackJsonp([3],[
 	    }
 
 	    _onSubmit(event) {
-	        alert("OMFG TRUMP IS GONNA BE PRESIDENT LOL");
-	        event.preventDefault();
+	        // Validate user input
+	        //alert("OMFG TRUMP IS GONNA BE PRESIDENT LOL"); // funny
+	        // If invalid, preventDefault and display errors
+	        //event.preventDefault(); // disabled for login testing -scot
 	    }
 
 	    render() {
 	        return React.createElement(
-	            'form',
-	            { className: 'form', onSubmit: this._onSubmit },
+	            "form",
+	            { action: "login", method: "POST", className: "form", onSubmit: this._onSubmit },
 	            React.createElement(
-	                'div',
-	                { className: 'form__field-wrapper' },
+	                "div",
+	                { className: "form__field-wrapper" },
 	                React.createElement(
-	                    'label',
-	                    { className: 'form__field-label', htmlFor: 'username' },
-	                    'Username'
+	                    "label",
+	                    { className: "form__field-label", htmlFor: "username" },
+	                    "Username"
 	                ),
-	                React.createElement('input', { className: 'form__field-input',
-	                    type: 'text',
-	                    id: 'username',
-	                    placeholder: 'Donald.Trump',
-	                    autoCorrect: 'off',
-	                    autoCapitalize: 'off',
-	                    spellCheck: 'false' })
+	                React.createElement("input", { className: "form__field-input",
+	                    type: "text",
+	                    value: this.state.username,
+	                    id: "username",
+	                    placeholder: "Donald.Trump",
+	                    autoCorrect: "off",
+	                    autoCapitalize: "off",
+	                    spellCheck: "false",
+	                    onChange: this._changeUsername })
 	            ),
 	            React.createElement(
-	                'div',
-	                { className: 'form__field-wrapper' },
+	                "div",
+	                { className: "form__field-wrapper" },
 	                React.createElement(
-	                    'label',
-	                    { className: 'form__field-label', htmlFor: 'password' },
-	                    'Password'
+	                    "label",
+	                    { className: "form__field-label", htmlFor: "password" },
+	                    "Password"
 	                ),
-	                React.createElement('input', { className: 'form__field-input',
-	                    id: 'password',
-	                    type: 'password'
-	                    //value={this.props.data.password}
-	                    , placeholder: '\u2022\u2022\u2022\u2022\u2022\u2022\u2022\u2022\u2022\u2022',
+	                React.createElement("input", { className: "form__field-input",
+	                    id: "password",
+	                    type: "password",
+	                    value: this.state.password,
+	                    placeholder: "\u2022\u2022\u2022\u2022\u2022\u2022\u2022\u2022\u2022\u2022",
 	                    onChange: this._changePassword })
 	            ),
 	            React.createElement(
-	                'div',
-	                { className: 'form__submit-btn-wrapper' },
-	                React.createElement('input', { type: 'submit', value: 'Submit' })
+	                "div",
+	                { className: "form__submit-btn-wrapper" },
+	                React.createElement("input", { type: "submit", value: "Submit" })
 	            )
 	        );
 	    }
 	}
-	ReactDOM.render(React.createElement(Login, null), document.getElementById('react-login-container'));
+	ReactDOM.render(React.createElement(Login, null), document.getElementById("react-login-container"));
 
 /***/ }
 ]);

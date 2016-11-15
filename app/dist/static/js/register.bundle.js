@@ -37,16 +37,7 @@ webpackJsonp([4],[
 	        this.setState({ password: event.target.value });
 	    }
 
-	    handleSubmit(event) {
-	        /*
-	        alert("A user was registered: " + 
-	            this.state.username + '' +
-	            this.state.firstName + '' +
-	            this.state.lastName + '' +
-	            this.state.password);
-	        event.preventDefault();
-	        */
-	    }
+	    handleSubmit(event) {/* Validation checking*/}
 
 	    render() {
 	        return React.createElement(
