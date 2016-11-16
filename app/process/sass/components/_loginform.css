@@ -1,15 +1,3 @@
-div#react-app-container {
-    background-color: $blue;
-}
-
-div#react-login-container {
-    background-color: $green;
-}
-
-div#form__field-wrapper {
-    background-color: $blue;
-}
-
 .form__field-wrapper {
   width: 100%;
   position: relative;

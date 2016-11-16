@@ -11,38 +11,44 @@ class Login extends React.Component {
     this._changeUsername = this._changeUsername.bind(this)
     this._changePassword = this._changePassword.bind(this)
   }
-
   render () {
     return (
-      <form className='form' onSubmit={this._onSubmit}>
-        <div className='form__field-wrapper'>
-          <input  className='form__field-input'
-                  type='text'
-                  id='username'
-                  placeholder='Donald.Trump'
-                  autoCorrect='off'
-                  autoCapitalize='off'
-                  spellCheck='false' />
-                  <label className='form__field-label' htmlFor='username'>
-                    Username
-                  </label>
+      <div className='form-page__wrapper'>
+        <div className='form-page__form-wrapper'>
+          <div className='form-page__form-header'>
+            <h2 className='form-page__form-heading'>Login</h2>
+          </div>
+          <form action="login" method="POST" className="form" onSubmit={this._onSubmit}>
+                        <div className="form__field-wrapper">
+                            <label className="form__field-label" htmlFor="username">Username</label>
+                            <input className="form__field-input"
+                                   type="text"
+                                   value={this.state.username}
+                                   id="username"
+                                   name="username"
+                                   placeholder="Donald.Trump"
+                                   autoCorrect="off"
+                                   autoCapitalize="off"
+                                   spellCheck="false"
+                                   onChange={this._changeUsername} />
+                        </div>
+                        <div className="form__field-wrapper">
+                            <label className="form__field-label" htmlFor="password">Password</label>
+                            <input className="form__field-input"
+                                   id="password"
+                                   type="password"
+                                   name="password"
+                                   value={this.state.password}
+                                   placeholder="••••••••••"
+                                   onChange={this._changePassword} />
+                        </div>
+                        <div className="form__submit-btn-wrapper">
+                            <input type="submit" value="Submit" />
+                        </div>
+                        <div className="g-recaptcha" data-sitekey="6Ldh_QsUAAAAAIHD4gYCB3gK5UgsZRqiebcV7E9Z"></div>
+                    </form>
         </div>
-        <div className='form__field-wrapper'>
-          <input  className='form__field-input'
-                  id='password'
-                  type='password'
-                  //value={this.props.data.password}
-                  placeholder='••••••••••'
-                  onChange={this._changePassword}
-                  />
-          <label className='form__field-label' htmlFor='password'>
-            Password
-          </label>
-        </div>
-        <div className='form__submit-btn-wrapper'>
-          <input type="submit" value="Submit"/>
-        </div>
-      </form>
+      </div>
     )
   }
 
