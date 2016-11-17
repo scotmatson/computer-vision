@@ -37,51 +37,69 @@ webpackJsonp([3],[
 
 	    render() {
 	        return React.createElement(
-	            "form",
-	            { action: "login", method: "POST", className: "form", onSubmit: this._onSubmit },
+	            "div",
+	            { className: "form-page__wrapper" },
 	            React.createElement(
 	                "div",
-	                { className: "form__field-wrapper" },
+	                { className: "form-page__form-wrapper" },
 	                React.createElement(
-	                    "label",
-	                    { className: "form__field-label", htmlFor: "username" },
-	                    "Username"
+	                    "div",
+	                    { className: "form-page__form-header" },
+	                    React.createElement(
+	                        "h2",
+	                        { className: "form-page__form-heading" },
+	                        "Login"
+	                    )
 	                ),
-	                React.createElement("input", { className: "form__field-input",
-	                    type: "text",
-	                    value: this.state.username,
-	                    id: "username",
-	                    name: "username",
-	                    placeholder: "Donald.Trump",
-	                    autoCorrect: "off",
-	                    autoCapitalize: "off",
-	                    spellCheck: "false",
-	                    onChange: this._changeUsername })
-	            ),
-	            React.createElement(
-	                "div",
-	                { className: "form__field-wrapper" },
 	                React.createElement(
-	                    "label",
-	                    { className: "form__field-label", htmlFor: "password" },
-	                    "Password"
-	                ),
-	                React.createElement("input", { className: "form__field-input",
-	                    id: "password",
-	                    type: "password",
-	                    name: "password",
-	                    value: this.state.password,
-	                    placeholder: "\u2022\u2022\u2022\u2022\u2022\u2022\u2022\u2022\u2022\u2022",
-	                    onChange: this._changePassword })
-	            ),
-	            React.createElement(
-	                "div",
-	                { className: "form__submit-btn-wrapper" },
-	                React.createElement("input", { type: "submit", value: "Submit" })
-	            ),
-	            React.createElement("div", { className: "g-recaptcha", "data-sitekey": "6Ldh_QsUAAAAAIHD4gYCB3gK5UgsZRqiebcV7E9Z" })
+	                    "form",
+	                    { action: "login", method: "POST", className: "form", onSubmit: this._onSubmit },
+	                    React.createElement(
+	                        "div",
+	                        { className: "form__field-wrapper" },
+	                        React.createElement(
+	                            "label",
+	                            { className: "form__field-label", htmlFor: "username" },
+	                            "Username"
+	                        ),
+	                        React.createElement("input", { className: "form__field-input",
+	                            type: "text",
+	                            value: this.state.username,
+	                            id: "username",
+	                            name: "username",
+	                            placeholder: "Donald.Trump",
+	                            autoCorrect: "off",
+	                            autoCapitalize: "off",
+	                            spellCheck: "false",
+	                            onChange: this._changeUsername })
+	                    ),
+	                    React.createElement(
+	                        "div",
+	                        { className: "form__field-wrapper" },
+	                        React.createElement(
+	                            "label",
+	                            { className: "form__field-label", htmlFor: "password" },
+	                            "Password"
+	                        ),
+	                        React.createElement("input", { className: "form__field-input",
+	                            id: "password",
+	                            type: "password",
+	                            name: "password",
+	                            value: this.state.password,
+	                            placeholder: "\u2022\u2022\u2022\u2022\u2022\u2022\u2022\u2022\u2022\u2022",
+	                            onChange: this._changePassword })
+	                    ),
+	                    React.createElement(
+	                        "div",
+	                        { className: "form__submit-btn-wrapper" },
+	                        React.createElement("input", { type: "submit", value: "Submit" })
+	                    ),
+	                    React.createElement("div", { className: "g-recaptcha", "data-sitekey": "6Ldh_QsUAAAAAIHD4gYCB3gK5UgsZRqiebcV7E9Z" })
+	                )
+	            )
 	        );
 	    }
+
 	}
 	ReactDOM.render(React.createElement(Login, null), document.getElementById("react-login-container"));
 
