@@ -1,12 +1,12 @@
 {% extends "layout.jinja2" %}
 {% block content %}
     <main>
-        <div id="react-register-container"></div>
-        <p>Click <a href="{{url_for('login')}}">here</a> to login.</p>
+        <div id="react-confirm-container"></div>
+        <p>Congratulations, your data has been received!</p>   
         <p>Click <a href="{{url_for('index')}}">here</a> to return to index</p>
     </main>
     <script src="{{url_for('static', filename='js/commons.bundle.js')}}"></script>
-    <script src="{{url_for('static', filename='js/register.bundle.js')}}"></script>
+    <script src="{{url_for('static', filename='js/confirmation.bundle.js')}}"></script>
     </body>
 </html>
 {% endblock %}

@@ -3,8 +3,14 @@
 {% block content %}
     <main>
         <div id="react-login-container"></div>
+<<<<<<< HEAD
         //<p>Click <a href="{{url_for('index')}}">here</a> to return to the index page</p>
+=======
+        <p>Click <a href="{{url_for('index')}}">here</a> to return to the index page</p>
+        <p>Click <a href="{{url_for('register')}}">here</a> to register a new account/p>
+>>>>>>> jc-dev
     </main>
-    <script type="text/javascript" src="{{url_for('static', filename='js/commons.bundle.js')}}"></script>
-    <script type="text/javascript" src="{{url_for('static', filename='js/login.bundle.js')}}"></script>
+    <script src='https://www.google.com/recaptcha/api.js'></script>
+    <script src="{{url_for('static', filename='js/commons.bundle.js')}}"></script>
+    <script src="{{url_for('static', filename='js/login.bundle.js')}}"></script>
 {% endblock %}

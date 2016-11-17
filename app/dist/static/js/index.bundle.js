@@ -1,4 +1,4 @@
-webpackJsonp([0],[
+webpackJsonp([2],[
 /* 0 */
 /***/ function(module, exports, __webpack_require__) {
 
@@ -21,7 +21,6 @@ webpackJsonp([0],[
 	        );
 	    }
 	}
-
 	ReactDOM.render(React.createElement(App, { title: 'Facial Detection', video: 'https://www.youtube.com/embed/lKKxYwV6GV4' }), document.getElementById("react-app-container"));
 
 /***/ }

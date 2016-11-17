@@ -21,15 +21,17 @@ ARG DEBIAN_FRONTEND=noninteractive
 RUN echo "export TERM=xterm" >> /root/.bashrc
 
 # Set locale
-RUN apt-get update && apt-get install -y --no-install-recommends \
+RUN apt-get update --fix-missing && apt-get install -y --no-install-recommends \
     language-pack-en=1:14* && \
     update-locale LANG=en_US.UTF-8
 
 # Install packages
 RUN apt-get install -y --no-install-recommends \
     ca-certificates \
+    build-essential \
     python3-dev \
     python3-pip \
+    libpq-dev \
     nodejs \
     nodejs-legacy \
     npm \
@@ -37,6 +39,9 @@ RUN apt-get install -y --no-install-recommends \
     git \
     ssh \
     tmux
+
+# Upgrade packages, durr
+RUN apt-get upgrade -y
 
 # Install Python libraries (and explicit dependencies)
 RUN pip3 install --upgrade pip && pip3 install \
@@ -46,7 +51,8 @@ RUN pip3 install --upgrade pip && pip3 install \
     Jinja2 \
     Werkzeug \
     flask \
-    flask-sqlalchemy
+    flask-sqlalchemy \
+    psycopg2
 
 # Import the project
 RUN mkdir /srv/httpd

@@ -8,7 +8,9 @@ module.exports = {
     entry: {
         index: './components/index.js',
         login: './components/login.js' ,
-        register: './components/register.js' 
+        register: './components/register.js',
+        confirmation: './components/confirmation.js',
+        admin: './components/admin.js' 
     },
     output: {
         path: path.join(__dirname, "./dist/static/js"),

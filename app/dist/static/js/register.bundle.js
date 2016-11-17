@@ -1,4 +1,4 @@
-webpackJsonp([2],[
+webpackJsonp([4],[
 /* 0 */
 /***/ function(module, exports, __webpack_require__) {
 
@@ -37,15 +37,12 @@ webpackJsonp([2],[
 	        this.setState({ password: event.target.value });
 	    }
 
-	    handleSubmit(event) {
-	        alert("A user was registered: " + this.state.username + '' + this.state.firstName + '' + this.state.lastName + '' + this.state.password);
-	        event.preventDefault();
-	    }
+	    handleSubmit(event) {/* Validation checking*/}
 
 	    render() {
 	        return React.createElement(
 	            'form',
-	            { id: 'registration-form', onSubmit: this.handleSubmit },
+	            { action: 'confirmation', method: 'POST', id: 'registration-form', onSubmit: this.handleSubmit },
 	            React.createElement(
 	                'label',
 	                { htmlFor: 'username' },
@@ -90,7 +87,6 @@ webpackJsonp([2],[
 	        );
 	    }
 	}
-
 	ReactDOM.render(React.createElement(Register, null), document.getElementById('react-register-container'));
 
 /***/ }

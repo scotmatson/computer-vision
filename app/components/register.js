@@ -25,18 +25,11 @@ class Register extends React.Component {
     handleLastNameChange(event)  { this.setState({lastName:  event.target.value}); }
     handlePasswordChange(event)  { this.setState({password:  event.target.value}); }
     
-    handleSubmit(event) {
-        alert("A user was registered: " + 
-            this.state.username + '' +
-            this.state.firstName + '' +
-            this.state.lastName + '' +
-            this.state.password);
-        event.preventDefault();
-    }
+    handleSubmit(event) { /* Validation checking*/ }
 
     render() {
         return (
-            <form id="registration-form" onSubmit={this.handleSubmit}>
+            <form action="confirmation" method="POST" id="registration-form" onSubmit={this.handleSubmit}>
                 <label htmlFor="username">Username:</label>
                 <input type="text" 
                        value={this.state.username} 
@@ -61,10 +54,9 @@ class Register extends React.Component {
                        name="password"
                        id="password" 
                        onChange={this.handlePasswordChange} />
-                <input type="submit" value="Submit"/>
+                <input type="submit" value="Submit" />
             </form>
         );
     }
 }
-
 ReactDOM.render(<Register></Register>, document.getElementById('react-register-container'));

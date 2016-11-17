@@ -3,9 +3,11 @@
 {% block content %}
     <main>
         <div id="react-app-container"></div>
-        <p> Click <a href="{{url_for('login')}}">here</a> to login.</p>
-        <p> Click <a href="{{url_for('register')}}">here</a> to register.</p>
+        <p>Admin panel be a special option available to admins after logging in</p>
+        <p>Click <a href="{{url_for('admin')}}">here</a> for the admin panel.</p>
+        <p>{{auth}}</p>
+        <p><a href="{{url_for('log_out')}}">Log Out</a></p>
     </main>
-    <script type="text/javascript" src="{{url_for('static', filename='js/commons.bundle.js')}}"></script>
-    <script type="text/javascript" src="{{url_for('static', filename='js/index.bundle.js')}}"></script>
+    <script src="{{url_for('static', filename='js/commons.bundle.js')}}"></script>
+    <script src="{{url_for('static', filename='js/index.bundle.js')}}"></script>
 {% endblock %}
