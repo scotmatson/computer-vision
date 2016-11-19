@@ -1,15 +1,9 @@
-from flask import Flask, render_template, request, redirect, url_for, session
+from dist import app
+from flask import render_template, request, redirect, url_for, session
 from functools import wraps
-from models import db, User
+from dist.models import db, User
 from datetime import datetime
 import json
-import os
-
-app = Flask(__name__)
-app.secret_key = os.urandom(24)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'postgres://postgres:mysecretpassword@172.17.0.2/opencv'
-app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-db.init_app(app)
 
 def login_required(f):
     '''
@@ -43,8 +37,12 @@ def login():
     if request.method == 'GET':
         return render_template('login.jinja2')
     elif request.method == 'POST':
-        session['logged_in'] = True
+
+        
         user = request.form['username']
+        password = request.form['password']
+
+        session['logged_in'] = True
         return redirect(url_for('index', user=user))
 
 @app.route('/register')
@@ -97,7 +95,3 @@ def log_out():
     '''
     session['logged_in'] = False
     return redirect(url_for('login'))
-
-################################################################################
-if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=5000, debug=True)

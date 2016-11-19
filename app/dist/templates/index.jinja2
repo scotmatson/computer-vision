@@ -5,7 +5,7 @@
         <div id="react-app-container"></div>
         <p>Admin panel be a special option available to admins after logging in</p>
         <p>Click <a href="{{url_for('admin')}}">here</a> for the admin panel.</p>
-        <p>{{auth}}</p>
+        <p>Greetings => {{ auth}} </p>
         <p><a href="{{url_for('log_out')}}">Log Out</a></p>
     </main>
     <script src="{{url_for('static', filename='js/commons.bundle.js')}}"></script>
