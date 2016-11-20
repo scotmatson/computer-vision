@@ -4,7 +4,7 @@ from functools import wraps
 from dist.models import db, User
 from datetime import datetime
 from urllib.parse import urlencode
-from urllib.request import Request, urlopen
+from urllib.request import urlopen
 import json
 
 def login_required(f):
@@ -98,21 +98,22 @@ def authenticate():
     '''
     Authentication for user login attempts.
     '''
-    # Validate reCaptcha
-    #google_url = 'https://www.google.com/recaptcha/api/siteverify'
-    #recaptcha = {
-    #    'secret'  : '6Ldh_QsUAAAAANZkysKJNJHjj_KfKRgJwpnaXAJf',
-    #    'response': request.form['g-recaptcha-response'],
-    #    'remoteip': request.environ['REMOTE_ADDR']
-    #}
-    #request = Request(google_url, urlencode(recaptcha).encode())
-    #response = urlopen(request).read().decode()
+    google_url = 'https://www.google.com/recaptcha/api/siteverify'
+    recaptcha = {
+        'secret'  : '6Ldh_QsUAAAAANZkysKJNJHjj_KfKRgJwpnaXAJf',
+        'response': request.form['g-recaptcha-response'],
+        'remoteip': request.environ['REMOTE_ADDR']
+    }
 
-    for record in [User.query.filter_by(username=request.form['username']).first()]:
-        # If user exists
-        if record:
-            if record.check_password(request.form['password']):
-                session['username'] = record.username
-                session['logged_in'] = True
-                return redirect(url_for('index'))
+    if request.form['g-recaptcha-response']:
+        req = urlopen(google_url, urlencode(recaptcha).encode())
+        res = json.loads(req.read().decode())
+
+    if res['success']:
+        for record in [User.query.filter_by(username=request.form['username']).first()]:
+            if record:
+                if record.check_password(request.form['password']):
+                    session['username'] = record.username
+                    session['logged_in'] = True
+                    return redirect(url_for('index'))
     return redirect(url_for('login'), code=307)
