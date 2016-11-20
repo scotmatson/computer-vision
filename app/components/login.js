@@ -22,16 +22,8 @@ class Login extends React.Component {
     _changePassword(event) { this.setState({password: event.target.value}); }
 
     _onSubmit(event) {
-        // Validate user input
-        var recaptcha = window.getElementById("g-recaptcha").val();
-        if (recaptcha == "") {
-            alert("Must check recaptcha!");
-            event.preventDefault();
-        }
-        alert(recaptcha);
-        event.preventDefault();
-        // If invalid, preventDefault and display errors
-        //event.preventDefault(); // disabled for login testing -scot
+        var recaptcha = document.getElementById("g-recaptcha-response").value;
+        if (recaptcha == "") { event.preventDefault(); }
     }
 
     render () {
