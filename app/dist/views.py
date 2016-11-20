@@ -34,16 +34,30 @@ def login():
     a user account. New users will have the option to
     create a new account.
     '''
+    authenticated=-1
     if request.method == 'GET':
-        return render_template('login.jinja2')
+        authenticated=0
+        return render_template('login.jinja2', authenticated=authenticated)
     elif request.method == 'POST':
+        # Validate reCaptcha
+        google_url = 'https://www.google.com/recaptcha/api/siteverify'
+        recaptcha = {
+            'secret'  : '6Ldh_QsUAAAAANZkysKJNJHjj_KfKRgJwpnaXAJf',
+            'response': request.form['g-recaptcha-response'],
+            'remoteip': request.environ['REMOTE_ADDR']
+        }
 
+        # Locate user in DB
+        for record in [User.query.filter_by(username=request.form['username']).first()]:
+            if record:
+                authenticated=1
+                session['username'] = record.username
+                password = request.form['password']
+                session['logged_in'] = True
         
-        user = request.form['username']
-        password = request.form['password']
-
-        session['logged_in'] = True
-        return redirect(url_for('index', user=user))
+        if authenticated:
+            return redirect(url_for('index'))
+        return render_template('login.jinja2', authenticated=authenticated)
 
 @app.route('/register')
 def register():
