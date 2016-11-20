@@ -3,6 +3,8 @@ from flask import render_template, request, redirect, url_for, session
 from functools import wraps
 from dist.models import db, User
 from datetime import datetime
+from urllib.parse import urlencode
+from urllib.request import Request, urlopen
 import json
 
 def login_required(f):
@@ -34,30 +36,11 @@ def login():
     a user account. New users will have the option to
     create a new account.
     '''
-    authenticated=-1
     if request.method == 'GET':
-        authenticated=0
-        return render_template('login.jinja2', authenticated=authenticated)
+        return render_template('login.jinja2', authenticated=0)
     elif request.method == 'POST':
-        # Validate reCaptcha
-        google_url = 'https://www.google.com/recaptcha/api/siteverify'
-        recaptcha = {
-            'secret'  : '6Ldh_QsUAAAAANZkysKJNJHjj_KfKRgJwpnaXAJf',
-            'response': request.form['g-recaptcha-response'],
-            'remoteip': request.environ['REMOTE_ADDR']
-        }
-
-        # Locate user in DB
-        for record in [User.query.filter_by(username=request.form['username']).first()]:
-            if record:
-                authenticated=1
-                session['username'] = record.username
-                password = request.form['password']
-                session['logged_in'] = True
+        return render_template('login.jinja2', authenticated=-1)
         
-        if authenticated:
-            return redirect(url_for('index'))
-        return render_template('login.jinja2', authenticated=authenticated)
 
 @app.route('/register')
 def register():
@@ -109,3 +92,27 @@ def log_out():
     '''
     session['logged_in'] = False
     return redirect(url_for('login'))
+
+@app.route('/authenticate', methods=['POST'])
+def authenticate():
+    '''
+    Authentication for user login attempts.
+    '''
+    # Validate reCaptcha
+    #google_url = 'https://www.google.com/recaptcha/api/siteverify'
+    #recaptcha = {
+    #    'secret'  : '6Ldh_QsUAAAAANZkysKJNJHjj_KfKRgJwpnaXAJf',
+    #    'response': request.form['g-recaptcha-response'],
+    #    'remoteip': request.environ['REMOTE_ADDR']
+    #}
+    #request = Request(google_url, urlencode(recaptcha).encode())
+    #response = urlopen(request).read().decode()
+
+    for record in [User.query.filter_by(username=request.form['username']).first()]:
+        # If user exists
+        if record:
+            if record.check_password(request.form['password']):
+                session['username'] = record.username
+                session['logged_in'] = True
+                return redirect(url_for('index'))
+    return redirect(url_for('login'), code=307)
