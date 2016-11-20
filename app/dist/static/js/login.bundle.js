@@ -30,7 +30,6 @@ webpackJsonp([3],[
 
 	    _onSubmit(event) {
 	        // Validate user input
-	        //alert("OMFG TRUMP IS GONNA BE PRESIDENT LOL"); // funny
 	        // If invalid, preventDefault and display errors
 	        //event.preventDefault(); // disabled for login testing -scot
 	    }
@@ -96,12 +95,28 @@ webpackJsonp([3],[
 	                    ),
 	                    React.createElement("div", { className: "g-recaptcha", "data-sitekey": "6Ldh_QsUAAAAAIHD4gYCB3gK5UgsZRqiebcV7E9Z" })
 	                )
+	            ),
+	            React.createElement(
+	                "p",
+	                null,
+	                "User Before"
+	            ),
+	            React.createElement(
+	                "p",
+	                null,
+	                "User Auth: ",
+	                this.props.authenticated
+	            ),
+	            React.createElement(
+	                "p",
+	                null,
+	                "User After"
 	            )
 	        );
 	    }
 
 	}
-	ReactDOM.render(React.createElement(Login, null), document.getElementById("react-login-container"));
+	ReactDOM.render(React.createElement(Login, { authenticated: authenticated }), document.getElementById("react-login-container"));
 
 /***/ }
 ]);

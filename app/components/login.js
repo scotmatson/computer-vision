@@ -22,9 +22,12 @@ class Login extends React.Component {
 
     _onSubmit(event) {
         // Validate user input
-        //alert("OMFG TRUMP IS GONNA BE PRESIDENT LOL"); // funny
         // If invalid, preventDefault and display errors
         //event.preventDefault(); // disabled for login testing -scot
+    }
+
+    componentWillReceiveProps : function(nextProps) {
+        this.setState({authenticated: nextProps.value});
     }
 
     render () {
@@ -64,9 +67,11 @@ class Login extends React.Component {
                             <div className="g-recaptcha" data-sitekey="6Ldh_QsUAAAAAIHD4gYCB3gK5UgsZRqiebcV7E9Z"></div>
                         </form>
             </div>
+            <p>User Before</p>
+            <p>User Auth: {this.state.authenticated}</p>
+            <p>User After</p>
           </div>
         )
       }
-
 }
-ReactDOM.render(<Login/>, document.getElementById("react-login-container"))
+ReactDOM.render(<Login authenticated={authenticated}/>, document.getElementById("react-login-container"))
