@@ -5,6 +5,7 @@
         <div id="react-login-container"></div>
         <p>Click <a href="{{url_for('index')}}">here</a> to return to the index page</p>
         <p>Click <a href="{{url_for('register')}}">here</a> to register a new account</p>
+        <p>Real auth: {{authenticated}}</p>
     </main>
     <script src='https://www.google.com/recaptcha/api.js'></script>
     <script>var authenticated={{authenticated}};</script>

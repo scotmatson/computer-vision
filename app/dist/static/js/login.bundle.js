@@ -13,7 +13,8 @@ webpackJsonp([3],[
 
 	        this.state = {
 	            username: '',
-	            password: ''
+	            password: '',
+	            authenticated: authenticated
 	        };
 
 	        this._changeUsername = this._changeUsername.bind(this);
@@ -30,6 +31,13 @@ webpackJsonp([3],[
 
 	    _onSubmit(event) {
 	        // Validate user input
+	        var recaptcha = window.getElementById("g-recaptcha").val();
+	        if (recaptcha == "") {
+	            alert("Must check recaptcha!");
+	            event.preventDefault();
+	        }
+	        alert(recaptcha);
+	        event.preventDefault();
 	        // If invalid, preventDefault and display errors
 	        //event.preventDefault(); // disabled for login testing -scot
 	    }
@@ -52,7 +60,7 @@ webpackJsonp([3],[
 	                ),
 	                React.createElement(
 	                    "form",
-	                    { action: "login", method: "POST", className: "form", onSubmit: this._onSubmit },
+	                    { action: "authenticate", method: "POST", className: "form", onSubmit: this._onSubmit },
 	                    React.createElement(
 	                        "div",
 	                        { className: "form__field-wrapper" },
@@ -93,28 +101,18 @@ webpackJsonp([3],[
 	                        { className: "form__submit-btn-wrapper" },
 	                        React.createElement("input", { type: "submit", value: "Submit" })
 	                    ),
-	                    React.createElement("div", { className: "g-recaptcha", "data-sitekey": "6Ldh_QsUAAAAAIHD4gYCB3gK5UgsZRqiebcV7E9Z" })
+	                    React.createElement("div", { className: "g-recaptcha",
+	                        "data-sitekey": "6Ldh_QsUAAAAAIHD4gYCB3gK5UgsZRqiebcV7E9Z" })
+	                ),
+	                React.createElement(
+	                    "p",
+	                    null,
+	                    "Auth: ",
+	                    authenticated
 	                )
-	            ),
-	            React.createElement(
-	                "p",
-	                null,
-	                "User Before"
-	            ),
-	            React.createElement(
-	                "p",
-	                null,
-	                "User Auth: ",
-	                this.props.authenticated
-	            ),
-	            React.createElement(
-	                "p",
-	                null,
-	                "User After"
 	            )
 	        );
 	    }
-
 	}
 	ReactDOM.render(React.createElement(Login, { authenticated: authenticated }), document.getElementById("react-login-container"));
 
