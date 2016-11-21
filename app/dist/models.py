@@ -11,15 +11,15 @@ class User(db.Model):
     firstname = db.Column(db.String(20))
     lastname = db.Column(db.String(20))
     password = db.Column(db.String(116))
-    lastlogin = db.Column(TIMESTAMP)
+    created = db.Column(TIMESTAMP)
     ip = db.Column(INET)
 
-    def __init__(self, username, first_name, last_name, password, last_login, ip):
+    def __init__(self, username, first_name, last_name, password, created, ip):
         self.username = username
         self.firstname = first_name.title()
         self.lastname = last_name.title()
         self.set_password(password) 
-        self.lastlogin = last_login
+        self.created = created
         self.ip = ip
 
     def set_password(self, password):
