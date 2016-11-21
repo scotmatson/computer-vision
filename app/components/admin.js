@@ -12,7 +12,7 @@ class Account extends React.Component {
                 <td>{this.props.username}</td>
                 <td>{this.props.firstname}</td>
                 <td>{this.props.lastname}</td>
-                <td>{this.props.lastlogin}</td>
+                <td>{this.props.created}</td>
                 <td>{this.props.ip}</td>
             </tr>
         );
@@ -27,8 +27,8 @@ class Admin extends React.Component {
                         uid={user.uid}
                         username={user.username}
                         firstname={user.firstname}
-                        lastname={user.lastname}
-                        lastlogin={user.lastlogin}
+                        lastname={user.created}
+                        created={user.created}
                         ip={user.ip}/>);});
 
         return (
@@ -39,7 +39,7 @@ class Admin extends React.Component {
                         <th>username</th>
                         <th>firstname</th>
                         <th>lastname</th>
-                        <th>lastlogin</th>
+                        <th>created</th>
                         <th>ip</th>
                     </tr>
                 </thead>

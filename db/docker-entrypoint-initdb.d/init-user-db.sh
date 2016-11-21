@@ -12,17 +12,16 @@ psql -v ON_ERROR_STOP=1 --username "$POSTGRES_USER" <<-EOSQL
       firstname VARCHAR(20),
       lastname VARCHAR(20),
       password VARCHAR(116),
-      lastLogin TIMESTAMP,
+      created TIMESTAMP,
       ip INET
     );
 
     CREATE TABLE videos (
       vid SERIAL PRIMARY KEY,
-      name VARCHAR(240),
-      userid INTEGER,
-      width INTEGER,
-      height INTEGER,
-      fps SMALLINT
+      uid INTEGER,
+      filepath VARCHAR(100),
+      filename VARCHAR(20),
+      created TIMESTAMP
     );
 
     CREATE TABLE frames (

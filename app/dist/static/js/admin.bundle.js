@@ -36,7 +36,7 @@ webpackJsonp([0],[
 	            React.createElement(
 	                'td',
 	                null,
-	                this.props.lastlogin
+	                this.props.created
 	            ),
 	            React.createElement(
 	                'td',
@@ -55,8 +55,8 @@ webpackJsonp([0],[
 	                uid: user.uid,
 	                username: user.username,
 	                firstname: user.firstname,
-	                lastname: user.lastname,
-	                lastlogin: user.lastlogin,
+	                lastname: user.created,
+	                created: user.created,
 	                ip: user.ip });
 	        });
 
@@ -92,7 +92,7 @@ webpackJsonp([0],[
 	                    React.createElement(
 	                        'th',
 	                        null,
-	                        'lastlogin'
+	                        'created'
 	                    ),
 	                    React.createElement(
 	                        'th',

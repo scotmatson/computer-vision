@@ -6,6 +6,7 @@ from datetime import datetime
 from urllib.parse import urlencode
 from urllib.request import urlopen
 import json
+import sys
 
 def login_required(f):
     '''
@@ -27,7 +28,8 @@ def index():
     activities once they have been logged in to 
     their account.
     '''
-    return render_template('index.jinja2')
+    if request.method == 'GET':
+        return render_template('index.jinja2')
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
@@ -40,7 +42,6 @@ def login():
         return render_template('login.jinja2', authenticated=0)
     elif request.method == 'POST':
         return render_template('login.jinja2', authenticated=-1)
-        
 
 @app.route('/register')
 def register():
@@ -81,7 +82,7 @@ def admin():
             "username": user.username,
             "firstname": user.firstname,
             "lastname": user.lastname,
-            "lastlogin": str(user.lastlogin),
+            "created": str(user.created),
             "ip": user.ip})
     return render_template('admin.jinja2', users=json.dumps(users))
 
@@ -117,3 +118,13 @@ def authenticate():
                     session['logged_in'] = True
                     return redirect(url_for('index'))
     return redirect(url_for('login'), code=307)
+
+@app.route('/upload', methods=['POST'])
+def upload():
+    '''
+    Handles video uploading
+    '''
+     
+    video = request.form['video'] 
+    print(video, file=sys.stderr)
+    return redirect(url_for('index')) 
