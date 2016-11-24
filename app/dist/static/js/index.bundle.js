@@ -37,7 +37,10 @@ webpackJsonp([2],[
 	            null,
 	            React.createElement(
 	                'form',
-	                { action: 'upload', method: 'POST', id: 'video-uploader' },
+	                { action: 'upload',
+	                    method: 'POST',
+	                    id: 'video-uploader',
+	                    encType: 'multipart/form-data' },
 	                React.createElement(
 	                    'label',
 	                    { htmlFor: 'video' },
