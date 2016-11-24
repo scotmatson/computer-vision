@@ -7,6 +7,23 @@ from urllib.parse import urlencode
 from urllib.request import urlopen
 import json
 import sys
+import boto3
+
+
+# Move into dedicated constants.py file
+
+CAPTCHA_URL = 'https://www.google.com/recaptcha/api/siteverify'
+CAPTCHA_SECRET_KEY = '6Ldh_QsUAAAAANZkysKJNJHjj_KfKRgJwpnaXAJf'
+UPLOAD_BUCKET = ''
+ALLOWED_EXTENSIONS = set(['avi', 'flv', 'wmv', 'mov', 'mp4'])
+
+# Save - This is for downloading files
+# 
+# s3 = boto3.resource('s3')
+# s3.meta.client.download_file('bucketname', 'DL Source File', 'DL Dest Path/File')
+#
+# Need to research if we can access files and display them without downloading
+# them. That would be convenient.
 
 def login_required(f):
     '''
@@ -99,32 +116,49 @@ def authenticate():
     '''
     Authentication for user login attempts.
     '''
-    google_url = 'https://www.google.com/recaptcha/api/siteverify'
+    #
     recaptcha = {
-        'secret'  : '6Ldh_QsUAAAAANZkysKJNJHjj_KfKRgJwpnaXAJf',
+        'secret'  : CAPTCHA_SECRET_KEY,
         'response': request.form['g-recaptcha-response'],
         'remoteip': request.environ['REMOTE_ADDR']
     }
 
     if request.form['g-recaptcha-response']:
-        req = urlopen(google_url, urlencode(recaptcha).encode())
+        req = urlopen(CAPTCHA_URL, urlencode(recaptcha).encode())
         res = json.loads(req.read().decode())
 
+    # If captcha is successful ...
     if res['success']:
         for record in [User.query.filter_by(username=request.form['username']).first()]:
+            # ... if user exists ...
             if record:
+                #  ... confirm password challenge.
                 if record.check_password(request.form['password']):
+                    session['uid'] = record.uid
                     session['username'] = record.username
                     session['logged_in'] = True
                     return redirect(url_for('index'))
     return redirect(url_for('login'), code=307)
+
+def allowed_file(filename):
+    '''
+    File validation
+    '''
+    return '.' in filename and filename.rsplit('.', 1)[1] in ALLOWED_EXTENSIONS
 
 @app.route('/upload', methods=['POST'])
 def upload():
     '''
     Handles video uploading
     '''
-     
-    video = request.form['video'] 
-    print(video, file=sys.stderr)
+    if 'video' not in request.files:
+        print("Not a file.... dangit. This should be a file.")
+    else:
+        video = request.files['video'] 
+        if allowed_file(video.filename):
+            # TODO: Restrict file size
+            s3 = boto3.resource('s3')
+            print(video, file=sys.stderr)
+            print(type(video), file=sys.stderr)
+
     return redirect(url_for('index')) 

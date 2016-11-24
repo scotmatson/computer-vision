@@ -33,7 +33,10 @@ class App extends React.Component {
     render() {
         return (
             <div>
-                <form action="upload" method="POST" id="video-uploader">
+                <form action="upload" 
+                      method="POST" 
+                      id="video-uploader" 
+                      encType="multipart/form-data">
                     <label htmlFor="video">Upload</label>
                     <input type="file"
                            id="video" 
