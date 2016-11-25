@@ -27,3 +27,15 @@ class User(db.Model):
 
     def check_password(self, password):
         return check_password_hash(self.password, password)
+
+class Video(db.Model):
+    __tablename__ = 'videos'
+    vid = db.Column(db.Integer, primary_key=True)
+    uid = db.Column(db.Integer)
+    filename = db.Column(db.String(64))
+    created = db.Column(TIMESTAMP)
+
+    def __init__(self, uid, filename, created):
+        self.uid = uid
+        self.filename = filename
+        self.created = created
