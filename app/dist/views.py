@@ -157,10 +157,18 @@ def upload():
     else:
         video = request.files['video'] 
         if allowed_file(video.filename):
-            # TODO: Restrict file size
+            # Store the metadata in the DB
+            # TODO: Postgres storage
+            # Upload the file to S3
             s3 = boto3.resource('s3')
-            #s3.upload_fileobj(video, UPLOAD_BUCKET, 
-            print(video, file=sys.stderr)
-            print(type(video), file=sys.stderr)
-
+            bucket = s3.Bucket(UPLOAD_BUCKET)
+            bucket.put_object(Key=video.filename, Body=video)
     return redirect(url_for('index')) 
+
+# This will print all of the objects in a bucket.
+# Probably will be useful for checking what we've downloaded
+# So we can get new videos.
+#
+# bucket = s3.Bucket('ocv160')
+# for obj in bucket.objects.all():
+#     print(obj.key)
