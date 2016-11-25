@@ -47,6 +47,7 @@ class Admin extends React.Component {
             return (<UserVideo
                         key={video.vid}
                         vid={video.vid}
+                        uid={video.uid}
                         filename={video.filename}
                         created={video.created}/>);});
 

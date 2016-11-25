@@ -92,6 +92,7 @@ webpackJsonp([0],[
 	            return React.createElement(UserVideo, {
 	                key: video.vid,
 	                vid: video.vid,
+	                uid: video.uid,
 	                filename: video.filename,
 	                created: video.created });
 	        });
