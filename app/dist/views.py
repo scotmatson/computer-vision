@@ -1,7 +1,7 @@
 from dist import app
 from flask import render_template, request, redirect, url_for, session
 from functools import wraps
-from dist.models import db, User
+from dist.models import db, User, Video
 from datetime import datetime
 from urllib.parse import urlencode
 from urllib.request import urlopen
@@ -110,6 +110,8 @@ def log_out():
     Allows user to explicitly log out of a session.
     '''
     session['logged_in'] = False
+    session['uid'] = None
+    session['username'] = None
     return redirect(url_for('login'))
 
 @app.route('/authenticate', methods=['POST'])
@@ -117,7 +119,6 @@ def authenticate():
     '''
     Authentication for user login attempts.
     '''
-    #
     recaptcha = {
         'secret'  : CAPTCHA_SECRET_KEY,
         'response': request.form['g-recaptcha-response'],
@@ -148,6 +149,7 @@ def allowed_file(filename):
     return '.' in filename and filename.rsplit('.', 1)[1] in ALLOWED_EXTENSIONS
 
 @app.route('/upload', methods=['POST'])
+@login_required
 def upload():
     '''
     Handles video uploading
@@ -158,7 +160,13 @@ def upload():
         video = request.files['video'] 
         if allowed_file(video.filename):
             # Store the metadata in the DB
-            # TODO: Postgres storage
+            new_video = Video(
+                session['uid'],
+                video.filename,
+                datetime.utcnow())
+            db.session.add(new_video)
+            db.session.commit()
+
             # Upload the file to S3
             s3 = boto3.resource('s3')
             bucket = s3.Bucket(UPLOAD_BUCKET)
