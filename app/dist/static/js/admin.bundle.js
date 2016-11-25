@@ -7,8 +7,7 @@ webpackJsonp([0],[
 
 	__webpack_require__(172);
 
-	class Account extends React.Component {
-
+	class UserAccount extends React.Component {
 	    render() {
 	        return React.createElement(
 	            'tr',
@@ -47,10 +46,39 @@ webpackJsonp([0],[
 	    }
 	}
 
+	class UserVideo extends React.Component {
+	    render() {
+	        return React.createElement(
+	            'tr',
+	            null,
+	            React.createElement(
+	                'td',
+	                null,
+	                this.props.vid
+	            ),
+	            React.createElement(
+	                'td',
+	                null,
+	                this.props.uid
+	            ),
+	            React.createElement(
+	                'td',
+	                null,
+	                this.props.filename
+	            ),
+	            React.createElement(
+	                'td',
+	                null,
+	                this.props.created
+	            )
+	        );
+	    }
+	}
+
 	class Admin extends React.Component {
 	    render() {
 	        var userAccounts = this.props.users.map(function (user) {
-	            return React.createElement(Account, {
+	            return React.createElement(UserAccount, {
 	                key: user.uid,
 	                uid: user.uid,
 	                username: user.username,
@@ -60,56 +88,106 @@ webpackJsonp([0],[
 	                ip: user.ip });
 	        });
 
+	        var userVideos = this.props.videos.map(function (video) {
+	            return React.createElement(UserVideo, {
+	                key: video.vid,
+	                vid: video.vid,
+	                uid: video.uid,
+	                filename: video.filename,
+	                created: video.created });
+	        });
+
 	        return React.createElement(
-	            'table',
+	            'div',
 	            null,
 	            React.createElement(
-	                'thead',
+	                'table',
 	                null,
 	                React.createElement(
-	                    'tr',
+	                    'thead',
 	                    null,
 	                    React.createElement(
-	                        'th',
+	                        'tr',
 	                        null,
-	                        'uid'
-	                    ),
-	                    React.createElement(
-	                        'th',
-	                        null,
-	                        'username'
-	                    ),
-	                    React.createElement(
-	                        'th',
-	                        null,
-	                        'firstname'
-	                    ),
-	                    React.createElement(
-	                        'th',
-	                        null,
-	                        'lastname'
-	                    ),
-	                    React.createElement(
-	                        'th',
-	                        null,
-	                        'created'
-	                    ),
-	                    React.createElement(
-	                        'th',
-	                        null,
-	                        'ip'
+	                        React.createElement(
+	                            'th',
+	                            null,
+	                            'uid'
+	                        ),
+	                        React.createElement(
+	                            'th',
+	                            null,
+	                            'username'
+	                        ),
+	                        React.createElement(
+	                            'th',
+	                            null,
+	                            'firstname'
+	                        ),
+	                        React.createElement(
+	                            'th',
+	                            null,
+	                            'lastname'
+	                        ),
+	                        React.createElement(
+	                            'th',
+	                            null,
+	                            'created'
+	                        ),
+	                        React.createElement(
+	                            'th',
+	                            null,
+	                            'ip'
+	                        )
 	                    )
+	                ),
+	                React.createElement(
+	                    'tbody',
+	                    null,
+	                    userAccounts
 	                )
 	            ),
 	            React.createElement(
-	                'tbody',
+	                'table',
 	                null,
-	                userAccounts
+	                React.createElement(
+	                    'thead',
+	                    null,
+	                    React.createElement(
+	                        'tr',
+	                        null,
+	                        React.createElement(
+	                            'th',
+	                            null,
+	                            'vid'
+	                        ),
+	                        React.createElement(
+	                            'th',
+	                            null,
+	                            'uid'
+	                        ),
+	                        React.createElement(
+	                            'th',
+	                            null,
+	                            'filename'
+	                        ),
+	                        React.createElement(
+	                            'th',
+	                            null,
+	                            'created'
+	                        )
+	                    )
+	                ),
+	                React.createElement(
+	                    'tbody',
+	                    null,
+	                    userVideos
+	                )
 	            )
 	        );
 	    }
 	}
-	ReactDOM.render(React.createElement(Admin, { users: users }), document.getElementById('react-admin-container'));
+	ReactDOM.render(React.createElement(Admin, { users: users, videos: videos }), document.getElementById('react-admin-container'));
 
 /***/ }
 ]);

@@ -9,22 +9,11 @@ import json
 import sys
 import boto3
 
-
 # Move into dedicated constants.py file
-
 CAPTCHA_URL = 'https://www.google.com/recaptcha/api/siteverify'
 CAPTCHA_SECRET_KEY = '6Ldh_QsUAAAAANZkysKJNJHjj_KfKRgJwpnaXAJf'
 UPLOAD_BUCKET = 'ocv160'
-
 ALLOWED_EXTENSIONS = set(['avi', 'flv', 'wmv', 'mov', 'mp4'])
-
-# Save - This is for downloading files
-# 
-# s3 = boto3.resource('s3')
-# s3.meta.client.download_file('bucketname', 'DL Source File', 'DL Dest Path/File')
-#
-# Need to research if we can access files and display them without downloading
-# them. That would be convenient.
 
 def login_required(f):
     '''
@@ -80,8 +69,8 @@ def confirmation():
         request.form['last-name'],
         request.form['password'],
         datetime.utcnow(),
-        request.environ['REMOTE_ADDR']
-    )
+        request.environ['REMOTE_ADDR'])
+
     db.session.add(new_user)
     db.session.commit()
     return render_template('confirmation.jinja2')
@@ -96,13 +85,25 @@ def admin():
     users = list()
     for user in User.query.all():
         users.append({
-            "uid": user.uid,
-            "username": user.username,
-            "firstname": user.firstname,
-            "lastname": user.lastname,
-            "created": str(user.created),
-            "ip": user.ip})
-    return render_template('admin.jinja2', users=json.dumps(users))
+            'uid': user.uid,
+            'username': user.username,
+            'firstname': user.firstname,
+            'lastname': user.lastname,
+            'created': str(user.created),
+            'ip': user.ip})
+
+    videos = list()
+    for video in Video.query.all():
+        videos.append({
+            'vid': video.vid,
+            'uid': video.uid,
+            'filename': video.filename,
+            'created': str(video.created)})
+
+    return render_template(
+        'admin.jinja2', 
+        users=json.dumps(users),
+        videos=json.dumps(videos))
 
 @app.route('/log_out')
 def log_out():
@@ -180,3 +181,11 @@ def upload():
 # bucket = s3.Bucket('ocv160')
 # for obj in bucket.objects.all():
 #     print(obj.key)
+
+# For downloading files
+# s3 = boto3.resource('s3')
+# s3.meta.client.download_file('bucketname', 'DL Source File', 'DL Dest Path/File')
+#
+# Need to research if we can access files and display them without downloading
+# them. That would be convenient.
+
