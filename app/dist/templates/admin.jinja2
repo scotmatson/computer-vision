@@ -1,11 +1,13 @@
 {% extends "layout.jinja2" %}
 {% block content %}
     <main>
-        <div id="react-admin-container">
-        </div>
+        <div id="react-admin-container"></div>
         <p>Click <a href="{{url_for('index')}}">here</a> to return to the index page.</p>
     </main>
-    <script>var users=JSON.parse('{{users}}');</script>
+    <script>
+        var users = JSON.parse('{{users}}');
+        var videos = JSON.parse('{{videos}}');
+    </script>
     <script src="{{url_for('static', filename='js/commons.bundle.js')}}"></script>
     <script src="{{url_for('static', filename='js/admin.bundle.js')}}"></script>
 {% endblock %}
