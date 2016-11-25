@@ -14,7 +14,8 @@ import boto3
 
 CAPTCHA_URL = 'https://www.google.com/recaptcha/api/siteverify'
 CAPTCHA_SECRET_KEY = '6Ldh_QsUAAAAANZkysKJNJHjj_KfKRgJwpnaXAJf'
-UPLOAD_BUCKET = ''
+UPLOAD_BUCKET = 'ocv160'
+
 ALLOWED_EXTENSIONS = set(['avi', 'flv', 'wmv', 'mov', 'mp4'])
 
 # Save - This is for downloading files
@@ -158,6 +159,7 @@ def upload():
         if allowed_file(video.filename):
             # TODO: Restrict file size
             s3 = boto3.resource('s3')
+            #s3.upload_fileobj(video, UPLOAD_BUCKET, 
             print(video, file=sys.stderr)
             print(type(video), file=sys.stderr)
 
