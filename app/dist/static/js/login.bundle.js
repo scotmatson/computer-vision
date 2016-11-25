@@ -101,8 +101,11 @@ webpackJsonp([3],[
 	                React.createElement(
 	                    "p",
 	                    null,
-	                    "Auth: ",
-	                    authenticated
+	                    React.createElement(
+	                        "a",
+	                        { href: "register" },
+	                        "Register New User"
+	                    )
 	                )
 	            )
 	        );

@@ -64,7 +64,7 @@ class Login extends React.Component {
                              data-sitekey="6Ldh_QsUAAAAAIHD4gYCB3gK5UgsZRqiebcV7E9Z">
                         </div>
                     </form>
-                    <p>Auth: {authenticated}</p>
+                    <p><a href="register">Register New User</a></p>
                 </div>
             </div>
         )
