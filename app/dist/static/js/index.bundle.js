@@ -4,8 +4,7 @@ webpackJsonp([2],[
 
 	var React = __webpack_require__(1);
 	var ReactDOM = __webpack_require__(34);
-
-	__webpack_require__(172);
+	__webpack_require__(176);
 
 	class App extends React.Component {
 	    constructor(props) {
@@ -23,12 +22,6 @@ webpackJsonp([2],[
 	        this.setState({ fileUpload: event.target.value });
 	        var form = document.getElementById("video-uploader");
 	        form.submit();
-
-	        // TODO check file type, this is dependent upon the files we are able to parse
-	        // TODO save file to server
-	        // TODO store to DB, vid, path, name.ext... meta?
-	        // TODO need to ensure uniqueness so files are not overridden
-	        // TODO ideally we'd like to check to ensure the file is safe! i.e., not malicious
 	    }
 
 	    render() {
@@ -52,15 +45,15 @@ webpackJsonp([2],[
 	                    onChange: this.handleFileChange })
 	            ),
 	            React.createElement(
-	                'h1',
-	                null,
-	                this.props.title
-	            ),
-	            React.createElement('iframe', { width: '560', height: '315', src: this.props.video, allowFullScreen: true })
+	                'video',
+	                { id: 'video-player', controls: true },
+	                React.createElement('source', { src: 'http://dcdq4z03ve68v.cloudfront.net/testmovie.mp4',
+	                    type: 'video/mp4' })
+	            )
 	        );
 	    }
 	}
-	ReactDOM.render(React.createElement(App, { title: 'Facial Detection', video: 'https://www.youtube.com/embed/lKKxYwV6GV4' }), document.getElementById("react-app-container"));
+	ReactDOM.render(React.createElement(App, null), document.getElementById("react-app-container"));
 
 /***/ }
 ]);

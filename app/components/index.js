@@ -1,7 +1,6 @@
 var React = require('react');
 var ReactDOM = require('react-dom');
-
-require('../process/sass/style.scss');
+require('../stylesheets/main.scss');
 
 class App extends React.Component {
     constructor(props) {
@@ -14,20 +13,11 @@ class App extends React.Component {
         this.handleFileChange = this.handleFileChange.bind(this);
     }
 
-
-
-
     handleFileChange(event) { 
         // For Testing, we really aren't intersted in retaining this.
         this.setState({fileUpload: event.target.value});
         var form = document.getElementById("video-uploader");
         form.submit()
-    
-        // TODO check file type, this is dependent upon the files we are able to parse
-        // TODO save file to server
-        // TODO store to DB, vid, path, name.ext... meta?
-        // TODO need to ensure uniqueness so files are not overridden
-        // TODO ideally we'd like to check to ensure the file is safe! i.e., not malicious
     }
 
     render() {
@@ -43,10 +33,12 @@ class App extends React.Component {
                            name="video"
                            onChange={this.handleFileChange} />
                 </form>
-                <h1>{this.props.title}</h1>
-                <iframe width="560" height="315" src={this.props.video}  allowFullScreen></iframe>
+                <video id="video-player" controls>
+                    <source src="http://dcdq4z03ve68v.cloudfront.net/testmovie.mp4"
+                            type="video/mp4" /> 
+                </video>
             </div>
         );
     }
 }
-ReactDOM.render(<App title="Facial Detection" video="https://www.youtube.com/embed/lKKxYwV6GV4"/>, document.getElementById("react-app-container"));
+ReactDOM.render(<App></App>, document.getElementById("react-app-container"));
