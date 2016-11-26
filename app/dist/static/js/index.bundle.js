@@ -22,12 +22,6 @@ webpackJsonp([2],[
 	        this.setState({ fileUpload: event.target.value });
 	        var form = document.getElementById("video-uploader");
 	        form.submit();
-
-	        // TODO check file type, this is dependent upon the files we are able to parse
-	        // TODO save file to server
-	        // TODO store to DB, vid, path, name.ext... meta?
-	        // TODO need to ensure uniqueness so files are not overridden
-	        // TODO ideally we'd like to check to ensure the file is safe! i.e., not malicious
 	    }
 
 	    render() {
