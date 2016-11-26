@@ -1,6 +1,6 @@
 var React = require('react');
 var ReactDOM = require('react-dom');
-require('../process/sass/style.scss');
+require('../stylesheets/main.scss');
 
 class Register extends React.Component {
     constructor(props) {
