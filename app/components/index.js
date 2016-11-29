@@ -2,25 +2,44 @@ var React = require('react');
 var ReactDOM = require('react-dom');
 require('../stylesheets/main.scss');
 
+
+class UserVideo extends React.Component {
+    render() {
+        return (
+            <li onClick={this.props.onClick}
+                id={"http://dcdq4z03ve68v.cloudfront.net/" + this.props.filename}>
+                {this.props.filename}
+            </li>
+        )
+    }
+}
+
 class App extends React.Component {
     constructor(props) {
         super(props);
         
         this.state = {
-            fileUpload: '' 
+            fileUpload: "",
+            activeVideo: "http://dcdq4z03ve68v.cloudfront.net/testmovie.mp4"
         };
 
         this.handleFileChange = this.handleFileChange.bind(this);
+        this.handleActiveVideoChange = this.handleActiveVideoChange.bind(this);
     }
 
-    handleFileChange(event) { 
-        // For Testing, we really aren't intersted in retaining this.
-        this.setState({fileUpload: event.target.value});
-        var form = document.getElementById("video-uploader");
-        form.submit()
-    }
+    handleFileChange(event) {document.getElementById("video-uploader").submit();}
+    handleActiveVideoChange(event) {this.setState({activeVideo: event.target.id});}
 
     render() {
+        var userVideos = this.props.videos.map(function(video) {
+            return (<UserVideo
+                        key={video.vid}
+                        vid={video.vid}
+                        uid={video.uid}
+                        filename={video.filename}
+                        created={video.created}
+                        onClick={this.handleActiveVideoChange} />);}, this);
+
         return (
             <div>
                 <form action="upload" 
@@ -34,11 +53,11 @@ class App extends React.Component {
                            onChange={this.handleFileChange} />
                 </form>
                 <video id="video-player" controls>
-                    <source src="http://dcdq4z03ve68v.cloudfront.net/testmovie.mp4"
-                            type="video/mp4" /> 
+                    <source src={this.state.activeVideo} type="video/mp4" /> 
                 </video>
+                <ul>{userVideos}</ul>     
             </div>
         );
     }
 }
-ReactDOM.render(<App></App>, document.getElementById("react-app-container"));
+ReactDOM.render(<App videos={videos}></App>, document.getElementById("react-app-container"));
