@@ -19,31 +19,9 @@ psql -v ON_ERROR_STOP=1 --username "$POSTGRES_USER" <<-EOSQL
     CREATE TABLE videos (
       vid SERIAL PRIMARY KEY,
       uid INTEGER,
-      filename VARCHAR(64),
+      filename VARCHAR(20),
+      filehash VARCHAR(64),
+      description VARCHAR(60),
       created TIMESTAMP
-    );
-
-    CREATE TABLE frames (
-      fid SERIAL PRIMARY KEY,
-      videoid INTEGER,
-      address TEXT
-    );
-
-    CREATE TABLE skull (
-      yaw SMALLINT,
-      pitch SMALLINT,
-      roll SMALLINT,
-      frameid INTEGER
-    );
-
-    CREATE TABLE pupil (
-      location POINT,
-      frameid INTEGER
-    );
-
-    CREATE TABLE openFace (
-      location POINT,
-      index SMALLINT,
-      frameid INTEGER
     );
 EOSQL
