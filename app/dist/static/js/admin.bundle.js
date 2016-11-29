@@ -5,7 +5,7 @@ webpackJsonp([0],[
 	var React = __webpack_require__(1);
 	var ReactDOM = __webpack_require__(34);
 
-	__webpack_require__(176);
+	__webpack_require__(172);
 
 	class UserAccount extends React.Component {
 	    render() {
@@ -83,7 +83,7 @@ webpackJsonp([0],[
 	                uid: user.uid,
 	                username: user.username,
 	                firstname: user.firstname,
-	                lastname: user.created,
+	                lastname: user.lastname,
 	                created: user.created,
 	                ip: user.ip });
 	        });

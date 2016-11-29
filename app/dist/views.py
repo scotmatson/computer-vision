@@ -76,6 +76,7 @@ def confirmation():
     return render_template('confirmation.jinja2')
 
 @app.route('/admin')
+@login_required
 def admin():
     '''
     An administrative view reserved for authorized users.
@@ -106,6 +107,7 @@ def admin():
         videos=json.dumps(videos))
 
 @app.route('/log_out')
+@login_required
 def log_out():
     '''
     Allows user to explicitly log out of a session.
