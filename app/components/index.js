@@ -28,7 +28,14 @@ class App extends React.Component {
     }
 
     handleFileChange(event) {document.getElementById("video-uploader").submit();}
-    handleActiveVideoChange(event) {this.setState({activeVideo: event.target.id});}
+    handleActiveVideoChange(event) {
+        this.setState({activeVideo: event.target.id });
+        document.getElementById("video-player").load(); 
+    }
+
+    componentDidMount(nextProps) {
+    
+    }
 
     render() {
         var userVideos = this.props.videos.map(function(video) {
