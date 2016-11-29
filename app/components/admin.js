@@ -39,7 +39,7 @@ class Admin extends React.Component {
                         uid={user.uid}
                         username={user.username}
                         firstname={user.firstname}
-                        lastname={user.created}
+                        lastname={user.lastname}
                         created={user.created}
                         ip={user.ip}/>);});
 
@@ -83,4 +83,3 @@ class Admin extends React.Component {
     }
 }
 ReactDOM.render(<Admin users={users} videos={videos}></Admin>, document.getElementById('react-admin-container'));
-

@@ -5,7 +5,7 @@ webpackJsonp([3],[
 	var React = __webpack_require__(1);
 	var ReactDOM = __webpack_require__(34);
 
-	__webpack_require__(176);
+	__webpack_require__(172);
 
 	class Login extends React.Component {
 	    constructor(props) {
