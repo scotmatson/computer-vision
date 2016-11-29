@@ -36,7 +36,15 @@ def index():
     their account.
     '''
     if request.method == 'GET':
-        return render_template('index.jinja2')
+        videos = list()
+        for video in Video.query.all():
+            videos.append({
+                'vid': video.vid,
+                'uid': video.uid,
+                'filename': video.filename,
+                'created': str(video.created)})
+
+        return render_template('index.jinja2', videos=json.dumps(videos))
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
@@ -147,7 +155,7 @@ def authenticate():
 
 def allowed_file(filename):
     '''
-    File validation
+    File validation. Helper function for upload().
     '''
     return '.' in filename and filename.rsplit('.', 1)[1] in ALLOWED_EXTENSIONS
 
@@ -158,7 +166,7 @@ def upload():
     Handles video uploading
     '''
     if 'video' not in request.files:
-        print("Not a file.... dangit. This should be a file.")
+        pass
     else:
         video = request.files['video'] 
         if allowed_file(video.filename):
@@ -175,6 +183,18 @@ def upload():
             bucket = s3.Bucket(UPLOAD_BUCKET)
             bucket.put_object(Key=video.filename, Body=video)
     return redirect(url_for('index')) 
+
+#@app.route('/display', methods=['POST'])
+#@login_required
+#def display():
+#    """
+#    """
+#    return redirect(url_for('index')) 
+
+
+
+
+
 
 # This will print all of the objects in a bucket.
 # Probably will be useful for checking what we've downloaded

@@ -5,6 +5,10 @@
         <p><a href="{{url_for('log_out')}}">Log Out</a></p>
         <div id="react-app-container"></div>
     </main>
+    <script>
+        var videos = JSON.parse('{{videos}}');
+        var display = JSON.parse('{{videos}}');
+    </script>
     <script src="{{url_for('static', filename='js/commons.bundle.js')}}"></script>
     <script src="{{url_for('static', filename='js/index.bundle.js')}}"></script>
 {% endblock %}
