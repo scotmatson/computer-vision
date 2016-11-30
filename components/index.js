@@ -7,7 +7,7 @@ class UserVideo extends React.Component {
     render() {
         return (
             <li onClick={this.props.onClick}
-                id={"http://dcdq4z03ve68v.cloudfront.net/" + this.props.filename}>
+                id={"http://dcdq4z03ve68v.cloudfront.net/" + this.props.filehash}>
                 {this.props.filename}
             </li>
         )
@@ -20,21 +20,23 @@ class App extends React.Component {
         
         this.state = {
             fileUpload: "",
-            activeVideo: "http://dcdq4z03ve68v.cloudfront.net/testmovie.mp4"
+            fileDescription: "",
+            activeVideo: ""
         };
 
         this.handleFileChange = this.handleFileChange.bind(this);
+        this.handleFileDescriptionChange = this.handleFileDescriptionChange.bind(this);
+        this.handleSubmit = this.handleSubmit.bind(this);
         this.handleActiveVideoChange = this.handleActiveVideoChange.bind(this);
     }
 
-    handleFileChange(event) {document.getElementById("video-uploader").submit();}
+    handleFileChange(event) { this.setState({fileUpload: event.target.value}); }
+    handleFileDescriptionChange(event) { this.setState({fileDescription: event.target.value}); }
+    handleSubmit(event) { /* Validation */ }
+
     handleActiveVideoChange(event) {
         this.setState({activeVideo: event.target.id });
         document.getElementById("video-player").load(); 
-    }
-
-    componentDidMount(nextProps) {
-    
     }
 
     render() {
@@ -44,6 +46,8 @@ class App extends React.Component {
                         vid={video.vid}
                         uid={video.uid}
                         filename={video.filename}
+                        filehash={video.filehash}
+                        description={video.description}
                         created={video.created}
                         onClick={this.handleActiveVideoChange} />);}, this);
 
@@ -53,11 +57,19 @@ class App extends React.Component {
                       method="POST" 
                       id="video-uploader" 
                       encType="multipart/form-data">
-                    <label htmlFor="video">Upload</label>
+                    <label htmlFor="video">Video</label>
                     <input type="file"
-                           id="video" 
+                           value={this.state.fileUpload}
                            name="video"
+                           id="video" 
                            onChange={this.handleFileChange} />
+                    <label htmlFor="description">Description</label>
+                    <input type="input" 
+                           value={this.state.fileDescription}
+                           name="description"
+                           id="description"
+                           onChange={this.handleFileDescriptionChange} />
+                    <input type="submit" value="Upload"/>
                 </form>
                 <video id="video-player" controls>
                     <source src={this.state.activeVideo} type="video/mp4" /> 

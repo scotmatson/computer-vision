@@ -25,6 +25,8 @@ class UserVideo extends React.Component {
                 <td>{this.props.vid}</td>
                 <td>{this.props.uid}</td>
                 <td>{this.props.filename}</td>
+                <td>{this.props.filehash}</td>
+                <td>{this.props.description}</td>
                 <td>{this.props.created}</td>
             </tr>
         );
@@ -49,6 +51,8 @@ class Admin extends React.Component {
                         vid={video.vid}
                         uid={video.uid}
                         filename={video.filename}
+                        filehash={video.filehash}
+                        description={video.description}
                         created={video.created}/>);});
 
         return (
@@ -73,6 +77,8 @@ class Admin extends React.Component {
                             <th>vid</th>
                             <th>uid</th>
                             <th>filename</th>
+                            <th>filehash</th>
+                            <th>description</th>
                             <th>created</th>
                         </tr>
                     </thead>

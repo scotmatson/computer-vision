@@ -69,6 +69,16 @@ webpackJsonp([0],[
 	            React.createElement(
 	                'td',
 	                null,
+	                this.props.filehash
+	            ),
+	            React.createElement(
+	                'td',
+	                null,
+	                this.props.description
+	            ),
+	            React.createElement(
+	                'td',
+	                null,
 	                this.props.created
 	            )
 	        );
@@ -94,6 +104,8 @@ webpackJsonp([0],[
 	                vid: video.vid,
 	                uid: video.uid,
 	                filename: video.filename,
+	                filehash: video.filehash,
+	                description: video.description,
 	                created: video.created });
 	        });
 
@@ -170,6 +182,16 @@ webpackJsonp([0],[
 	                            'th',
 	                            null,
 	                            'filename'
+	                        ),
+	                        React.createElement(
+	                            'th',
+	                            null,
+	                            'filehash'
+	                        ),
+	                        React.createElement(
+	                            'th',
+	                            null,
+	                            'description'
 	                        ),
 	                        React.createElement(
 	                            'th',
