@@ -11,7 +11,7 @@ webpackJsonp([2],[
 	        return React.createElement(
 	            'li',
 	            { onClick: this.props.onClick,
-	                id: "http://dcdq4z03ve68v.cloudfront.net/" + this.props.filename },
+	                id: "http://dcdq4z03ve68v.cloudfront.net/" + this.props.filehash },
 	            this.props.filename
 	        );
 	    }
@@ -23,22 +23,28 @@ webpackJsonp([2],[
 
 	        this.state = {
 	            fileUpload: "",
-	            activeVideo: "http://dcdq4z03ve68v.cloudfront.net/testmovie.mp4"
+	            fileDescription: "",
+	            activeVideo: ""
 	        };
 
 	        this.handleFileChange = this.handleFileChange.bind(this);
+	        this.handleFileDescriptionChange = this.handleFileDescriptionChange.bind(this);
+	        this.handleSubmit = this.handleSubmit.bind(this);
 	        this.handleActiveVideoChange = this.handleActiveVideoChange.bind(this);
 	    }
 
 	    handleFileChange(event) {
-	        document.getElementById("video-uploader").submit();
+	        this.setState({ fileUpload: event.target.value });
 	    }
+	    handleFileDescriptionChange(event) {
+	        this.setState({ fileDescription: event.target.value });
+	    }
+	    handleSubmit(event) {/* Validation */}
+
 	    handleActiveVideoChange(event) {
 	        this.setState({ activeVideo: event.target.id });
 	        document.getElementById("video-player").load();
 	    }
-
-	    componentDidMount(nextProps) {}
 
 	    render() {
 	        var userVideos = this.props.videos.map(function (video) {
@@ -47,6 +53,8 @@ webpackJsonp([2],[
 	                vid: video.vid,
 	                uid: video.uid,
 	                filename: video.filename,
+	                filehash: video.filehash,
+	                description: video.description,
 	                created: video.created,
 	                onClick: this.handleActiveVideoChange });
 	        }, this);
@@ -63,12 +71,24 @@ webpackJsonp([2],[
 	                React.createElement(
 	                    'label',
 	                    { htmlFor: 'video' },
-	                    'Upload'
+	                    'Video'
 	                ),
 	                React.createElement('input', { type: 'file',
-	                    id: 'video',
+	                    value: this.state.fileUpload,
 	                    name: 'video',
-	                    onChange: this.handleFileChange })
+	                    id: 'video',
+	                    onChange: this.handleFileChange }),
+	                React.createElement(
+	                    'label',
+	                    { htmlFor: 'description' },
+	                    'Description'
+	                ),
+	                React.createElement('input', { type: 'input',
+	                    value: this.state.fileDescription,
+	                    name: 'description',
+	                    id: 'description',
+	                    onChange: this.handleFileDescriptionChange }),
+	                React.createElement('input', { type: 'submit', value: 'Upload' })
 	            ),
 	            React.createElement(
 	                'video',

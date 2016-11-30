@@ -25,7 +25,7 @@ class Register extends React.Component {
     handleLastNameChange(event)  { this.setState({lastName:  event.target.value}); }
     handlePasswordChange(event)  { this.setState({password:  event.target.value}); }
     
-    handleSubmit(event) { /* Validation checking*/ }
+    handleSubmit(event) { /* Validation */ }
 
     render() {
         return (

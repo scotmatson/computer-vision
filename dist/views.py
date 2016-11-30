@@ -8,6 +8,8 @@ from urllib.request import urlopen
 import json
 import sys
 import boto3
+from hashlib import sha256
+import time
 
 # Move into dedicated constants.py file
 CAPTCHA_URL = 'https://www.google.com/recaptcha/api/siteverify'
@@ -39,10 +41,12 @@ def index():
         videos = list()
         for video in Video.query.all():
             videos.append({
-                'vid': video.vid,
-                'uid': video.uid,
-                'filename': video.filename,
-                'created': str(video.created)})
+                "vid": video.vid,
+                "uid": video.uid,
+                "filename": video.filename,
+                "filehash": video.filehash,
+                "description": video.description,
+                "created": str(video.created)})
 
         return render_template('index.jinja2', videos=json.dumps(videos))
 
@@ -83,7 +87,7 @@ def confirmation():
     db.session.commit()
     return render_template('confirmation.jinja2')
 
-@app.route('/admin')
+@app.route("/admin")
 @login_required
 def admin():
     '''
@@ -94,42 +98,44 @@ def admin():
     users = list()
     for user in User.query.all():
         users.append({
-            'uid': user.uid,
-            'username': user.username,
-            'firstname': user.firstname,
-            'lastname': user.lastname,
-            'created': str(user.created),
-            'ip': user.ip})
+            "uid": user.uid,
+            "username": user.username,
+            "firstname": user.firstname,
+            "lastname": user.lastname,
+            "created": str(user.created),
+            "ip": user.ip})
 
     videos = list()
     for video in Video.query.all():
         videos.append({
-            'vid': video.vid,
-            'uid': video.uid,
-            'filename': video.filename,
-            'created': str(video.created)})
+            "vid": video.vid,
+            "uid": video.uid,
+            "filename": video.filename,
+            "filehash": video.filehash,
+            "description": video.description,
+            "created": str(video.created)})
 
     return render_template(
-        'admin.jinja2', 
+        "admin.jinja2", 
         users=json.dumps(users),
         videos=json.dumps(videos))
 
 @app.route('/log_out')
 @login_required
 def log_out():
-    '''
+    """
     Allows user to explicitly log out of a session.
-    '''
+    """
     session['logged_in'] = False
     session['uid'] = None
     session['username'] = None
     return redirect(url_for('login'))
 
-@app.route('/authenticate', methods=['POST'])
+@app.route("/authenticate", methods=['POST'])
 def authenticate():
-    '''
+    """
     Authentication for user login attempts.
-    '''
+    """
     recaptcha = {
         'secret'  : CAPTCHA_SECRET_KEY,
         'response': request.form['g-recaptcha-response'],
@@ -165,23 +171,25 @@ def upload():
     '''
     Handles video uploading
     '''
-    if 'video' not in request.files:
-        pass
-    else:
-        video = request.files['video'] 
-        if allowed_file(video.filename):
-            # Store the metadata in the DB
-            new_video = Video(
-                session['uid'],
-                video.filename,
-                datetime.utcnow())
-            db.session.add(new_video)
-            db.session.commit()
+    video = request.files['video'] 
+    if allowed_file(video.filename):
+        filehash = sha256("".join([video.filename, 
+            str(int(time.time()))]).encode("utf-8")).hexdigest()
 
-            # Upload the file to S3
-            s3 = boto3.resource('s3')
-            bucket = s3.Bucket(UPLOAD_BUCKET)
-            bucket.put_object(Key=video.filename, Body=video)
+        # Store the metadata in the DB
+        new_video = Video(
+            session['uid'],
+            video.filename,
+            filehash,
+            request.form['description'],
+            datetime.utcnow())
+        db.session.add(new_video)
+        db.session.commit()
+
+        # Upload the file to S3
+        s3 = boto3.resource('s3')
+        bucket = s3.Bucket(UPLOAD_BUCKET)
+        bucket.put_object(Key=filehash, Body=video)
     return redirect(url_for('index')) 
 
 #@app.route('/display', methods=['POST'])
@@ -190,11 +198,6 @@ def upload():
 #    """
 #    """
 #    return redirect(url_for('index')) 
-
-
-
-
-
 
 # This will print all of the objects in a bucket.
 # Probably will be useful for checking what we've downloaded

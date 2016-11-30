@@ -37,7 +37,7 @@ webpackJsonp([4],[
 	        this.setState({ password: event.target.value });
 	    }
 
-	    handleSubmit(event) {/* Validation checking*/}
+	    handleSubmit(event) {/* Validation */}
 
 	    render() {
 	        return React.createElement(
