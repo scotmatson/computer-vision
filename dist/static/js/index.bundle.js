@@ -9,10 +9,25 @@ webpackJsonp([2],[
 	class UserVideo extends React.Component {
 	    render() {
 	        return React.createElement(
-	            'li',
-	            { onClick: this.props.onClick,
-	                id: "http://dcdq4z03ve68v.cloudfront.net/" + this.props.filehash },
-	            this.props.filename
+	            'div',
+	            { className: 'video-tile' },
+	            React.createElement('img', { src: 'http://lorempixel.com/250/250/', alt: 'Video thumbnail' }),
+	            React.createElement(
+	                'h2',
+	                null,
+	                this.props.filename
+	            ),
+	            React.createElement(
+	                'p',
+	                null,
+	                this.props.description
+	            ),
+	            React.createElement(
+	                'button',
+	                { onClick: this.props.onClick,
+	                    id: "http://dcdq4z03ve68v.cloudfront.net/" + this.props.filehash },
+	                'Watch'
+	            )
 	        );
 	    }
 	}
@@ -63,6 +78,15 @@ webpackJsonp([2],[
 	            'div',
 	            null,
 	            React.createElement(
+	                'header',
+	                null,
+	                React.createElement(
+	                    'button',
+	                    null,
+	                    'Upload'
+	                )
+	            ),
+	            React.createElement(
 	                'form',
 	                { action: 'upload',
 	                    method: 'POST',
@@ -96,8 +120,8 @@ webpackJsonp([2],[
 	                React.createElement('source', { src: this.state.activeVideo, type: 'video/mp4' })
 	            ),
 	            React.createElement(
-	                'ul',
-	                null,
+	                'div',
+	                { id: 'video-grid' },
 	                userVideos
 	            )
 	        );

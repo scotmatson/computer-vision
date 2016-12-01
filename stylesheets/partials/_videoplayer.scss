@@ -1,6 +1,10 @@
 video#video-player {
-    width: 80% !important;
+    display: none;
+    left: 50%;
     height: auto !important;
-    display: block;
-    margin: auto;
+    margin-left: -40%;
+    margin-top: -23%;
+    position: fixed;
+    top: 50%;
+    width: 80% !important;
 }
