@@ -2,14 +2,18 @@ var React = require('react');
 var ReactDOM = require('react-dom');
 require('../stylesheets/main.scss');
 
-
 class UserVideo extends React.Component {
     render() {
         return (
-            <li onClick={this.props.onClick}
-                id={"http://dcdq4z03ve68v.cloudfront.net/" + this.props.filehash}>
-                {this.props.filename}
-            </li>
+            <div className="video-tile">
+                <img src="http://lorempixel.com/250/250/" alt="Video thumbnail"></img>
+                <h2>{this.props.filename}</h2>
+                <p>{this.props.description}</p>
+                <button onClick={this.props.onClick}
+                    id={"http://dcdq4z03ve68v.cloudfront.net/" + this.props.filehash}>
+                    Watch
+                </button>
+            </div>
         )
     }
 }
@@ -53,6 +57,9 @@ class App extends React.Component {
 
         return (
             <div>
+                <header>
+                    <button>Upload</button>
+                </header>
                 <form action="upload" 
                       method="POST" 
                       id="video-uploader" 
@@ -74,7 +81,7 @@ class App extends React.Component {
                 <video id="video-player" controls>
                     <source src={this.state.activeVideo} type="video/mp4" /> 
                 </video>
-                <ul>{userVideos}</ul>     
+                <div id="video-grid">{userVideos}</div>     
             </div>
         );
     }
