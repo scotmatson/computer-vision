@@ -1,16 +1,14 @@
 div#video-grid {
     display: flex;
-    flex-direction: row;
     flex-wrap: wrap;
-    justify-content: space-around;
 }
 
 div.video-tile {
     border: 1px solid black;
-    flex: 1;
-    //flex-basis: (100%/3);
+    flex: 0 0 30%;
     margin: 20px;
     padding: 20px;
+    width: 30%;
 
     h2, p {
         text-align: center;
