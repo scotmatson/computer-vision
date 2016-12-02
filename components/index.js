@@ -109,7 +109,7 @@ class App extends React.Component {
                 </form>
                 <div id="video-grid">{userVideos}</div>     
                 <div id="modal-window" onClick={this.handleModalClick}>
-                    <video id="video-player" controls>
+                    <video id="video-player" loop>
                         <source src={this.state.activeVideo} type="video/mp4" /> 
                     </video>
                 </div>

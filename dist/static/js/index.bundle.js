@@ -154,7 +154,7 @@ webpackJsonp([2],[
 	                { id: 'modal-window', onClick: this.handleModalClick },
 	                React.createElement(
 	                    'video',
-	                    { id: 'video-player', controls: true },
+	                    { id: 'video-player', loop: true },
 	                    React.createElement('source', { src: this.state.activeVideo, type: 'video/mp4' })
 	                )
 	            )
