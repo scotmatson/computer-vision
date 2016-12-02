@@ -6,7 +6,7 @@ class UserVideo extends React.Component {
     render() {
         return (
             <div className="video-tile">
-                <img src="http://lorempixel.com/250/250/" 
+                <img src="http://lorempixel.com/250/170/" 
                      onClick={this.props.onClick}
                      className={"http://dcdq4z03ve68v.cloudfront.net/" + this.props.filehash}
                      alt="Video thumbnail">
@@ -85,8 +85,9 @@ class App extends React.Component {
 
         return (
             <div>
-                <header>
+                <header id="banner">
                     <button>Upload</button>
+                    <a href="log_out">Log Out</a>
                 </header>
                 <form action="upload" 
                       method="POST" 
