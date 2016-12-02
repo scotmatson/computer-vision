@@ -1,18 +1,23 @@
 div#video-grid {
+    background-color: #202024;
     display: flex;
     flex-wrap: wrap;
 }
 
 div.video-tile {
+    background-color: #42424f;
     border: 1px solid black;
     flex: 0 0 30%;
     margin: 20px;
-    padding: 20px;
+    padding-bottom: 20px;
     width: 30%;
 
     h2, p {
+        color: #fff;
         text-align: center;
     }
+   
+    p { opacity: 0.75; }
 
     img, button {
         display: block;
@@ -21,6 +26,6 @@ div.video-tile {
     
     img {
         cursor: pointer;
-        width: 90%;
+        width: 100%;
     }
 }

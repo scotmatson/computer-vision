@@ -11,7 +11,7 @@ webpackJsonp([2],[
 	        return React.createElement(
 	            'div',
 	            { className: 'video-tile' },
-	            React.createElement('img', { src: 'http://lorempixel.com/250/250/',
+	            React.createElement('img', { src: 'http://lorempixel.com/250/170/',
 	                onClick: this.props.onClick,
 	                className: "http://dcdq4z03ve68v.cloudfront.net/" + this.props.filehash,
 	                alt: 'Video thumbnail' }),
@@ -104,11 +104,16 @@ webpackJsonp([2],[
 	            null,
 	            React.createElement(
 	                'header',
-	                null,
+	                { id: 'banner' },
 	                React.createElement(
 	                    'button',
 	                    null,
 	                    'Upload'
+	                ),
+	                React.createElement(
+	                    'a',
+	                    { href: 'log_out' },
+	                    'Log Out'
 	                )
 	            ),
 	            React.createElement(
