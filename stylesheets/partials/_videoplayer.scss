@@ -1,10 +1,19 @@
-video#video-player {
+div#modal-window {
+    background-color: #000;
     display: none;
-    left: 50%;
-    height: auto !important;
-    margin-left: -40%;
-    margin-top: -23%;
+    height: 100%;
+    left: 0%;
+    opacity: 0.95;
     position: fixed;
-    top: 50%;
-    width: 80% !important;
+    top: 0%;
+    width: 100%;
+
+    video#video-player {
+        display: block;
+        margin: auto auto;
+        position: relative;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 80% !important;
+    }
 }
