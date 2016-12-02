@@ -6,11 +6,15 @@ class UserVideo extends React.Component {
     render() {
         return (
             <div className="video-tile">
-                <img src="http://lorempixel.com/250/250/" alt="Video thumbnail"></img>
+                <img src="http://lorempixel.com/250/250/" 
+                     onClick={this.props.onClick}
+                     className={"http://dcdq4z03ve68v.cloudfront.net/" + this.props.filehash}
+                     alt="Video thumbnail">
+                </img>
                 <h2>{this.props.filename}</h2>
                 <p>{this.props.description}</p>
                 <button onClick={this.props.onClick}
-                    id={"http://dcdq4z03ve68v.cloudfront.net/" + this.props.filehash}>
+                    className={"http://dcdq4z03ve68v.cloudfront.net/" + this.props.filehash}>
                     Watch
                 </button>
             </div>
@@ -41,7 +45,7 @@ class App extends React.Component {
     handleSubmit(event) { /* Validation */ }
 
     handleActiveVideoChange(event) {
-        this.setState({activeVideo: event.target.id });
+        this.setState({activeVideo: event.target.className });
         document.getElementById("video-player").load(); 
         document.getElementById("modal-window").style.display = "block";
     }
