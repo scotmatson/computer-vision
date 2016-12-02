@@ -25,13 +25,15 @@ class App extends React.Component {
         this.state = {
             fileUpload: "",
             fileDescription: "",
-            activeVideo: ""
+            activeVideo: "",
+            videoPaused: true
         };
 
         this.handleFileChange = this.handleFileChange.bind(this);
         this.handleFileDescriptionChange = this.handleFileDescriptionChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleActiveVideoChange = this.handleActiveVideoChange.bind(this);
+        this.handleModalClick = this.handleModalClick.bind(this);
     }
 
     handleFileChange(event) { this.setState({fileUpload: event.target.value}); }
@@ -41,6 +43,28 @@ class App extends React.Component {
     handleActiveVideoChange(event) {
         this.setState({activeVideo: event.target.id });
         document.getElementById("video-player").load(); 
+        document.getElementById("modal-window").style.display = "block";
+    }
+
+    handleModalClick(event) {
+        var modalWindow = document.getElementById("modal-window");
+        var videoPlayer = document.getElementById("video-player");
+        if (event.target == modalWindow) {
+            this.setState({activeVideo: ""});
+            this.setState({videoPaused: true});
+            videoPlayer.pause();
+            document.getElementById("modal-window").style.display = "none";
+        }
+        else if (event.target == videoPlayer) {
+            if (this.state.videoPaused) {
+		this.setState({videoPaused: false});
+                videoPlayer.play();
+            }
+            else {
+                this.setState({videoPaused: true});
+                videoPlayer.pause();
+            }
+        }
     }
 
     render() {
@@ -78,10 +102,12 @@ class App extends React.Component {
                            onChange={this.handleFileDescriptionChange} />
                     <input type="submit" value="Upload"/>
                 </form>
-                <video id="video-player" controls>
-                    <source src={this.state.activeVideo} type="video/mp4" /> 
-                </video>
                 <div id="video-grid">{userVideos}</div>     
+                <div id="modal-window" onClick={this.handleModalClick}>
+                    <video id="video-player" controls>
+                        <source src={this.state.activeVideo} type="video/mp4" /> 
+                    </video>
+                </div>
             </div>
         );
     }

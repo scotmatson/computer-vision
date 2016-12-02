@@ -39,13 +39,15 @@ webpackJsonp([2],[
 	        this.state = {
 	            fileUpload: "",
 	            fileDescription: "",
-	            activeVideo: ""
+	            activeVideo: "",
+	            videoPaused: true
 	        };
 
 	        this.handleFileChange = this.handleFileChange.bind(this);
 	        this.handleFileDescriptionChange = this.handleFileDescriptionChange.bind(this);
 	        this.handleSubmit = this.handleSubmit.bind(this);
 	        this.handleActiveVideoChange = this.handleActiveVideoChange.bind(this);
+	        this.handleModalClick = this.handleModalClick.bind(this);
 	    }
 
 	    handleFileChange(event) {
@@ -59,6 +61,26 @@ webpackJsonp([2],[
 	    handleActiveVideoChange(event) {
 	        this.setState({ activeVideo: event.target.id });
 	        document.getElementById("video-player").load();
+	        document.getElementById("modal-window").style.display = "block";
+	    }
+
+	    handleModalClick(event) {
+	        var modalWindow = document.getElementById("modal-window");
+	        var videoPlayer = document.getElementById("video-player");
+	        if (event.target == modalWindow) {
+	            this.setState({ activeVideo: "" });
+	            this.setState({ videoPaused: true });
+	            videoPlayer.pause();
+	            document.getElementById("modal-window").style.display = "none";
+	        } else if (event.target == videoPlayer) {
+	            if (this.state.videoPaused) {
+	                this.setState({ videoPaused: false });
+	                videoPlayer.play();
+	            } else {
+	                this.setState({ videoPaused: true });
+	                videoPlayer.pause();
+	            }
+	        }
 	    }
 
 	    render() {
@@ -115,14 +137,18 @@ webpackJsonp([2],[
 	                React.createElement('input', { type: 'submit', value: 'Upload' })
 	            ),
 	            React.createElement(
-	                'video',
-	                { id: 'video-player', controls: true },
-	                React.createElement('source', { src: this.state.activeVideo, type: 'video/mp4' })
-	            ),
-	            React.createElement(
 	                'div',
 	                { id: 'video-grid' },
 	                userVideos
+	            ),
+	            React.createElement(
+	                'div',
+	                { id: 'modal-window', onClick: this.handleModalClick },
+	                React.createElement(
+	                    'video',
+	                    { id: 'video-player', controls: true },
+	                    React.createElement('source', { src: this.state.activeVideo, type: 'video/mp4' })
+	                )
 	            )
 	        );
 	    }
