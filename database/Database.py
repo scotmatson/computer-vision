@@ -1,29 +1,46 @@
 import psycopg2
+import socket
+from datetime import datetime
+from Cache import Cache
 
 class Database:
 
-    def __init__(self, name, host, port, user, password):
+    def __init__(self, name, host, port, user, password, cache = None):
         self.name = name
         self.host = host
         self.port = port
         self.user = user
         self.password = password
+        self.cache = cache
 
-    def add_user(self, username, f_name, l_name, password, last_login, ip):
+    def add_user(self, username, fname, lname, password, created, ip):
         conn = self.get_connection()
         cursor = conn.cursor()
-        cursor.execute("INSERT INTO users (username, firstName, lastName, \
-        password, lastLogin, ip) VALUES ('{}', '{}', '{}', '{}', '{}', '{}')"
-            .format(username, f_name, l_name, password, last_login, ip))
+        cursor.execute("INSERT INTO users (username, firstname, lastname, \
+        password, created, ip) VALUES ('{}', '{}', '{}', '{}', '{}', '{}')"
+            .format(username, fname, lname, password, created, ip))
         conn.commit()
+
+        if self.cache_up():
+            cursor.execute("SELECT uid FROM users WHERE username='{}'"
+                .format(username))
+            uid = cursor.fetchone()
+            conn.commit()
+            self.cache.add_user(uid, username, fname, lname, password, created, ip)
         conn.close
 
     def valid_credentials(self, username, password):
+        if self.cache_up():
+            pw = self.cache.retrieve_pass_from_username(username, password)
+            if pw is not None:
+                 if pw == password:
+                     return True
+                 return False
         conn = self.get_connection()
         cursor = conn.cursor()
         cursor.execute("SELECT password FROM users WHERE username='{}'"
             .format(username))
-        conn.commit
+        conn.commit()
         result = cursor.fetchone()
         conn.commit()
         conn.close()
@@ -35,6 +52,8 @@ class Database:
             return False
 
     def user_exists(self, username):
+        if(self.cache_up() and self.cache.user_exists(username)):
+            return True
         conn = self.get_connection()
         cursor = conn.cursor()
         cursor.execute("SELECT username FROM users WHERE username='{}'"
@@ -45,40 +64,25 @@ class Database:
         conn.close()
         return result is not None
 
-    def add_video_metadata(self, name, user_id, width, height, fps):
+    def add_video(self, uid, filename, filehash, description, created):
         conn = self.get_connection()
         cursor = conn.cursor()
-        cursor.execute("INSERT INTO videos (name, userId, width, height, fps)\
+        cursor.execute("INSERT INTO videos (uid, filename, filehash, description, created)\
          VALUES ('{}', '{}', '{}', '{}', '{}')"
-            .format(name, user_id, width, height, fps))
+            .format(uid, filename, filehash, description, created))
         conn.commit()
-        conn.close
-
-    def add_skull_data(self, frame_number, yaw, pitch, roll):
-        conn = self.get_connection()
-        cursor = conn.cursor()
-        cursor.execute("INSERT INTO skull (frameId, yaw, pitch, roll) VALUES \
-        ('{}',  '{}', '{}', '{}')".format(frame_number, yaw, pitch, roll))
-        conn.commit()
-        conn.close
-
-    def add_pupil_data(self, frame_number, location):
-        conn = self.get_connection()
-        cursor = conn.cursor()
-        cursor.execute("INSERT INTO pupil (frameId, location) VALUES ('{}', \
-        '{}')".format(frame_number, location))
-        conn.commit()
-        conn.close
-
-    def add_openface_data(self, frame_number, location, index):
-        conn = self.get_connection()
-        cursor = conn.cursor()
-        cursor.execute("INSERT INTO openFace (frameId, location, index) \
-        VALUES ('{}', '{}', '{}')".format(frame_number, location, index))
-        conn.commit()
+        if self.cache_up():
+            cursor.execute("SELECT vid FROM videos WHERE filehash='{}'"
+                .format(filehash))
+            vid = cursor.fetchone()
+            conn.commit()
+            self.cache.add_video(vid, uid, filename, filehash, description, created)
         conn.close
 
     def get_connection(self):
         return psycopg2.connect("dbname='{}' host='{}' port='{}' user='{}' \
         password='{}'"
             .format(self.name, self.host, self.port, self.user, self.password))
+
+    def cache_up(self):
+        return self.cache is not None and self.cache.ping()
