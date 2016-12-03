@@ -1,6 +1,4 @@
 import psycopg2
-import socket
-from datetime import datetime
 from Cache import Cache
 
 class Database:
