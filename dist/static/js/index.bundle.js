@@ -18,7 +18,7 @@ webpackJsonp([2],[
 	            React.createElement(
 	                'h2',
 	                null,
-	                this.props.filename
+	                this.props.videoname
 	            ),
 	            React.createElement(
 	                'p',
@@ -41,12 +41,14 @@ webpackJsonp([2],[
 
 	        this.state = {
 	            fileUpload: "",
+	            videoName: "",
 	            fileDescription: "",
 	            activeVideo: "",
 	            videoPaused: true
 	        };
 
 	        this.handleFileChange = this.handleFileChange.bind(this);
+	        this.handleVideoNameChange = this.handleVideoNameChange.bind(this);
 	        this.handleFileDescriptionChange = this.handleFileDescriptionChange.bind(this);
 	        this.handleSubmit = this.handleSubmit.bind(this);
 	        this.handleActiveVideoChange = this.handleActiveVideoChange.bind(this);
@@ -55,6 +57,9 @@ webpackJsonp([2],[
 
 	    handleFileChange(event) {
 	        this.setState({ fileUpload: event.target.value });
+	    }
+	    handleVideoNameChange(event) {
+	        this.setState({ videoName: event.target.value });
 	    }
 	    handleFileDescriptionChange(event) {
 	        this.setState({ fileDescription: event.target.value });
@@ -94,6 +99,7 @@ webpackJsonp([2],[
 	                uid: video.uid,
 	                filename: video.filename,
 	                filehash: video.filehash,
+	                videoname: video.videoname,
 	                description: video.description,
 	                created: video.created,
 	                onClick: this.handleActiveVideoChange });
@@ -125,13 +131,23 @@ webpackJsonp([2],[
 	                React.createElement(
 	                    'label',
 	                    { htmlFor: 'video' },
-	                    'Video'
+	                    'Video File'
 	                ),
 	                React.createElement('input', { type: 'file',
 	                    value: this.state.fileUpload,
 	                    name: 'video',
 	                    id: 'video',
 	                    onChange: this.handleFileChange }),
+	                React.createElement(
+	                    'label',
+	                    { htmlFor: 'videoname' },
+	                    'Video Name'
+	                ),
+	                React.createElement('input', { type: 'input',
+	                    value: this.state.videoName,
+	                    name: 'videoname',
+	                    id: 'videoname',
+	                    onChange: this.handleVideoNameChange }),
 	                React.createElement(
 	                    'label',
 	                    { htmlFor: 'description' },

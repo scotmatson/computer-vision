@@ -19,9 +19,9 @@ psql -v ON_ERROR_STOP=1 --username "$POSTGRES_USER" <<-EOSQL
     CREATE TABLE videos (
       vid SERIAL PRIMARY KEY,
       uid INTEGER,
-      filename VARCHAR(20),
+      filename VARCHAR(50),
       filehash VARCHAR(64),
-      framehash VARCHAR(64),
+      videoname VARCHAR(20),
       description VARCHAR(60),
       created TIMESTAMP
     );

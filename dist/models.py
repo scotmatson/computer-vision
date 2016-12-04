@@ -41,17 +41,19 @@ class Video(db.Model):
     __tablename__ = 'videos'
     vid = db.Column(db.Integer, primary_key=True)
     uid = db.Column(db.Integer)
-    filename = db.Column(db.String(20))
+    filename = db.Column(db.String(50))
     filehash = db.Column(db.String(64))
+    videoname = db.Column(db.String(20))
     description = db.Column(db.String(60))
     created = db.Column(TIMESTAMP)
 
-    def __init__(self, uid, filename, filehash, description, created):
+    def __init__(self, uid, filename, filehash, videoname, description, created):
         """
         Class initializer.
         """
         self.uid = uid
         self.filename = filename
         self.filehash = filehash
+        self.videoname = videoname
         self.description = description
         self.created = created
