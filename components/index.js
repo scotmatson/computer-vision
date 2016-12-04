@@ -11,7 +11,7 @@ class UserVideo extends React.Component {
                      className={"http://dcdq4z03ve68v.cloudfront.net/" + this.props.filehash}
                      alt="Video thumbnail">
                 </img>
-                <h2>{this.props.filename}</h2>
+                <h2>{this.props.videoname}</h2>
                 <p>{this.props.description}</p>
                 <button onClick={this.props.onClick}
                     className={"http://dcdq4z03ve68v.cloudfront.net/" + this.props.filehash}>
@@ -28,12 +28,14 @@ class App extends React.Component {
         
         this.state = {
             fileUpload: "",
+            videoName: "",
             fileDescription: "",
             activeVideo: "",
             videoPaused: true
         };
 
         this.handleFileChange = this.handleFileChange.bind(this);
+        this.handleVideoNameChange = this.handleVideoNameChange.bind(this);
         this.handleFileDescriptionChange = this.handleFileDescriptionChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleActiveVideoChange = this.handleActiveVideoChange.bind(this);
@@ -41,6 +43,7 @@ class App extends React.Component {
     }
 
     handleFileChange(event) { this.setState({fileUpload: event.target.value}); }
+    handleVideoNameChange(event) { this.setState({videoName: event.target.value}); }
     handleFileDescriptionChange(event) { this.setState({fileDescription: event.target.value}); }
     handleSubmit(event) { /* Validation */ }
 
@@ -79,6 +82,7 @@ class App extends React.Component {
                         uid={video.uid}
                         filename={video.filename}
                         filehash={video.filehash}
+                        videoname={video.videoname}
                         description={video.description}
                         created={video.created}
                         onClick={this.handleActiveVideoChange} />);}, this);
@@ -93,12 +97,18 @@ class App extends React.Component {
                       method="POST" 
                       id="video-uploader" 
                       encType="multipart/form-data">
-                    <label htmlFor="video">Video</label>
+                    <label htmlFor="video">Video File</label>
                     <input type="file"
                            value={this.state.fileUpload}
                            name="video"
                            id="video" 
                            onChange={this.handleFileChange} />
+                    <label htmlFor="videoname">Video Name</label>
+                    <input type="input" 
+                           value={this.state.videoName}
+                           name="videoname"
+                           id="videoname"
+                           onChange={this.handleVideoNameChange} />
                     <label htmlFor="description">Description</label>
                     <input type="input" 
                            value={this.state.fileDescription}

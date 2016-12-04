@@ -50,6 +50,7 @@ def index():
                 "uid": video.uid,
                 "filename": video.filename,
                 "filehash": video.filehash,
+                "videoname": video.videoname,
                 "description": video.description,
                 "created": str(video.created)})
 
@@ -116,7 +117,7 @@ def admin():
             "vid": video.vid,
             "uid": video.uid,
             "filename": video.filename,
-            "filehash": video.filehash,
+            "videoname": video.videoname,
             "description": video.description,
             "created": str(video.created)})
 
@@ -196,6 +197,7 @@ def upload():
             session['uid'],
             video.filename,
             filehash,
+            request.form['videoname'],
             request.form['description'],
             datetime.utcnow())
         db.session.add(new_video)
