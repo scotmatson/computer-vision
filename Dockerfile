@@ -43,8 +43,11 @@ RUN apt-get install -y --no-install-recommends \
 # Upgrade packages, durr
 RUN apt-get upgrade -y
 
+# Upgrade Pip
+RUN pip3 install --upgrade pip
+
 # Install Python libraries (and explicit dependencies)
-RUN pip3 install --upgrade pip && pip3 install \
+RUN pip3 install \
     itsdangerous \
     click \
     MarkupSafe \
@@ -54,7 +57,7 @@ RUN pip3 install --upgrade pip && pip3 install \
     flask-sqlalchemy \
     psycopg2 \
     boto3 \
-    pillow
+    Pillow
 
 # Import the project
 RUN mkdir /srv/httpd
