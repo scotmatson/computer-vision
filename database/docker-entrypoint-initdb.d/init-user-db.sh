@@ -21,6 +21,7 @@ psql -v ON_ERROR_STOP=1 --username "$POSTGRES_USER" <<-EOSQL
       uid INTEGER,
       filename VARCHAR(20),
       filehash VARCHAR(64),
+      framehash VARCHAR(64),
       description VARCHAR(60),
       created TIMESTAMP
     );

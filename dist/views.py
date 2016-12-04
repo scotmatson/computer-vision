@@ -19,7 +19,6 @@ CAPTCHA_URL = 'https://www.google.com/recaptcha/api/siteverify'
 CAPTCHA_SECRET_KEY = '6Ldh_QsUAAAAANZkysKJNJHjj_KfKRgJwpnaXAJf'
 VIDEO_BUCKET = 'ocv160'
 IMAGE_BUCKET = 'frames160'
-#ALLOWED_EXTENSIONS = set(['avi', 'flv', 'wmv', 'mov', 'mp4'])
 ALLOWED_EXTENSIONS = set(['mp4'])
 WORKHORSE_URL = 'http://159.203.238.253:7331'
 
@@ -35,7 +34,7 @@ def login_required(f):
         return f(*args, **kwargs)
     return decorated_function
 
-@app.route('/', methods=['GET', 'POST'])
+@app.route('/', methods=["GET", "POST"])
 @login_required
 def index():
     '''
@@ -43,7 +42,7 @@ def index():
     activities once they have been logged in to 
     their account.
     '''
-    if request.method == 'GET':
+    if request.method == "GET":
         videos = list()
         for video in Video.query.all():
             videos.append({
@@ -55,11 +54,6 @@ def index():
                 "created": str(video.created)})
 
         return render_template('index.jinja2', videos=json.dumps(videos))
-
-    if request.method == 'POST':
-        new_videos = request.form['success']
-        if new_videos == "True":
-            return render_template('index.jinja2')
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
@@ -190,28 +184,25 @@ def upload():
         # Sending video file to workhorse
         data = {'request': "add_video_file_to_queue", 'video_file_name': filehash}
         files = {'video_file': (video)}
-        r = requests.post(WORKHORSE_URL, data=data, files=files)
+        response = requests.post(WORKHORSE_URL, data=data, files=files)
 
-        # Packaging thumbnail
-        thumbnail = StringIO(r.text)
-        thumbnail = Image.open(BytesIO(r.content))
-        image_out = BytesIO()
-        thumbnail.save(image_out, "JPEG")
+        # Packaging frame
+        frame = Image.open(BytesIO(response.content))
+        image = BytesIO()
+        frame.save(image, "JPEG")
       
         # Store the metadata in the DB
-        #new_video = Video(
-        #    session['uid'],
-        #    video.filename,
-        #    filehash,
-        #    request.form['description'],
-        #    datetime.utcnow())
-        #db.session.add(new_video)
-        #db.session.commit()
+        new_video = Video(
+            session['uid'],
+            video.filename,
+            filehash,
+            request.form['description'],
+            datetime.utcnow())
+        db.session.add(new_video)
+        db.session.commit()
 
         # Upload the file to S3
         s3 = boto3.resource('s3')
-        video_bucket = s3.Bucket(VIDEO_BUCKET)
         image_bucket = s3.Bucket(IMAGE_BUCKET)
-        #video_bucket.put_object(Key=filehash, Body=video)
-        image_bucket.put_object(Key="testimage", Body=image_out.getvalue())
+        image_bucket.put_object(Key=filehash, Body=image.getvalue())
     return redirect(url_for('index')) 

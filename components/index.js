@@ -6,7 +6,7 @@ class UserVideo extends React.Component {
     render() {
         return (
             <div className="video-tile">
-                <img src="http://lorempixel.com/250/170/" 
+                <img src={"https://frames160.s3.amazonaws.com/" + this.props.filehash}
                      onClick={this.props.onClick}
                      className={"http://dcdq4z03ve68v.cloudfront.net/" + this.props.filehash}
                      alt="Video thumbnail">
