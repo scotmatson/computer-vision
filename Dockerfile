@@ -53,7 +53,8 @@ RUN pip3 install --upgrade pip && pip3 install \
     flask \
     flask-sqlalchemy \
     psycopg2 \
-    boto3
+    boto3 \
+    pillow
 
 # Import the project
 RUN mkdir /srv/httpd

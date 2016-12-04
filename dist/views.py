@@ -10,12 +10,18 @@ import sys
 import boto3
 from hashlib import sha256
 import time
+import requests
+from PIL import Image
+from io import StringIO,BytesIO
 
 # Move into dedicated constants.py file
 CAPTCHA_URL = 'https://www.google.com/recaptcha/api/siteverify'
 CAPTCHA_SECRET_KEY = '6Ldh_QsUAAAAANZkysKJNJHjj_KfKRgJwpnaXAJf'
-UPLOAD_BUCKET = 'ocv160'
-ALLOWED_EXTENSIONS = set(['avi', 'flv', 'wmv', 'mov', 'mp4'])
+VIDEO_BUCKET = 'ocv160'
+IMAGE_BUCKET = 'frames160'
+#ALLOWED_EXTENSIONS = set(['avi', 'flv', 'wmv', 'mov', 'mp4'])
+ALLOWED_EXTENSIONS = set(['mp4'])
+WORKHORSE_URL = 'http://159.203.238.253:7331'
 
 def login_required(f):
     '''
@@ -29,7 +35,7 @@ def login_required(f):
         return f(*args, **kwargs)
     return decorated_function
 
-@app.route('/', methods=['GET'])
+@app.route('/', methods=['GET', 'POST'])
 @login_required
 def index():
     '''
@@ -49,6 +55,11 @@ def index():
                 "created": str(video.created)})
 
         return render_template('index.jinja2', videos=json.dumps(videos))
+
+    if request.method == 'POST':
+        new_videos = request.form['success']
+        if new_videos == "True":
+            return render_template('index.jinja2')
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
@@ -176,41 +187,31 @@ def upload():
         filehash = sha256("".join([video.filename, 
             str(int(time.time()))]).encode("utf-8")).hexdigest()
 
+        # Sending video file to workhorse
+        data = {'request': "add_video_file_to_queue", 'video_file_name': filehash}
+        files = {'video_file': (video)}
+        r = requests.post(WORKHORSE_URL, data=data, files=files)
+
+        # Packaging thumbnail
+        thumbnail = StringIO(r.text)
+        thumbnail = Image.open(BytesIO(r.content))
+        image_out = BytesIO()
+        thumbnail.save(image_out, "JPEG")
+      
         # Store the metadata in the DB
-        new_video = Video(
-            session['uid'],
-            video.filename,
-            filehash,
-            request.form['description'],
-            datetime.utcnow())
-        db.session.add(new_video)
-        db.session.commit()
+        #new_video = Video(
+        #    session['uid'],
+        #    video.filename,
+        #    filehash,
+        #    request.form['description'],
+        #    datetime.utcnow())
+        #db.session.add(new_video)
+        #db.session.commit()
 
         # Upload the file to S3
         s3 = boto3.resource('s3')
-        bucket = s3.Bucket(UPLOAD_BUCKET)
-        bucket.put_object(Key=filehash, Body=video)
+        video_bucket = s3.Bucket(VIDEO_BUCKET)
+        image_bucket = s3.Bucket(IMAGE_BUCKET)
+        #video_bucket.put_object(Key=filehash, Body=video)
+        image_bucket.put_object(Key="testimage", Body=image_out.getvalue())
     return redirect(url_for('index')) 
-
-#@app.route('/display', methods=['POST'])
-#@login_required
-#def display():
-#    """
-#    """
-#    return redirect(url_for('index')) 
-
-# This will print all of the objects in a bucket.
-# Probably will be useful for checking what we've downloaded
-# So we can get new videos.
-#
-# bucket = s3.Bucket('ocv160')
-# for obj in bucket.objects.all():
-#     print(obj.key)
-
-# For downloading files
-# s3 = boto3.resource('s3')
-# s3.meta.client.download_file('bucketname', 'DL Source File', 'DL Dest Path/File')
-#
-# Need to research if we can access files and display them without downloading
-# them. That would be convenient.
-
