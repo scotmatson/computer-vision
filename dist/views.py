@@ -35,7 +35,7 @@ def login_required(f):
         return f(*args, **kwargs)
     return decorated_function
 
-@app.route('/', methods=['GET'])
+@app.route('/', methods=['GET', 'POST'])
 @login_required
 def index():
     '''
@@ -55,6 +55,11 @@ def index():
                 "created": str(video.created)})
 
         return render_template('index.jinja2', videos=json.dumps(videos))
+
+    if request.method == 'POST':
+        new_videos = request.form['success']
+        if new_videos == "True":
+            return render_template('index.jinja2')
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
@@ -209,15 +214,4 @@ def upload():
         image_bucket = s3.Bucket(IMAGE_BUCKET)
         #video_bucket.put_object(Key=filehash, Body=video)
         image_bucket.put_object(Key="testimage", Body=image_out.getvalue())
-    return redirect(url_for('index')) 
-
-@app.route('/completed', methods=['POST, GET'])
-def completed():
-    """
-    Notifies the server that video processing has been completed
-    and reloads the index file, in effect refreshing the video
-    library.
-    """
-    print("check")
-    print(request.form['success'])
     return redirect(url_for('index')) 

@@ -118,8 +118,7 @@ webpackJsonp([2],[
 	            ),
 	            React.createElement(
 	                'form',
-	                { //action="upload" 
-	                    action: 'http://159.203.238.253:7331/',
+	                { action: 'upload',
 	                    method: 'POST',
 	                    id: 'video-uploader',
 	                    encType: 'multipart/form-data' },
