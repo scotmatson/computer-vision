@@ -13,10 +13,18 @@ class UserVideo extends React.Component {
                 </img>
                 <h2>{this.props.videoname}</h2>
                 <p>{this.props.description}</p>
+                <form action="delete" method="POST">
+                    <input type="hidden" value={this.props.filehash} name="delete" />
+                    <button type="submit">Delete</button>
+                </form>
                 <button onClick={this.props.onClick}
                     className={"http://dcdq4z03ve68v.cloudfront.net/" + this.props.filehash}>
                     Watch
                 </button>
+                <form action={"http://dcdq4z03ve68v.cloudfront.net/" + this.props.filehash}
+                      method="GET">
+                    <button type="submit">Download</button>
+                </form>
             </div>
         )
     }
@@ -48,7 +56,7 @@ class App extends React.Component {
     handleSubmit(event) { /* Validation */ }
 
     handleActiveVideoChange(event) {
-        this.setState({activeVideo: event.target.className });
+        this.setState({activeVideo: event.target.className});
         document.getElementById("video-player").load(); 
         document.getElementById("modal-window").style.display = "block";
     }
