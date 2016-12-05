@@ -1,5 +1,5 @@
 from dist import app
-from flask import render_template, request, redirect, url_for, session
+from flask import render_template, request, redirect, url_for, session, escape
 from functools import wraps
 from dist.models import db, User, Video
 from datetime import datetime
@@ -17,8 +17,8 @@ from io import StringIO,BytesIO
 # Move into dedicated constants.py file
 CAPTCHA_URL = 'https://www.google.com/recaptcha/api/siteverify'
 CAPTCHA_SECRET_KEY = '6Ldh_QsUAAAAANZkysKJNJHjj_KfKRgJwpnaXAJf'
-VIDEO_BUCKET = 'ocv160'
 IMAGE_BUCKET = 'frames160'
+VIDEO_BUCKET = 'ocv160'
 ALLOWED_EXTENSIONS = set(['mp4'])
 WORKHORSE_URL = 'http://159.203.238.253:7331'
 
@@ -82,10 +82,10 @@ def confirmation():
     outcome of their new account registration. 
     '''
     new_user = User(
-        request.form['username'],
-        request.form['first-name'],
-        request.form['last-name'],
-        request.form['password'],
+        str(escape(request.form['username']).striptags()),
+        str(escape(request.form['first-name']).striptags()),
+        str(escape(request.form['last-name']).striptags()),
+        str(escape(request.form['password']).striptags()),
         datetime.utcnow(),
         request.environ['REMOTE_ADDR'])
 
@@ -197,8 +197,8 @@ def upload():
             session['uid'],
             video.filename,
             filehash,
-            request.form['videoname'],
-            request.form['description'],
+            str(escape(request.form['videoname']).striptags()),
+            str(escape(request.form['description']).striptags()),
             datetime.utcnow())
         db.session.add(new_video)
         db.session.commit()
@@ -216,8 +216,13 @@ def delete():
     Deletes a video from the database.
     """
     video_to_delete = request.form['delete']
-    print("Testing delete:", video_to_delete)
-    # Delete video from s3
-    # Delete image from s3
+
+    # Delete object from s3
+    s3 = boto3.client('s3')
+    s3.delete_object(Bucket=IMAGE_BUCKET, Key=video_to_delete)
+    s3.delete_object(Bucket=VIDEO_BUCKET, Key=video_to_delete)
+
     # Delete record from pgdb
+    Video.query.filter_by(filehash=video_to_delete).delete()
+    db.session.commit()
     return redirect(url_for('index')) 
