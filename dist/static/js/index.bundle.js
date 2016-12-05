@@ -26,10 +26,30 @@ webpackJsonp([2],[
 	                this.props.description
 	            ),
 	            React.createElement(
+	                'form',
+	                { action: 'delete', method: 'POST' },
+	                React.createElement('input', { type: 'hidden', value: this.props.filehash, name: 'delete' }),
+	                React.createElement(
+	                    'button',
+	                    { type: 'submit' },
+	                    'Delete'
+	                )
+	            ),
+	            React.createElement(
 	                'button',
 	                { onClick: this.props.onClick,
 	                    className: "http://dcdq4z03ve68v.cloudfront.net/" + this.props.filehash },
 	                'Watch'
+	            ),
+	            React.createElement(
+	                'form',
+	                { action: "http://dcdq4z03ve68v.cloudfront.net/" + this.props.filehash,
+	                    method: 'GET' },
+	                React.createElement(
+	                    'button',
+	                    { type: 'submit' },
+	                    'Download'
+	                )
 	            )
 	        );
 	    }

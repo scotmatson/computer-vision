@@ -208,3 +208,16 @@ def upload():
         image_bucket = s3.Bucket(IMAGE_BUCKET)
         image_bucket.put_object(Key=filehash, Body=image.getvalue())
     return redirect(url_for('index')) 
+
+@app.route('/delete', methods=['POST'])
+@login_required
+def delete():
+    """
+    Deletes a video from the database.
+    """
+    video_to_delete = request.form['delete']
+    print("Testing delete:", video_to_delete)
+    # Delete video from s3
+    # Delete image from s3
+    # Delete record from pgdb
+    return redirect(url_for('index')) 
