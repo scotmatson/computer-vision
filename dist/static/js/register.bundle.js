@@ -3,7 +3,7 @@ webpackJsonp([4],[
 /***/ function(module, exports, __webpack_require__) {
 
 	var React = __webpack_require__(1);
-	var ReactDom = __webpack_require__(34);
+	var ReactDOM = __webpack_require__(34);
 	__webpack_require__(172);
 
 	class Register extends React.Component {
@@ -67,7 +67,7 @@ webpackJsonp([4],[
 	                            'Username'
 	                        ),
 	                        React.createElement('input', { className: 'form__field-input',
-	                            input: true, type: 'text',
+	                            type: 'text',
 	                            value: this.state.username,
 	                            name: 'username',
 	                            id: 'username',
@@ -82,7 +82,7 @@ webpackJsonp([4],[
 	                            'First Name'
 	                        ),
 	                        React.createElement('input', { className: 'form__field-input',
-	                            input: true, type: 'text',
+	                            type: 'text',
 	                            value: this.state.firstName,
 	                            name: 'first-name',
 	                            id: 'first-name',
@@ -97,7 +97,7 @@ webpackJsonp([4],[
 	                            'Last Name'
 	                        ),
 	                        React.createElement('input', { className: 'form__field-input',
-	                            input: true, type: 'text',
+	                            type: 'text',
 	                            value: this.state.lastName,
 	                            name: 'last-name',
 	                            id: 'last-name',
@@ -112,7 +112,7 @@ webpackJsonp([4],[
 	                            'Password'
 	                        ),
 	                        React.createElement('input', { className: 'form__field-input',
-	                            input: true, type: 'text',
+	                            type: 'text',
 	                            value: this.state.password,
 	                            name: 'password',
 	                            id: 'password',
@@ -121,7 +121,11 @@ webpackJsonp([4],[
 	                    React.createElement(
 	                        'div',
 	                        { className: 'form__submit-btn-wrapper' },
-	                        React.createElement('input', { type: 'submit', value: 'Submit' })
+	                        React.createElement(
+	                            'button',
+	                            { className: 'form__submit-bth', type: 'submit', value: 'Submit' },
+	                            'Submit'
+	                        )
 	                    )
 	                )
 	            )
@@ -129,7 +133,6 @@ webpackJsonp([4],[
 	    }
 	}
 	ReactDOM.render(React.createElement(Register, null), document.getElementById('react-register-container'));
-	eactDOM.render(React.createElement(Register, null), document.getElementById('react-register-container'));
 
 /***/ }
 ]);
