@@ -1,5 +1,5 @@
 .form__field-wrapper {
-  widthdthdthdth: 100%;
+  width: 100%;
   position: relative;
   padding-top: 1.75em;
   border-top: 1px solid $very-light-grey;
@@ -8,7 +8,7 @@
 }
 
 .form__field-wrapper + .form__field-wrapper {
-  border-top: none;
+  border-top: 100px;
 }
 
 .form__field-input:focus ~ .form__field-label {
@@ -61,7 +61,7 @@
 .form__submit-btn-wrapper {
   padding: 2em 1em;
   width: 100%;
-  background-color: #fff;
+  background-color: #42424f;
   display: flex;
   justify-content: center;
 }
@@ -74,9 +74,15 @@
   border-radius: 3px;
   background-color: $brand-color;
   color: white;
-  display: block;
-  margin: 0 auto;
+  display: inline-block;
+  margin: 10px;
   position: relative;
+}
+
+.divider{
+    width:5px;
+    height:auto;
+    display:inline-block;
 }
 
 .g-recaptcha {

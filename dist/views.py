@@ -20,7 +20,8 @@ CAPTCHA_SECRET_KEY = '6Ldh_QsUAAAAANZkysKJNJHjj_KfKRgJwpnaXAJf'
 IMAGE_BUCKET = 'frames160'
 VIDEO_BUCKET = 'ocv160'
 ALLOWED_EXTENSIONS = set(['mp4'])
-WORKHORSE_URL = 'http://159.203.238.253:7331'
+#WORKHORSE_URL = 'http://159.203.238.253:7331'
+WORKHORSE_URL = 'http://104.198.185.125:7331'
 
 def login_required(f):
     '''
@@ -45,12 +46,14 @@ def index():
     if request.method == "GET":
         videos = list()
         for video in Video.query.all():
+            user = User.query.filter_by(uid=video.uid).first()
             videos.append({
                 "vid": video.vid,
                 "uid": video.uid,
                 "filename": video.filename,
                 "filehash": video.filehash,
                 "videoname": video.videoname,
+                "videoauthor": user.username,
                 "description": video.description,
                 "created": str(video.created)})
 
