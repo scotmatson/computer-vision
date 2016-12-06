@@ -93,18 +93,26 @@ webpackJsonp([3],[
 	                    React.createElement(
 	                        "div",
 	                        { className: "form__submit-btn-wrapper" },
-	                        React.createElement("input", { type: "submit", value: "Submit" })
+	                        React.createElement(
+	                            "button",
+	                            { className: "form__submit-btn", type: "submit", value: "Submit" },
+	                            "Submit"
+	                        )
 	                    ),
 	                    React.createElement("div", { className: "g-recaptcha",
 	                        "data-sitekey": "6Ldh_QsUAAAAAIHD4gYCB3gK5UgsZRqiebcV7E9Z" })
 	                ),
 	                React.createElement(
-	                    "p",
-	                    null,
+	                    "div",
+	                    { className: "form__register-wrapper" },
 	                    React.createElement(
-	                        "a",
-	                        { href: "register" },
-	                        "Register New User"
+	                        "p",
+	                        null,
+	                        React.createElement(
+	                            "a",
+	                            { href: "register" },
+	                            "Register New User"
+	                        )
 	                    )
 	                )
 	            )
