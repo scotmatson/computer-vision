@@ -61,9 +61,9 @@ class Login extends React.Component {
                   <button className="form__submit-btn" type="submit" value="Submit">
                          Submit
                   </button>
-                  </div>
-                  <div className="g-recaptcha"
-                         data-sitekey="6Ldh_QsUAAAAAIHD4gYCB3gK5UgsZRqiebcV7E9Z">
+		  <div className="g-recaptcha"
+			 data-sitekey="6Ldh_QsUAAAAAIHD4gYCB3gK5UgsZRqiebcV7E9Z">
+		  </div>
                   </div>
                   </form>
                   <div className="form__register-wrapper">
@@ -75,4 +75,3 @@ class Login extends React.Component {
     }
 }
 ReactDOM.render(<Login authenticated={authenticated}></Login>, document.getElementById("react-login-container"))
-
