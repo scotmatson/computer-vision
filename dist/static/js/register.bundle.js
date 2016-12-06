@@ -127,6 +127,15 @@ webpackJsonp([4],[
 	                            'Submit'
 	                        )
 	                    )
+	                ),
+	                React.createElement(
+	                    'p',
+	                    null,
+	                    React.createElement(
+	                        'a',
+	                        { href: 'login' },
+	                        'Return to Login Page'
+	                    )
 	                )
 	            )
 	        );

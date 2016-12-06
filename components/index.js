@@ -12,19 +12,23 @@ class UserVideo extends React.Component {
                      alt="Video thumbnail">
                 </img>
                 <h2>{this.props.videoname}</h2>
+                <p>Curated by {this.props.videoauthor}</p>
                 <p>{this.props.description}</p>
-                <form action="delete" method="POST">
-                    <input type="hidden" value={this.props.filehash} name="delete" />
-                    <button type="submit">Delete</button>
-                </form>
-                <button onClick={this.props.onClick}
-                    className={"http://dcdq4z03ve68v.cloudfront.net/" + this.props.filehash}>
-                    Watch
-                </button>
-                <form action={"http://dcdq4z03ve68v.cloudfront.net/" + this.props.filehash}
+
+		<div className="form__submit-btn-wrapper">
+                    <form action="delete" method="POST">
+                        <input type="hidden" value={this.props.filehash} name="delete" />
+		
+                    <button className="form__submit-btn" type="submit">Delete</button>
+                    </form>
+		    <div className="divider"/>
+                    <form action={"http://dcdq4z03ve68v.cloudfront.net/" + this.props.filehash}
                       method="GET">
-                    <button type="submit">Download</button>
-                </form>
+                    
+                    <button className="form__submit-btn" type="submit">Download</button>
+		
+                    </form>
+		</div>
             </div>
         )
     }
@@ -57,7 +61,7 @@ class App extends React.Component {
 
     handleActiveVideoChange(event) {
         this.setState({activeVideo: event.target.className});
-        document.getElementById("video-player").load(); 
+        document.getElementById("video-player").load();
         document.getElementById("modal-window").style.display = "block";
     }
 
@@ -91,6 +95,7 @@ class App extends React.Component {
                         filename={video.filename}
                         filehash={video.filehash}
                         videoname={video.videoname}
+                        videoauthor={video.videoauthor}
                         description={video.description}
                         created={video.created}
                         onClick={this.handleActiveVideoChange} />);}, this);
@@ -131,6 +136,13 @@ class App extends React.Component {
                         <source src={this.state.activeVideo} type="video/mp4" /> 
                     </video>
                 </div>
+		
+		<footer id="footer">
+		    <div id="inner">
+		    <h2> Created by Team UHH</h2>
+		    <p> I sexually Identify as an Attack Helicopter. Ever since I was a boy I dreamed of soaring over the oilfields dropping hot sticky loads on disgusting foreigners. People say to me that a person being a helicopter is Impossible and I’m fucking retarded but I don’t care, I’m beautiful. I’m having a plastic surgeon install rotary blades, 30 mm cannons and AMG-114 Hellfire missiles on my body. From now on I want you guys to call me “Apache” and respect my right to kill from above and kill needlessly. If you can’t accept me you’re a heliphobe and need to check your vehicle privilege. Thank you for being so understanding. </p>
+		    </div>
+		</footer>
             </div>
         );
     }

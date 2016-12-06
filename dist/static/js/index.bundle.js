@@ -23,32 +23,37 @@ webpackJsonp([2],[
 	            React.createElement(
 	                'p',
 	                null,
+	                'Curated by ',
+	                this.props.videoauthor
+	            ),
+	            React.createElement(
+	                'p',
+	                null,
 	                this.props.description
 	            ),
 	            React.createElement(
-	                'form',
-	                { action: 'delete', method: 'POST' },
-	                React.createElement('input', { type: 'hidden', value: this.props.filehash, name: 'delete' }),
+	                'div',
+	                { className: 'form__submit-btn-wrapper' },
 	                React.createElement(
-	                    'button',
-	                    { type: 'submit' },
-	                    'Delete'
-	                )
-	            ),
-	            React.createElement(
-	                'button',
-	                { onClick: this.props.onClick,
-	                    className: "http://dcdq4z03ve68v.cloudfront.net/" + this.props.filehash },
-	                'Watch'
-	            ),
-	            React.createElement(
-	                'form',
-	                { action: "http://dcdq4z03ve68v.cloudfront.net/" + this.props.filehash,
-	                    method: 'GET' },
+	                    'form',
+	                    { action: 'delete', method: 'POST' },
+	                    React.createElement('input', { type: 'hidden', value: this.props.filehash, name: 'delete' }),
+	                    React.createElement(
+	                        'button',
+	                        { className: 'form__submit-btn', type: 'submit' },
+	                        'Delete'
+	                    )
+	                ),
+	                React.createElement('div', { className: 'divider' }),
 	                React.createElement(
-	                    'button',
-	                    { type: 'submit' },
-	                    'Download'
+	                    'form',
+	                    { action: "http://dcdq4z03ve68v.cloudfront.net/" + this.props.filehash,
+	                        method: 'GET' },
+	                    React.createElement(
+	                        'button',
+	                        { className: 'form__submit-btn', type: 'submit' },
+	                        'Download'
+	                    )
 	                )
 	            )
 	        );
@@ -120,6 +125,7 @@ webpackJsonp([2],[
 	                filename: video.filename,
 	                filehash: video.filehash,
 	                videoname: video.videoname,
+	                videoauthor: video.videoauthor,
 	                description: video.description,
 	                created: video.created,
 	                onClick: this.handleActiveVideoChange });
@@ -192,6 +198,24 @@ webpackJsonp([2],[
 	                    'video',
 	                    { id: 'video-player', autoPlay: true, loop: true },
 	                    React.createElement('source', { src: this.state.activeVideo, type: 'video/mp4' })
+	                )
+	            ),
+	            React.createElement(
+	                'footer',
+	                { id: 'footer' },
+	                React.createElement(
+	                    'div',
+	                    { id: 'inner' },
+	                    React.createElement(
+	                        'h2',
+	                        null,
+	                        ' Created by Team UHH'
+	                    ),
+	                    React.createElement(
+	                        'p',
+	                        null,
+	                        ' I sexually Identify as an Attack Helicopter. Ever since I was a boy I dreamed of soaring over the oilfields dropping hot sticky loads on disgusting foreigners. People say to me that a person being a helicopter is Impossible and I\u2019m fucking retarded but I don\u2019t care, I\u2019m beautiful. I\u2019m having a plastic surgeon install rotary blades, 30 mm cannons and AMG-114 Hellfire missiles on my body. From now on I want you guys to call me \u201CApache\u201D and respect my right to kill from above and kill needlessly. If you can\u2019t accept me you\u2019re a heliphobe and need to check your vehicle privilege. Thank you for being so understanding. '
+	                    )
 	                )
 	            )
 	        );
