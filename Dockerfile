@@ -57,7 +57,8 @@ RUN pip3 install \
     flask-sqlalchemy \
     psycopg2 \
     boto3 \
-    Pillow
+    Pillow \
+    redis
 
 # Import the project
 RUN mkdir /srv/httpd
