@@ -49,7 +49,7 @@ webpackJsonp([3],[
 	                    React.createElement(
 	                        "h2",
 	                        { className: "form-page__form-heading" },
-	                        "Login"
+	                        "Facial Recognition"
 	                    )
 	                ),
 	                React.createElement(
@@ -58,17 +58,13 @@ webpackJsonp([3],[
 	                    React.createElement(
 	                        "div",
 	                        { className: "form__field-wrapper" },
-	                        React.createElement(
-	                            "label",
-	                            { className: "form__field-label", htmlFor: "username" },
-	                            "Username"
-	                        ),
+	                        React.createElement("label", { className: "form__field-label", htmlFor: "username" }),
 	                        React.createElement("input", { className: "form__field-input",
 	                            type: "text",
 	                            value: this.state.username,
 	                            id: "username",
 	                            name: "username",
-	                            placeholder: "Donald.Trump",
+	                            placeholder: "Username",
 	                            autoCorrect: "off",
 	                            autoCapitalize: "off",
 	                            spellCheck: "false",
@@ -77,17 +73,13 @@ webpackJsonp([3],[
 	                    React.createElement(
 	                        "div",
 	                        { className: "form__field-wrapper" },
-	                        React.createElement(
-	                            "label",
-	                            { className: "form__field-label", htmlFor: "password" },
-	                            "Password"
-	                        ),
+	                        React.createElement("label", { className: "form__field-label", htmlFor: "" }),
 	                        React.createElement("input", { className: "form__field-input",
 	                            id: "password",
 	                            type: "password",
 	                            name: "password",
 	                            value: this.state.password,
-	                            placeholder: "\u2022\u2022\u2022\u2022\u2022\u2022\u2022\u2022\u2022\u2022",
+	                            placeholder: "Password",
 	                            onChange: this._changePassword })
 	                    ),
 	                    React.createElement(
@@ -100,18 +92,18 @@ webpackJsonp([3],[
 	                        ),
 	                        React.createElement("div", { className: "g-recaptcha",
 	                            "data-sitekey": "6Ldh_QsUAAAAAIHD4gYCB3gK5UgsZRqiebcV7E9Z" })
-	                    )
-	                ),
-	                React.createElement(
-	                    "div",
-	                    { className: "form__register-wrapper" },
+	                    ),
 	                    React.createElement(
-	                        "p",
-	                        null,
+	                        "div",
+	                        { className: "form__register-wrapper" },
 	                        React.createElement(
-	                            "a",
-	                            { href: "register" },
-	                            "Register New User"
+	                            "p",
+	                            null,
+	                            React.createElement(
+	                                "a",
+	                                { href: "register" },
+	                                "Register New User"
+	                            )
 	                        )
 	                    )
 	                )

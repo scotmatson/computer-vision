@@ -14,19 +14,17 @@ class UserVideo extends React.Component {
                 <h2>{this.props.videoname}</h2>
                 <p>Curated by {this.props.videoauthor}</p>
                 <p>{this.props.description}</p>
-
-		<div className="form__submit-btn-wrapper">
+		<div className ="form__submit-btn-wrapper">
                     <form action="delete" method="POST">
                         <input type="hidden" value={this.props.filehash} name="delete" />
-		
-                    <button className="form__submit-btn" type="submit">Delete</button>
+		   
+                    <button className="index-btn" type="submit">Delete</button>
                     </form>
-		    <div className="divider"/>
+		    <div className="divider" />
                     <form action={"http://dcdq4z03ve68v.cloudfront.net/" + this.props.filehash}
                       method="GET">
-                    
-                    <button className="form__submit-btn" type="submit">Download</button>
-		
+                    <button className="index-btn" type="submit">Download</button>
+		    
                     </form>
 		</div>
             </div>
@@ -102,10 +100,6 @@ class App extends React.Component {
 
         return (
             <div>
-                <header id="banner">
-                    <button>Upload</button>
-                    <a href="log_out">Log Out</a>
-                </header>
                 <form action="upload" 
                       method="POST" 
                       id="video-uploader" 
@@ -130,6 +124,7 @@ class App extends React.Component {
                            onChange={this.handleFileDescriptionChange} />
                     <input type="submit" value="Upload"/>
                 </form>
+                <p><a href="log_out">Log Out</a></p>
                 <div id="video-grid">{userVideos}</div>     
                 <div id="modal-window" onClick={this.handleModalClick}>
                     <video id="video-player" autoPlay loop>

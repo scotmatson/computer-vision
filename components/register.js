@@ -36,48 +36,63 @@ class Register extends React.Component {
                   </div>
                   <form action="confirmation" method="POST" id="registration-form" onSubmit={this.handleSubmit}>
                       <div className="form__field-wrapper">
-                      <label className="form__field-label" htmlFor="username">Username</label>
+                      <label className="form__field-label" htmlFor="username"></label>
                       <input className="form__field-input"
                              type="text"
                              value={this.state.username}
                              name="username"
                              id="username"
+			     placeholder="Username"
+                             autoCorrect="off"
+                             autoCapitalize="off"
+                             spellCheck="false"
                              onChange={this.handleUsernameChange} />
                       </div>
                       <div className="form__field-wrapper">
-                      <label className="form__field-label" htmlFor="first-name">First Name</label>
+                      <label className="form__field-label" htmlFor="first-name"></label>
                       <input className="form__field-input"
                              type="text"
                              value={this.state.firstName}
                              name="first-name"
                              id="first-name"
+			     placeholder="First Name"
+                             autoCorrect="off"
+                             autoCapitalize="off"
+                             spellCheck="false"
                              onChange={this.handleFirstNameChange} />
                       </div>
                       <div className="form__field-wrapper">
-                      <label className="form__field-label" htmlFor="username">Last Name</label>
+                      <label className="form__field-label" htmlFor="username"></label>
                       <input className="form__field-input"
                              type="text"
                              value={this.state.lastName}
                              name="last-name"
                              id="last-name"
+			     placeholder="Last Name"
+                             autoCorrect="off"
+                             autoCapitalize="off"
+                             spellCheck="false"
                              onChange={this.handleLastNameChange} />
                       </div>
                       <div className="form__field-wrapper">
-                      <label className="form__field-label" htmlFor="password">Password</label>
+                      <label className="form__field-label" htmlFor="password"></label>
                       <input className="form__field-input"
-                             type="text"
                              value={this.state.password}
+			     type="password"
                              name="password"
                              id="password"
+			     placeholder="Password"
                              onChange={this.handlePasswordChange} />
                       </div>
                       <div className="form__submit-btn-wrapper">
-                      <button className="form__submit-bth" type="submit" value="Submit">
+                      <button className="form__submit-btn" type="submit" value="Submit">
 			     Submit
 		      </button>
                       </div>
                   </form>
-                  <p><a href="login">Return to Login Page</a></p>
+		  <div className="form__register-wrapper">
+                      <p><a href="login">Already have an account?</a></p>
+ 		  </div>
               </div>
           </div>
         );

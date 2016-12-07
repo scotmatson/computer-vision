@@ -40,7 +40,7 @@ webpackJsonp([2],[
 	                    React.createElement('input', { type: 'hidden', value: this.props.filehash, name: 'delete' }),
 	                    React.createElement(
 	                        'button',
-	                        { className: 'form__submit-btn', type: 'submit' },
+	                        { className: 'index-btn', type: 'submit' },
 	                        'Delete'
 	                    )
 	                ),
@@ -51,7 +51,7 @@ webpackJsonp([2],[
 	                        method: 'GET' },
 	                    React.createElement(
 	                        'button',
-	                        { className: 'form__submit-btn', type: 'submit' },
+	                        { className: 'index-btn', type: 'submit' },
 	                        'Download'
 	                    )
 	                )
@@ -135,20 +135,6 @@ webpackJsonp([2],[
 	            'div',
 	            null,
 	            React.createElement(
-	                'header',
-	                { id: 'banner' },
-	                React.createElement(
-	                    'button',
-	                    null,
-	                    'Upload'
-	                ),
-	                React.createElement(
-	                    'a',
-	                    { href: 'log_out' },
-	                    'Log Out'
-	                )
-	            ),
-	            React.createElement(
 	                'form',
 	                { action: 'upload',
 	                    method: 'POST',
@@ -185,6 +171,15 @@ webpackJsonp([2],[
 	                    id: 'description',
 	                    onChange: this.handleFileDescriptionChange }),
 	                React.createElement('input', { type: 'submit', value: 'Upload' })
+	            ),
+	            React.createElement(
+	                'p',
+	                null,
+	                React.createElement(
+	                    'a',
+	                    { href: 'log_out' },
+	                    'Log Out'
+	                )
 	            ),
 	            React.createElement(
 	                'div',
