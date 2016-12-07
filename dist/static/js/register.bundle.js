@@ -61,61 +61,58 @@ webpackJsonp([4],[
 	                    React.createElement(
 	                        'div',
 	                        { className: 'form__field-wrapper' },
-	                        React.createElement(
-	                            'label',
-	                            { className: 'form__field-label', htmlFor: 'username' },
-	                            'Username'
-	                        ),
+	                        React.createElement('label', { className: 'form__field-label', htmlFor: 'username' }),
 	                        React.createElement('input', { className: 'form__field-input',
 	                            type: 'text',
 	                            value: this.state.username,
 	                            name: 'username',
 	                            id: 'username',
+	                            placeholder: 'Username',
+	                            autoCorrect: 'off',
+	                            autoCapitalize: 'off',
+	                            spellCheck: 'false',
 	                            onChange: this.handleUsernameChange })
 	                    ),
 	                    React.createElement(
 	                        'div',
 	                        { className: 'form__field-wrapper' },
-	                        React.createElement(
-	                            'label',
-	                            { className: 'form__field-label', htmlFor: 'first-name' },
-	                            'First Name'
-	                        ),
+	                        React.createElement('label', { className: 'form__field-label', htmlFor: 'first-name' }),
 	                        React.createElement('input', { className: 'form__field-input',
 	                            type: 'text',
 	                            value: this.state.firstName,
 	                            name: 'first-name',
 	                            id: 'first-name',
+	                            placeholder: 'First Name',
+	                            autoCorrect: 'off',
+	                            autoCapitalize: 'off',
+	                            spellCheck: 'false',
 	                            onChange: this.handleFirstNameChange })
 	                    ),
 	                    React.createElement(
 	                        'div',
 	                        { className: 'form__field-wrapper' },
-	                        React.createElement(
-	                            'label',
-	                            { className: 'form__field-label', htmlFor: 'username' },
-	                            'Last Name'
-	                        ),
+	                        React.createElement('label', { className: 'form__field-label', htmlFor: 'username' }),
 	                        React.createElement('input', { className: 'form__field-input',
 	                            type: 'text',
 	                            value: this.state.lastName,
 	                            name: 'last-name',
 	                            id: 'last-name',
+	                            placeholder: 'Last Name',
+	                            autoCorrect: 'off',
+	                            autoCapitalize: 'off',
+	                            spellCheck: 'false',
 	                            onChange: this.handleLastNameChange })
 	                    ),
 	                    React.createElement(
 	                        'div',
 	                        { className: 'form__field-wrapper' },
-	                        React.createElement(
-	                            'label',
-	                            { className: 'form__field-label', htmlFor: 'password' },
-	                            'Password'
-	                        ),
+	                        React.createElement('label', { className: 'form__field-label', htmlFor: 'password' }),
 	                        React.createElement('input', { className: 'form__field-input',
-	                            type: 'text',
 	                            value: this.state.password,
+	                            type: 'password',
 	                            name: 'password',
 	                            id: 'password',
+	                            placeholder: 'Password',
 	                            onChange: this.handlePasswordChange })
 	                    ),
 	                    React.createElement(
@@ -123,18 +120,22 @@ webpackJsonp([4],[
 	                        { className: 'form__submit-btn-wrapper' },
 	                        React.createElement(
 	                            'button',
-	                            { className: 'form__submit-bth', type: 'submit', value: 'Submit' },
+	                            { className: 'form__submit-btn', type: 'submit', value: 'Submit' },
 	                            'Submit'
 	                        )
 	                    )
 	                ),
 	                React.createElement(
-	                    'p',
-	                    null,
+	                    'div',
+	                    { className: 'form__register-wrapper' },
 	                    React.createElement(
-	                        'a',
-	                        { href: 'login' },
-	                        'Return to Login Page'
+	                        'p',
+	                        null,
+	                        React.createElement(
+	                            'a',
+	                            { href: 'login' },
+	                            'Already have an account?'
+	                        )
 	                    )
 	                )
 	            )

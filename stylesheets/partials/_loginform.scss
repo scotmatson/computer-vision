@@ -1,14 +1,14 @@
 .form__field-wrapper {
   width: 100%;
   position: relative;
-  padding-top: 1.75em;
+  //padding-top: 1.75em;
   border-top: 1px solid $very-light-grey;
   border-bottom: 1px solid $very-light-grey;
   background-color: #fff;
 }
 
 .form__field-wrapper + .form__field-wrapper {
-  border-top: 100px;
+  //border-top: 300px;
 }
 
 .form__field-input:focus ~ .form__field-label {
@@ -26,8 +26,8 @@
   top: 0;
   left: 0;
   width: 100%;
-  padding: 16px;
-  padding-top: 20px;
+  //padding: 16px;
+  //padding-top: 20px;
   padding-bottom: 0;
   margin: 0;
   z-index: 1;
@@ -49,7 +49,7 @@
 }
 
 .form__register-wrapper {
-  padding: 1.625em 16px;
+  padding: 2px;
   width: 100%;
   color: $dark-grey;
   border: none;
@@ -59,37 +59,93 @@
 }
 
 .form__submit-btn-wrapper {
-  padding: 2em 1em;
+  padding-bottom: 2px;
   width: 100%;
-  background-color: #42424f;
+  background-color: rgba(255,255,255,0);
   display: flex;
   justify-content: center;
 }
 
 .form__submit-btn {
+  width: 45%;
+  font-size: 20px;
   border: none;
   background-color: #fff;
-  border: 1px solid $brand-color;
+  border: 1px solid #51C321;
   padding: 0.5em 1em;
   border-radius: 3px;
-  background-color: $brand-color;
+  background-color: #51C321;
   color: white;
   display: inline-block;
-  margin: 10px;
+  margin-right: 5px;
+  position: relative;
+}
+
+.index-btn {
+  border: none;
+  background-color: #fff;
+  border: 1px solid #51C321;
+  padding: 0.5em 1em;
+  border-radius: 3px;
+  background-color: #51C321;
+  color: white;
+  display: block;
+  margin: 0 auto;
   position: relative;
 }
 
 .divider{
-    width:5px;
+    width:10px;
     height:auto;
     display:inline-block;
 }
 
 .g-recaptcha {
   width: 50%;
-  margin: 0 auto;
 }
 
+#footer {
+		padding: 4em 0 2em 0;
+		background-color: #1b1b1f;
+		text-align: center;
+	}
+
+		#footer .inner {
+			width: 50%;
+			margin: 0 auto;
+		}
+
+			@media screen and (max-width: 980px) {
+
+				#footer .inner {
+					width: 75%;
+				}
+
+			}
+
+			@media screen and (max-width: 480px) {
+
+				#footer .inner {
+					width: 90%;
+				}
+
+			}
+
+		#footer .copyright {
+			color: rgba(255, 255, 255, 0.5);
+			font-size: 0.9em;
+			margin: 0 0 2em 0;
+			padding: 0;
+			text-align: center;
+		}
+
+		@media screen and (max-width: 736px) {
+
+			#footer {
+				padding: 3em 0 1em 0;
+			}
+
+		}
 
 .js-form__err-animation {
   animation: shake 150ms ease-in-out;

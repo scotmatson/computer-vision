@@ -9,12 +9,13 @@ div.video-tile {
     border: 1px solid black;
     flex: 0 0 30%;
     margin: 20px;
-    padding-bottom: 20px;
+    //padding-bottom: 20px;
     width: 30%;
 
     h2, p {
         color: #fff;
         text-align: center;
+	line-height: 30%;
     }
    
     p { opacity: 0.75; }
@@ -27,5 +28,6 @@ div.video-tile {
     img {
         cursor: pointer;
         width: 100%;
+	max-height: 230px;
     }
 }
