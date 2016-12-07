@@ -1,3 +1,38 @@
+#banner {
+  padding-top: 2em;
+  min-height: 20vh;
+  text-align: center;
+}
+
+#banner .inner {
+			text-align: center;
+			position: relative;
+			z-index: 2;
+		}
+
+		#banner h1 {
+			color: #fff;
+			font-size: 5em;
+			font-weight: 400;
+			//font-family: 'Passion One', cursive;
+			margin: 0;
+		}
+
+#video-background {
+/*  making the video fullscreen  */
+  position: fixed;
+  right: 0; 
+  bottom: 0;
+  min-width: 100%; 
+  min-height: 100%;
+  width: auto; 
+  height: auto;
+  z-index: -100;
+}
+
+
+
+
 .form__field-wrapper {
   width: 100%;
   position: relative;
@@ -5,6 +40,7 @@
   border-top: 1px solid $very-light-grey;
   border-bottom: 1px solid $very-light-grey;
   background-color: #fff;
+  color: black;
 }
 
 .form__field-wrapper + .form__field-wrapper {
