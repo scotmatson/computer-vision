@@ -85,10 +85,10 @@ def confirmation():
     outcome of their new account registration. 
     '''
     new_user = User(
-        str(escape(request.form['username']).striptags()),
-        str(escape(request.form['first-name']).striptags()),
-        str(escape(request.form['last-name']).striptags()),
-        str(escape(request.form['password']).striptags()),
+        str(escape(request.form['username'])),
+        str(escape(request.form['first-name'])),
+        str(escape(request.form['last-name'])),
+        str(escape(request.form['password'])),
         datetime.utcnow(),
         request.environ['REMOTE_ADDR'])
 
@@ -157,7 +157,9 @@ def authenticate():
 
     # If captcha is successful ...
     if res['success']:
-        for record in [User.query.filter_by(username=request.form['username']).first()]:
+        username = escape(request.form['username'])
+        print("Username:",username)
+        for record in [User.query.filter_by(username=username).first()]:
             # ... if user exists ...
             if record:
                 #  ... confirm password challenge.
@@ -198,11 +200,12 @@ def upload():
         # Store the metadata in the DB
         new_video = Video(
             session['uid'],
-            video.filename,
+            escape(video.filename),
             filehash,
-            str(escape(request.form['videoname']).striptags()),
-            str(escape(request.form['description']).striptags()),
+            str(escape(request.form['videoname'])),
+            str(escape(request.form['description'])),
             datetime.utcnow())
+        print(new_video)
         db.session.add(new_video)
         db.session.commit()
 
