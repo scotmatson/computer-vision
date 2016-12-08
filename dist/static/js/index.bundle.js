@@ -15,22 +15,14 @@ webpackJsonp([2],[
 	                onClick: this.props.onClick,
 	                className: "http://dcdq4z03ve68v.cloudfront.net/" + this.props.filehash,
 	                alt: 'Video thumbnail' }),
-	            React.createElement(
-	                'h2',
-	                null,
-	                this.props.videoname
-	            ),
+	            React.createElement('h2', { dangerouslySetInnerHTML: { __html: this.props.videoname } }),
 	            React.createElement(
 	                'p',
 	                null,
 	                'Curated by ',
 	                this.props.videoauthor
 	            ),
-	            React.createElement(
-	                'p',
-	                null,
-	                this.props.description
-	            ),
+	            React.createElement('p', { dangerouslySetInnerHTML: { __html: this.props.description } }),
 	            React.createElement(
 	                'div',
 	                { className: 'form__submit-btn-wrapper' },
@@ -202,7 +194,7 @@ webpackJsonp([2],[
 	                                { className: 'form__submit-btn-wrapper' },
 	                                React.createElement(
 	                                    'button',
-	                                    { className: 'form__submit-btn', input: true, type: 'submit', value: 'Upload' },
+	                                    { className: 'form__submit-btn', type: 'submit', value: 'Upload' },
 	                                    'Upload'
 	                                )
 	                            )

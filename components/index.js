@@ -11,9 +11,9 @@ class UserVideo extends React.Component {
                      className={"http://dcdq4z03ve68v.cloudfront.net/" + this.props.filehash}
                      alt="Video thumbnail">
                 </img>
-                <h2>{this.props.videoname}</h2>
+                <h2 dangerouslySetInnerHTML={{__html: this.props.videoname}}></h2>
                 <p>Curated by {this.props.videoauthor}</p>
-                <p>{this.props.description}</p>
+                <p dangerouslySetInnerHTML={{__html: this.props.description}}></p>
 		<div className ="form__submit-btn-wrapper">
                     <form action="delete" method="POST">
                         <input type="hidden" value={this.props.filehash} name="delete" />
@@ -140,7 +140,7 @@ class App extends React.Component {
                            onChange={this.handleFileDescriptionChange} />
 		    </div>
 		    <div className="form__submit-btn-wrapper">
-                    <button className="form__submit-btn" input type="submit" value="Upload">
+                    <button className="form__submit-btn" type="submit" value="Upload">
 			   Upload
 		    </button>
 		    </div>
