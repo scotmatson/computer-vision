@@ -13,7 +13,6 @@ import time
 import requests
 from PIL import Image
 from io import StringIO,BytesIO
-import redis
 
 # Move into dedicated constants.py file
 CAPTCHA_URL = 'https://www.google.com/recaptcha/api/siteverify'
@@ -23,7 +22,6 @@ VIDEO_BUCKET = 'ocv160'
 ALLOWED_EXTENSIONS = set(['mp4'])
 #WORKHORSE_URL = 'http://159.203.238.253:7331'
 WORKHORSE_URL = 'http://104.198.185.125:7331'
-PGDB = "172.17.0.2"
 
 def login_required(f):
     '''
@@ -42,7 +40,7 @@ def login_required(f):
 def index():
     '''
     The primary user interface for carrying out
-    activities once they have been logged in to
+    activities once they have been logged in to 
     their account.
     '''
     if request.method == "GET":
@@ -84,36 +82,15 @@ def register():
 def confirmation():
     '''
     A confirmation view to notify a newly registered user the
-    outcome of their new account registration.
+    outcome of their new account registration. 
     '''
-    username  = str(escape(request.form['username']).striptags())
-    firstname = str(escape(request.form['first-name']).striptags())
-    lastname  = str(escape(request.form['last-name']).striptags())
-    password  = str(escape(request.form['password']).striptags())
-    created   = datetime.utcnow()
-    ip        = request.environ['REMOTE_ADDR']
-
-    try:
-        redis.StrictRedis(host=PGDB).hmset(
-            username,
-            {
-                "username":username,
-                "firstname":firstname,
-                "lastname":lastname,
-                "password":password,
-                "created":created,
-                "ip":ip
-            })
-    except(redis.exceptions.RedisError):
-        pass
-
     new_user = User(
-        username,
-        firstname,
-        lastname,
-        password,
-        created,
-        ip)
+        str(escape(request.form['username']).striptags()),
+        str(escape(request.form['first-name']).striptags()),
+        str(escape(request.form['last-name']).striptags()),
+        str(escape(request.form['password']).striptags()),
+        datetime.utcnow(),
+        request.environ['REMOTE_ADDR'])
 
     db.session.add(new_user)
     db.session.commit()
@@ -148,7 +125,7 @@ def admin():
             "created": str(video.created)})
 
     return render_template(
-        "admin.jinja2",
+        "admin.jinja2", 
         users=json.dumps(users),
         videos=json.dumps(videos))
 
@@ -180,27 +157,15 @@ def authenticate():
 
     # If captcha is successful ...
     if res['success']:
-        # check cache for user first
-        try:
-            record = redis.StrictRedis(host=PGDB).hgetall(str(escape(request.form['username']).striptags()))
-        except(redis.exceptions.RedisError):
-            pass
-        if(record):
-            if record.check_password(request.form['password']):
-                session['uid'] = record.uid
-                session['username'] = record.username
-                session['logged_in'] = True
-                return redirect(url_for('index'))
-        else:
-            for record in [User.query.filter_by(username=request.form['username']).first()]:
-                # ... if user exists ...
-                if record:
-                    #  ... confirm password challenge.
-                    if record.check_password(request.form['password']):
-                        session['uid'] = record.uid
-                        session['username'] = record.username
-                        session['logged_in'] = True
-                        return redirect(url_for('index'))
+        for record in [User.query.filter_by(username=request.form['username']).first()]:
+            # ... if user exists ...
+            if record:
+                #  ... confirm password challenge.
+                if record.check_password(request.form['password']):
+                    session['uid'] = record.uid
+                    session['username'] = record.username
+                    session['logged_in'] = True
+                    return redirect(url_for('index'))
     return redirect(url_for('login'), code=307)
 
 def allowed_file(filename):
@@ -215,9 +180,9 @@ def upload():
     '''
     Handles video uploading
     '''
-    video = request.files['video']
+    video = request.files['video'] 
     if allowed_file(video.filename):
-        filehash = sha256("".join([video.filename,
+        filehash = sha256("".join([video.filename, 
             str(int(time.time()))]).encode("utf-8")).hexdigest()
 
         # Sending video file to workhorse
@@ -229,40 +194,23 @@ def upload():
         frame = Image.open(BytesIO(response.content))
         image = BytesIO()
         frame.save(image, "JPEG")
-
+      
         # Store the metadata in the DB
-        videoname   = str(escape(request.form['videoname']).striptags())
-        description = str(escape(request.form['description']).striptags())
-        created     = datetime.utcnow()
-
         new_video = Video(
             session['uid'],
             video.filename,
             filehash,
-            videoname,
-            description,
-            created)
-
+            str(escape(request.form['videoname']).striptags()),
+            str(escape(request.form['description']).striptags()),
+            datetime.utcnow())
         db.session.add(new_video)
         db.session.commit()
-
-        # Store the metadata in cache
-        try:
-            redis.StrictRedis(host=PGDB).hmset(uid,
-                {"uid":session['uid'],
-                "filename":video.filename,
-                "filehash":filehash,
-                "videoname":videoname,
-                "description":description,
-                "created":created})
-        except(redis.exceptions.RedisError):
-            pass
 
         # Upload the file to S3
         s3 = boto3.resource('s3')
         image_bucket = s3.Bucket(IMAGE_BUCKET)
         image_bucket.put_object(Key=filehash, Body=image.getvalue())
-    return redirect(url_for('index'))
+    return redirect(url_for('index')) 
 
 @app.route('/delete', methods=['POST'])
 @login_required
@@ -280,4 +228,4 @@ def delete():
     # Delete record from pgdb
     Video.query.filter_by(filehash=video_to_delete).delete()
     db.session.commit()
-    return redirect(url_for('index'))
+    return redirect(url_for('index')) 

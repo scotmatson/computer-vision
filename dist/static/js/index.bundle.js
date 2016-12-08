@@ -135,50 +135,88 @@ webpackJsonp([2],[
 	            'div',
 	            null,
 	            React.createElement(
-	                'form',
-	                { action: 'upload',
-	                    method: 'POST',
-	                    id: 'video-uploader',
-	                    encType: 'multipart/form-data' },
+	                'section',
+	                { id: 'banner' },
 	                React.createElement(
-	                    'label',
-	                    { htmlFor: 'video' },
-	                    'Video File'
-	                ),
-	                React.createElement('input', { type: 'file',
-	                    value: this.state.fileUpload,
-	                    name: 'video',
-	                    id: 'video',
-	                    onChange: this.handleFileChange }),
-	                React.createElement(
-	                    'label',
-	                    { htmlFor: 'videoname' },
-	                    'Video Name'
-	                ),
-	                React.createElement('input', { type: 'input',
-	                    value: this.state.videoName,
-	                    name: 'videoname',
-	                    id: 'videoname',
-	                    onChange: this.handleVideoNameChange }),
-	                React.createElement(
-	                    'label',
-	                    { htmlFor: 'description' },
-	                    'Description'
-	                ),
-	                React.createElement('input', { type: 'input',
-	                    value: this.state.fileDescription,
-	                    name: 'description',
-	                    id: 'description',
-	                    onChange: this.handleFileDescriptionChange }),
-	                React.createElement('input', { type: 'submit', value: 'Upload' })
-	            ),
-	            React.createElement(
-	                'p',
-	                null,
-	                React.createElement(
-	                    'a',
-	                    { href: 'log_out' },
-	                    'Log Out'
+	                    'div',
+	                    { className: 'form-page__wrapper-upload' },
+	                    React.createElement(
+	                        'div',
+	                        { className: 'form-page__form-wrapper' },
+	                        React.createElement(
+	                            'div',
+	                            { className: 'form-page__form-header' },
+	                            React.createElement(
+	                                'h2',
+	                                { className: 'form-page__form-heading' },
+	                                'Upload'
+	                            )
+	                        ),
+	                        React.createElement(
+	                            'form',
+	                            { action: 'upload',
+	                                method: 'POST',
+	                                id: 'video-uploader',
+	                                encType: 'multipart/form-data',
+	                                className: 'form' },
+	                            React.createElement(
+	                                'div',
+	                                { className: 'form__field-wrapper' },
+	                                React.createElement(
+	                                    'label',
+	                                    { htmlFor: 'video' },
+	                                    'Video File'
+	                                ),
+	                                React.createElement('input', { type: 'file',
+	                                    value: this.state.fileUpload,
+	                                    name: 'video',
+	                                    id: 'video',
+	                                    onChange: this.handleFileChange })
+	                            ),
+	                            React.createElement(
+	                                'div',
+	                                { className: 'form__field-wrapper' },
+	                                React.createElement('label', { className: 'form__field-label', htmlFor: 'videoname' }),
+	                                React.createElement('input', { type: 'input',
+	                                    className: 'form__field-input',
+	                                    value: this.state.videoName,
+	                                    name: 'videoname',
+	                                    id: 'videoname',
+	                                    placeholder: 'Video Name',
+	                                    onChange: this.handleVideoNameChange })
+	                            ),
+	                            React.createElement(
+	                                'div',
+	                                { className: 'form__field-wrapper' },
+	                                React.createElement('label', { className: 'form__field-label', htmlFor: 'description' }),
+	                                React.createElement('input', { type: 'input',
+	                                    className: 'form__field-input',
+	                                    value: this.state.fileDescription,
+	                                    name: 'description',
+	                                    id: 'description',
+	                                    placeholder: 'Description',
+	                                    onChange: this.handleFileDescriptionChange })
+	                            ),
+	                            React.createElement(
+	                                'div',
+	                                { className: 'form__submit-btn-wrapper' },
+	                                React.createElement(
+	                                    'button',
+	                                    { className: 'form__submit-btn', input: true, type: 'submit', value: 'Upload' },
+	                                    'Upload'
+	                                )
+	                            )
+	                        )
+	                    ),
+	                    React.createElement(
+	                        'p',
+	                        null,
+	                        React.createElement(
+	                            'a',
+	                            { href: 'log_out' },
+	                            'Log Out'
+	                        )
+	                    )
 	                )
 	            ),
 	            React.createElement(
@@ -205,11 +243,6 @@ webpackJsonp([2],[
 	                        'h2',
 	                        null,
 	                        ' Created by Team UHH'
-	                    ),
-	                    React.createElement(
-	                        'p',
-	                        null,
-	                        ' I sexually Identify as an Attack Helicopter. Ever since I was a boy I dreamed of soaring over the oilfields dropping hot sticky loads on disgusting foreigners. People say to me that a person being a helicopter is Impossible and I\u2019m fucking retarded but I don\u2019t care, I\u2019m beautiful. I\u2019m having a plastic surgeon install rotary blades, 30 mm cannons and AMG-114 Hellfire missiles on my body. From now on I want you guys to call me \u201CApache\u201D and respect my right to kill from above and kill needlessly. If you can\u2019t accept me you\u2019re a heliphobe and need to check your vehicle privilege. Thank you for being so understanding. '
 	                    )
 	                )
 	            )

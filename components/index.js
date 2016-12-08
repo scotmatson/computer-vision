@@ -100,31 +100,55 @@ class App extends React.Component {
 
         return (
             <div>
-                <form action="upload" 
-                      method="POST" 
-                      id="video-uploader" 
-                      encType="multipart/form-data">
+                <section id ="banner">
+		    <div className="form-page__wrapper-upload">
+			<div className='form-page__form-wrapper'> 
+			    <div className='form-page__form-header'>
+				<h2 className='form-page__form-heading'>Upload</h2>
+			    </div>
+                    <form action="upload" 
+                           method="POST" 
+                           id="video-uploader" 
+                           encType="multipart/form-data"
+			   className="form">
+		    <div className="form__field-wrapper">
                     <label htmlFor="video">Video File</label>
                     <input type="file"
                            value={this.state.fileUpload}
                            name="video"
                            id="video" 
                            onChange={this.handleFileChange} />
-                    <label htmlFor="videoname">Video Name</label>
+		    </div>
+		    <div className="form__field-wrapper">
+                    <label className="form__field-label" htmlFor="videoname"></label>
                     <input type="input" 
+			   className="form__field-input"
                            value={this.state.videoName}
                            name="videoname"
                            id="videoname"
+			   placeholder="Video Name"
                            onChange={this.handleVideoNameChange} />
-                    <label htmlFor="description">Description</label>
+		    </div>
+		    <div className="form__field-wrapper">
+                    <label className="form__field-label" htmlFor="description"></label>
                     <input type="input" 
+			   className="form__field-input"
                            value={this.state.fileDescription}
                            name="description"
                            id="description"
+			   placeholder="Description"
                            onChange={this.handleFileDescriptionChange} />
-                    <input type="submit" value="Upload"/>
-                </form>
-                <p><a href="log_out">Log Out</a></p>
+		    </div>
+		    <div className="form__submit-btn-wrapper">
+                    <button className="form__submit-btn" input type="submit" value="Upload">
+			   Upload
+		    </button>
+		    </div>
+                    </form>
+		    </div>
+		<p><a href="log_out">Log Out</a></p> 
+		</div>
+	   	</section>
                 <div id="video-grid">{userVideos}</div>     
                 <div id="modal-window" onClick={this.handleModalClick}>
                     <video id="video-player" autoPlay loop>
@@ -135,7 +159,7 @@ class App extends React.Component {
 		<footer id="footer">
 		    <div id="inner">
 		    <h2> Created by Team UHH</h2>
-		    <p> I sexually Identify as an Attack Helicopter. Ever since I was a boy I dreamed of soaring over the oilfields dropping hot sticky loads on disgusting foreigners. People say to me that a person being a helicopter is Impossible and I’m fucking retarded but I don’t care, I’m beautiful. I’m having a plastic surgeon install rotary blades, 30 mm cannons and AMG-114 Hellfire missiles on my body. From now on I want you guys to call me “Apache” and respect my right to kill from above and kill needlessly. If you can’t accept me you’re a heliphobe and need to check your vehicle privilege. Thank you for being so understanding. </p>
+
 		    </div>
 		</footer>
             </div>

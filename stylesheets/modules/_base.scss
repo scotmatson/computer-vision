@@ -20,6 +20,14 @@ body {
     height: 100%;
 }
 
+	body, input, select, textarea {
+		//color: rgba(255, 255, 255, 0.75);
+		//font-family: "Source Sans Pro", sans-serif;
+		font-size: 14pt;
+		font-weight: 300;
+		line-height: 1.65;
+	}
+
 body {
     font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
     background-color: #1b1b1f;
