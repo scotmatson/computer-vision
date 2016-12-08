@@ -102,15 +102,6 @@ class App extends React.Component {
             <div>
                 <section id ="banner">
 		    <div className="form-page__wrapper-upload">
-
-			<video autoplay loop id="video-background" muted>
-			  <source src="https://player.vimeo.com/external/158148793.hd.mp4?s=8e8741dbee251d5c35a759718d4b0976fbf38b6f&profile_id=119&oauth2_token_id=57447761" type="video/mp4" />
-			</video>
-
-			<script> 
-    				document.getElementById('vid').play(); 
-			</script> 
-
 			<div className='form-page__form-wrapper'> 
 			    <div className='form-page__form-header'>
 				<h2 className='form-page__form-heading'>Upload</h2>
@@ -155,9 +146,9 @@ class App extends React.Component {
 		    </div>
                     </form>
 		    </div>
+		<p><a href="log_out">Log Out</a></p> 
 		</div>
 	   	</section>
-                <p><a href="log_out">Log Out</a></p>
                 <div id="video-grid">{userVideos}</div>     
                 <div id="modal-window" onClick={this.handleModalClick}>
                     <video id="video-player" autoPlay loop>
@@ -168,7 +159,7 @@ class App extends React.Component {
 		<footer id="footer">
 		    <div id="inner">
 		    <h2> Created by Team UHH</h2>
-		    <p> I sexually Identify as an Attack Helicopter. Ever since I was a boy I dreamed of soaring over the oilfields dropping hot sticky loads on disgusting foreigners. People say to me that a person being a helicopter is Impossible and I’m fucking retarded but I don’t care, I’m beautiful. I’m having a plastic surgeon install rotary blades, 30 mm cannons and AMG-114 Hellfire missiles on my body. From now on I want you guys to call me “Apache” and respect my right to kill from above and kill needlessly. If you can’t accept me you’re a heliphobe and need to check your vehicle privilege. Thank you for being so understanding. </p>
+
 		    </div>
 		</footer>
             </div>

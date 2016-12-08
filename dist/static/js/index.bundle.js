@@ -141,16 +141,6 @@ webpackJsonp([2],[
 	                    'div',
 	                    { className: 'form-page__wrapper-upload' },
 	                    React.createElement(
-	                        'video',
-	                        { autoplay: true, loop: true, id: 'video-background', muted: true },
-	                        React.createElement('source', { src: 'https://player.vimeo.com/external/158148793.hd.mp4?s=8e8741dbee251d5c35a759718d4b0976fbf38b6f&profile_id=119&oauth2_token_id=57447761', type: 'video/mp4' })
-	                    ),
-	                    React.createElement(
-	                        'script',
-	                        null,
-	                        'document.getElementById(\'vid\').play();'
-	                    ),
-	                    React.createElement(
 	                        'div',
 	                        { className: 'form-page__form-wrapper' },
 	                        React.createElement(
@@ -217,16 +207,16 @@ webpackJsonp([2],[
 	                                )
 	                            )
 	                        )
+	                    ),
+	                    React.createElement(
+	                        'p',
+	                        null,
+	                        React.createElement(
+	                            'a',
+	                            { href: 'log_out' },
+	                            'Log Out'
+	                        )
 	                    )
-	                )
-	            ),
-	            React.createElement(
-	                'p',
-	                null,
-	                React.createElement(
-	                    'a',
-	                    { href: 'log_out' },
-	                    'Log Out'
 	                )
 	            ),
 	            React.createElement(
@@ -253,11 +243,6 @@ webpackJsonp([2],[
 	                        'h2',
 	                        null,
 	                        ' Created by Team UHH'
-	                    ),
-	                    React.createElement(
-	                        'p',
-	                        null,
-	                        ' I sexually Identify as an Attack Helicopter. Ever since I was a boy I dreamed of soaring over the oilfields dropping hot sticky loads on disgusting foreigners. People say to me that a person being a helicopter is Impossible and I\u2019m fucking retarded but I don\u2019t care, I\u2019m beautiful. I\u2019m having a plastic surgeon install rotary blades, 30 mm cannons and AMG-114 Hellfire missiles on my body. From now on I want you guys to call me \u201CApache\u201D and respect my right to kill from above and kill needlessly. If you can\u2019t accept me you\u2019re a heliphobe and need to check your vehicle privilege. Thank you for being so understanding. '
 	                    )
 	                )
 	            )
